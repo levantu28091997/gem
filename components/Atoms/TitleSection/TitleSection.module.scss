@@ -1,0 +1,58 @@
+@import "@/styles/mixins";
+
+.titleSection {
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 22px;
+  padding-left: 16px;
+  position: relative;
+
+  @include md {
+    font-size: 20px;
+    line-height: 24px;
+    padding-left: 20px;
+  }
+
+  @include xl {
+    font-size: 36px;
+    line-height: 43px;
+  }
+
+  &::before {
+    content: '';
+    width: 5px;
+    height: 20px;
+    background: linear-gradient(180deg, #FF860A 0%, #FEA900 100%);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @include xl {
+      width: 8px;
+      height: 36px;
+    }
+  }
+}
+
+.viewMore {
+  font-family: 'Inter';
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15px;
+
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  @include md {
+    font-size: 18px;
+    line-height: 22px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

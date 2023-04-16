@@ -1,0 +1,77 @@
+@import '@/styles/mixins';
+
+.itemCategory {
+  padding: 7px;
+  border-radius: 10px;
+  gap: 8px;
+
+  @include xl {
+    padding: 5px;
+  }
+
+  @include xxxl {
+    gap: 20px;
+    padding: 8px;
+  }
+
+  img {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+
+    @include xl {
+      width: 80px;
+      height: 80px;
+    }
+
+    @include xxl {
+      width: 100px;
+      height: 100px;
+    }
+
+    @include xxxl {
+      width: 121px;
+      height: 121px;
+    }
+  }
+
+  span {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    max-height: 108px;
+    width: calc(100% - 70px - 26px);
+    text-align: left;
+    overflow: hidden;
+
+    @include lg {
+      font-size: 18px;
+      line-height: 22px;
+      width: calc(100% - 90px - 17px);
+    }
+
+    @include xxl {
+      font-size: 18px;
+      line-height: 22px;
+      width: calc(100% - 100px - 17px);
+    }
+
+    @include xxxl {
+      font-size: 24px;
+      line-height: 29px;
+      max-height: 108px;
+      width: calc(100% - 120px - 20px);
+    }
+  }
+
+  transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition-duration: 0.3s;
+
+  &:hover {
+    transform: scale(1.04) translate(4px, 4px);
+
+    @include xxxl {
+      transform: scale(1.06869) translate(8px, 4px);
+    }
+  }
+}

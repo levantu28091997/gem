@@ -1,0 +1,74 @@
+@import "@/styles/mixins";
+
+.itemGame {
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.15));
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.tag,
+.favourite {
+    position: absolute;
+    z-index: 2;
+    top: 12px;
+}
+
+.tag {
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 14px;
+    color: #F0A700;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 0px 0px 30px 0px;
+    padding: 4px 7px 7px 6px;
+    left: -7px;
+
+    @include xl {
+        padding: 8px 13px 13px 10px;
+        font-size: 22px;
+        line-height: 26px;
+    }
+
+    &::before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-bottom: 5px solid #ACABBE;
+        border-left: 8px solid transparent;
+        position: absolute;
+        left: 0px;
+        z-index: 1;
+        top: -5px;
+
+        @include xl {
+            border-bottom: 7px solid #ACABBE;
+            border-left: 10px solid transparent;
+            top: -7px;
+        }
+    }
+}
+
+.favourite {
+    left: 12px;
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include xl {
+        width: 45px;
+        height: 45px;
+    }
+
+    svg {
+        width: 20px;
+
+        @include xl {
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,69 @@
+@import "@/styles/mixins";
+
+.itemTag {
+  padding: 7px;
+  border-radius: 10px;
+  gap: 8px;
+
+  @include xl {
+    padding: 5px;
+  }
+
+  @include xxxl {
+    padding: 8px;
+  }
+
+  img {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+
+    @include xl {
+      width: 60px;
+      height: 60px;
+    }
+
+    @include xxl {
+      width: 80px;
+      height: 80px;
+    }
+
+    @include xxxl {
+      width: 104px;
+      height: 104px;
+    }
+  }
+
+  span {
+    color: #000000;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    max-height: 51px;
+    width: calc(100% - 70px - 26px);
+    overflow: hidden;
+
+    @include xl {
+      width: calc(100% - 60px - 17px);
+    }
+
+    @include xxxl {
+      font-size: 19px;
+      line-height: 24px;
+      max-height: 72px;
+      width: calc(100% - 104px - 20px);
+    }
+  }
+
+  transition: transform 1s cubic-bezier(.25, .1, .25, 1);
+  transition-duration: 0.3s;
+
+  &:hover {
+    transform: scale(1.04) translate(4px, 4px);
+
+    @include xxxl {
+      transform: scale(1.06869) translate(8px, 4px);
+    }
+
+  }
+}

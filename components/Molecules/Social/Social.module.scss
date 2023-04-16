@@ -1,0 +1,19 @@
+@import "@/styles/mixins";
+
+.Social {
+    svg {
+        width: 12px;
+
+        &:hover {
+            path {
+                fill: #FEA900;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 100ms;
+            }
+        }
+
+        @include md {
+            width: auto;
+        }
+    }
+}

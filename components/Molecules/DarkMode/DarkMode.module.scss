@@ -1,0 +1,63 @@
+@import "@/styles/mixins";
+
+.label {
+  background: linear-gradient(360deg, #F18200 0%, #FFA800 100%);
+  width: 39px;
+  height: 18px;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px;
+  position: relative;
+
+  img {
+    width: 13px;
+  }
+
+  @include xl {
+    width: 79px;
+    height: 38px;
+    padding: 6px;
+
+    img {
+      width: 23px;
+    }
+  }
+}
+
+.ball {
+  width: 13px;
+  height: 13px;
+  background-color: white;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+
+  @include xl {
+    width: 27px;
+    height: 27px;
+    top: 6px;
+    left: 6px;
+  }
+}
+
+.darkMode {
+  :hover {
+    cursor: pointer;
+  }
+
+  input:checked+.label .ball {
+    transform: translateX(20px);
+
+    @include xl {
+      transform: translateX(40px);
+    }
+  }
+
+  input:checked+.label {
+    background: linear-gradient(360deg, #020202 -46.53%, #BF1B57 119.14%);
+  }
+}

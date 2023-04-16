@@ -1,0 +1,72 @@
+.wrapper,
+.wrapperTablet,
+.wrapperMobile {
+  color: white;
+  display: grid;
+  list-style-type: none;
+  grid-auto-flow: dense;
+}
+
+.wrapper {
+  grid-gap: 22px;
+  grid-template-areas:
+    "ip0 ip0 ip1 ip2 ip3 ip3 ip4 ip5 ip6"
+    "ip0 ip0 ip7 ip8 ip3 ip3 ip9 ip10 ip11";
+}
+
+.wrapperTablet {
+  grid-gap: 18px;
+  grid-template-areas:
+    "ip0 ip0 ip1 ip2 ip3 ip3 ip4 ip5"
+    "ip0 ip0 ip7 ip8 ip3 ip3 ip9 ip10";
+}
+
+.wrapperMobile {
+  grid-gap: 20px;
+  grid-template-areas:
+    "ip0 ip0 ip1"
+    "ip0 ip0 ip7";
+}
+
+.ip0 {
+  grid-area: ip0;
+}
+
+.ip3 {
+  grid-area: ip3;
+}
+
+.carouselAction,
+.carouselActionTablet,
+.carouselActionMobile {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.carouselAction {
+  width: 32px;
+  right: -45px;
+}
+
+.carouselActionTablet {
+  width: 20px;
+  right: -25px;
+}
+
+.carouselActionMobile {
+  width: 14px;
+  right: -20px;
+}
+
+// .swiperCarousel {
+//   padding: 25px;
+//   margin-left: -25px;
+// }

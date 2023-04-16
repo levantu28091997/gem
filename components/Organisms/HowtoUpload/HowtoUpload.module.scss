@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa+One&family=Noto+Sans+JP:wght@500&display=swap');
+.bg_el {
+  width: 265px;
+  height: 265px;
+  background: linear-gradient(
+    270deg,
+    rgba(255, 255, 255, 0.6) -71.51%,
+    rgba(255, 255, 255, 0) 97.87%
+  );
+  border-radius: 167px;
+}
+.txt1 {
+  font-family: 'Changa One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 85px;
+  text-align: center;
+  color: #dc265b;
+}
+.txt2 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  color: #ffffff;
+}

@@ -1,0 +1,46 @@
+@import '@/styles/mixins';
+
+.titleSection {
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 43px;
+  text-align: center;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+
+  @include sm {
+    gap: 20px;
+  }
+
+  li {
+    a {
+      display: block;
+      padding: 5px 15px;
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 22px;
+      transition: border-color .2s ease-in-out, background-color .2s ease-in-out;
+      border: 2px solid;
+      border-radius: 33.5px;
+      overflow: hidden;
+
+      &:hover {
+        background-color: #FEA900;
+        border-color: #FEA900;
+      }
+
+      @include sm {
+        padding: 11px 40px;
+        font-size: 18px;
+      }
+    }
+
+  }
+}

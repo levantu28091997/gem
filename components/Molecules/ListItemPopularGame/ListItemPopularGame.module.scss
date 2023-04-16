@@ -1,0 +1,88 @@
+.itemGird,
+.itemGirdTablet,
+.itemGirdMobile {
+    color: white;
+    display: grid;
+    list-style-type: none;
+    grid-auto-flow: dense;
+}
+
+.itemGird {
+    grid-gap: 22px;
+    grid-template-areas:
+        "ip0 ip0 ip1 ip2 ip3 ip3 ip4 ip5 ip6"
+        "ip0 ip0 ip7 ip8 ip3 ip3 ip9 ip10 ip11"
+        "ip12 ip13 ip14 ip15 ip15 ip16 ip17 ip18 ip18"
+        "ip19 ip20 ip21 ip15 ip15 ip22 ip23 ip18 ip18"
+        "ip24 ip24 ip25 ip26 ip27 ip27 ip28 ip29 ip30"
+        "ip24 ip24 ip32 ip32 ip27 ip27 ip33 ip34 ip35";
+}
+
+.ip0 {
+    grid-area: ip0;
+}
+
+.ip3 {
+    grid-area: ip3;
+}
+
+.ip15 {
+    grid-area: ip15;
+}
+
+.ip18 {
+    grid-area: ip18;
+}
+
+.ip24 {
+    grid-area: ip24;
+}
+
+.ip27 {
+    grid-area: ip27;
+}
+
+.itemGirdTablet {
+    grid-gap: 18px;
+    grid-template-areas:
+        "tl0 tl0 tl1 tl2 tl3 tl3 tl4 tl5"
+        "tl0 tl0 tl6 tl7 tl3 tl3 tl8 tl9"
+        "tl10 tl10 tl11 tl12 tl13 tl13 tl14 tl15"
+        "tl10 tl10 tl16 tl17 tl13 tl13 tl18 tl19";
+}
+
+.tl0 {
+    grid-area: tl0;
+}
+
+.tl3 {
+    grid-area: tl3;
+}
+
+.tl10 {
+    grid-area: tl10;
+}
+
+.tl13 {
+    grid-area: tl13;
+}
+
+.itemGirdMobile {
+    grid-gap: 18px;
+    grid-template-areas:
+        "mb0 mb0 mb1"
+        "mb0 mb0 mb2"
+        "mb3 mb4 mb5"
+        "mb6 mb7 mb8"
+        "mb9 mb10 mb10"
+        "mb11 mb10 mb10"
+        "mb12 mb13 mb14";
+}
+
+.mb0 {
+    grid-area: mb0;
+}
+
+.mb10 {
+    grid-area: mb10;
+}

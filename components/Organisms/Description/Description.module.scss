@@ -1,0 +1,122 @@
+@import "@/styles/mixins";
+
+.desSection {
+  // background: rgba(255, 255, 255, 0.25);
+  box-shadow: var(--box-shadow-des);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 20px 0;
+
+  // CSS cho theme light
+  &[data-theme='light'] {
+    box-shadow: inset 0px 4px 15px rgba(116, 110, 196, 0.15);
+  }
+
+  // CSS cho theme dark
+  &[data-theme='dark'] {
+    box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  @include md {
+    padding: 25px 0;
+  }
+
+  @include xl {
+    padding: 35px 0;
+  }
+
+  header h2 {
+    margin-top: 0;
+  }
+}
+
+html[data-theme='light'] .desSection,
+body[data-theme='light'] .desSection {
+  box-shadow: inset 0px 4px 15px rgba(116, 110, 196, 0.15);
+}
+
+html[data-theme='dark'] .desSection,
+body[data-theme='dark'] .desSection {
+  box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.wrapper {
+  color: inherit;
+  max-height: 340px;
+  padding: 0 30px 0 14px;
+  overflow-y: auto;
+  font-size: 14px;
+  font-weight: 400;
+
+  @include md {
+    padding: 0 43px 0 42px;
+    font-size: 18px;
+    max-height: 310px;
+  }
+
+  @include xl {
+    padding: 0 110px 0 84px;
+    max-height: 405px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 9px;
+
+    @include md {
+      width: 8px;
+      height: 90%;
+    }
+
+    @include xl {
+      width: 15px;
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #D7D7D7;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 0px 10px 10px 0px;
+    margin-top: -35px;
+    margin-bottom: -35px;
+  }
+
+  h2,
+  h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0.75em 0;
+
+    @include md {
+      font-size: 20px;
+      margin: 1em 0;
+    }
+  }
+
+  ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 30px;
+    line-height: 21.6px;
+  }
+
+  p {
+    margin: 1em 0;
+    line-height: 17px;
+
+    @include md {
+      margin: 24px 0;
+      line-height: 21.6px;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}

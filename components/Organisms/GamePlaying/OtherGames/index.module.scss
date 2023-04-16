@@ -1,0 +1,23 @@
+.topSection {
+  grid-gap: 22px;
+  grid-template-areas:
+    'ip1 ip2 ip3 ip3 ip3 ip3 ip3 ip3 ip4'
+    'ip5 ip6 ip3 ip3 ip3 ip3 ip3 ip3 ip7'
+    'ip8 ip9 ip3 ip3 ip3 ip3 ip3 ip3 ip10';
+}
+
+.secondSection {
+  grid-gap: 22px;
+  grid-template-areas: 'ip12 ip13 ip14 ip15 ip15 ip15 ip15 ip16 ip17';
+}
+
+.ip3 {
+  grid-area: ip3;
+  display: grid;
+  grid-template-columns: 70.9% 1fr;
+  gap: 20px;
+}
+
+.ip15 {
+  grid-area: ip15;
+}

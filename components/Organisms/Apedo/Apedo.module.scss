@@ -1,0 +1,11 @@
+.background_img {
+  background-image: url(../../../public/images/Vector110.png);
+  background-size: cover;
+  background-position: center;
+}
+.item_mid {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}

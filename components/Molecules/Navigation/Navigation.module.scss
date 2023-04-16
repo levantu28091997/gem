@@ -1,0 +1,129 @@
+@import '@/styles/mixins';
+
+.menu {
+  gap: 1px;
+}
+
+.subMenu {
+  width: max-content;
+  right: 0;
+  top: 52px;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  z-index: 11;
+  transform: translateY(20px);
+  transition: all linear .2s;
+  opacity: 0;
+  visibility: hidden;
+
+  @include md {
+    top: 60px;
+  }
+
+  @include xl {
+    top: 77px;
+  }
+
+  &.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -11px;
+    right: 23px;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 24px solid #FFFFFF;
+    z-index: -5;
+
+    @include xl {
+      top: -17px;
+    }
+  }
+
+  li {
+    border-radius: 10px;
+    overflow: hidden;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #F0F0F0;
+    }
+  }
+
+  a,
+  .darkmode {
+    font-family: 'Outfit';
+    color: #33363F;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    display: block;
+    width: 100%;
+    padding: 12px;
+    overflow: hidden;
+
+    @include xl {
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 28px;
+      padding: 28px 23px 28px 28px;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+    
+  }
+}
+
+.menuItem {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  transition: all linear .2s;
+
+  &:first-child {
+    border-radius: 10px 0px 0px 10px;
+  }
+
+  &:last-child {
+    border-radius: 0px 10px 10px 0px;
+  }
+
+  &:hover,
+  &:focus,
+  &.active {
+    background: linear-gradient(180deg, #FF860A 0%, #FEA900 100%);
+  }
+
+  >a {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+
+    @include md {
+      width: 48px;
+      height: 48px;
+    }
+  }
+  .tooltip_menu {
+    position: absolute;
+    margin-top: 15px;
+    color: white;
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+
+  // Hiển thị tooltip khi hover vào menu item
+  &:hover {
+    .tooltip_menu {
+      opacity: 1;
+    }
+  }
+}

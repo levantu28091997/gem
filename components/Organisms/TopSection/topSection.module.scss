@@ -1,0 +1,17 @@
+@import "@/styles/mixins";
+
+.topSection {
+    gap: 18px;
+    grid-template-columns: 17% 1fr 17%;
+
+    @include xl {
+        gap: 35px;
+    }
+}
+
+.itemGird {
+    display: grid;
+    grid-gap: 18px;
+    grid-template-areas:
+        "ip0 ip1 ip2";
+}

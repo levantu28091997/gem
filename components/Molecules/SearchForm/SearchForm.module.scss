@@ -1,0 +1,39 @@
+.search {
+  flex-grow: 1;
+}
+
+.searchTerm {
+  background-color: #f2f2f2;
+  border-right: none;
+  padding: 5px 75px 5px 34px;
+  height: 48px;
+  border-radius: 8px;
+  outline: none;
+  width: 100%;
+  color: #333333;
+}
+
+.searchButton {
+  position: absolute;
+  right: 34px;
+  height: 48px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0 10px;
+}
+
+.itemGird,
+.itemGirdTablet,
+.itemGirdMobile {
+  color: white;
+  display: grid;
+  list-style-type: none;
+  grid-auto-flow: dense;
+}
+
+.itemGird {
+  grid-gap: 22px;
+  grid-template-areas:
+    'ip1 ip2 ip3 ip4 ip5 ip6 ip7'
+}

@@ -1,0 +1,87 @@
+.gridTemp,
+.itemGird,
+.itemGirdMobile {
+  color: white;
+  display: grid;
+  list-style-type: none;
+  grid-auto-flow: dense;
+}
+
+.itemGird {
+  grid-gap: 22px;
+  grid-template-areas:
+    'ip1 ip1 ip2 ip2 ip3 ip3 ip4 ip5 ip6'
+    'ip7 ip8 ip2 ip2 ip3 ip3 ip9 ip10 ip11'
+    'ip12 ip13 ip14 ip15 ip15 ip16 ip17 ip18 ip18'
+    'ip19 ip20 ip21 ip15 ip15 ip22 ip23 ip18 ip18';
+}
+
+.itemGirdMobile {
+  grid-gap: 20px;
+  grid-template-areas:
+    'ip1 ip1 ip2'
+    'ip3 ip4 ip5'
+    'ip6 ip6 ip7'
+    'ip6 ip6 ip8'
+    'ip9 ip10 ip11';
+}
+
+.ip1 {
+  grid-area: ip1;
+  display: flex;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+.ip2 {
+  grid-area: ip2;
+}
+
+.ip6 {
+  grid-area: ip6;
+}
+
+.ip3 {
+  grid-area: ip3;
+}
+
+.ip15 {
+  grid-area: ip15;
+}
+
+.ip18 {
+  grid-area: ip18;
+}
+
+.ip24 {
+  grid-area: ip24;
+}
+
+.ip27 {
+  grid-area: ip27;
+}
+
+.ip39 {
+  grid-area: ip39;
+}
+
+.ip42 {
+  grid-area: ip42;
+}
+
+.nameCategory {
+  margin: auto;
+  text-align: center;
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 43px;
+  color: #000000;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 24px;
+    line-height: 29px;
+  }
+}

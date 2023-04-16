@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '@/styles/mixins';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --bezier: cubic-bezier(0.25, 0.1, 0.25, 1) 0.1s;
+}
+
+html,
+body {
+  max-width: 100vw;
+  // overflow-x: hidden;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+.theme-dark::after {
+  content: '';
+  position: absolute;
+  width: 2829px;
+  height: 2447px;
+  left: -674px;
+  top: 1021px;
+  background: url('/images/background-02.png') no-repeat top center;
+  background-size: 2829px 2447px;
+  z-index: 0;
+  display: none;
+
+  @include md {
+    display: block;
+  }
+}
+
+.main {
+  padding: 0 16px;
+
+  @include md {
+    padding: 0 30px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .main {
+    width: 1864px;
+    padding: 0;
+  }
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes loop {
+  0% {
+    -moz-transform: translate3d(0, 0, 0px);
+    -ms-transform: translate3d(0, 0, 0px);
+    -webkit-transform: translate3d(0, 0, 0px);
+    transform: translate3d(0, 0, 0px);
+  }
+
+  10% {
+    -moz-transform: translate3d(-35.1868px, 25.1834px, 0px);
+    -ms-transform: translate3d(-35.1868px, 25.1834px, 0px);
+    -webkit-transform: translate3d(-35.1868px, 25.1834px, 0px);
+    transform: translate3d(-35.1868px, 25.1834px, 0px);
+  }
+
+  20% {
+    -moz-transform: translate3d(0, 0, 0px);
+    -ms-transform: translate3d(0, 0, 0px);
+    -webkit-transform: translate3d(0, 0, 0px);
+    transform: translate3d(0, 0, 0px);
+  }
+
+  30% {
+    -moz-transform: translate3d(20.1868px, -15.1834px, 0px);
+    -ms-transform: translate3d(20.1868px, -15.1834px, 0px);
+    -webkit-transform: translate3d(20.1868px, -15.1834px, 0px);
+    transform: translate3d(20.1868px, -15.1834px, 0px);
+  }
+
+  40% {
+    -moz-transform: translate3d(0, 0, 0px);
+    -ms-transform: translate3d(0, 0, 0px);
+    -webkit-transform: translate3d(0, 0, 0px);
+    transform: translate3d(0, 0, 0px);
+  }
+
+  50% {
+    -moz-transform: translate3d(-20.1868px, 34.1834px, 0px);
+    -ms-transform: translate3d(-20.1868px, 34.1834px, 0px);
+    -webkit-transform: translate3d(-20.1868px, 34.1834px, 0px);
+    transform: translate3d(-20.1868px, 34.1834px, 0px);
+  }
+
+  60% {
+    -moz-transform: translate3d(0, 0, 0px);
+    -ms-transform: translate3d(0, 0, 0px);
+    -webkit-transform: translate3d(0, 0, 0px);
+    transform: translate3d(0, 0, 0px);
+  }
+
+  70% {
+    -moz-transform: translate3d(1.1868px, -6.1834px, 0px);
+    -ms-transform: translate3d(1.1868px, -6.1834px, 0px);
+    -webkit-transform: translate3d(1.1868px, -6.1834px, 0px);
+    transform: translate3d(1.1868px, -6.1834px, 0px);
+  }
+
+  80% {
+    -moz-transform: translate3d(0, 0, 0px);
+    -ms-transform: translate3d(0, 0, 0px);
+    -webkit-transform: translate3d(0, 0, 0px);
+    transform: translate3d(0, 0, 0px);
+  }
+
+  90% {
+    -moz-transform: translate3d(-25.1868px, 16.1834px, 0px);
+    -ms-transform: translate3d(-25.1868px, 16.1834px, 0px);
+    -webkit-transform: translate3d(-25.1868px, 16.1834px, 0px);
+    transform: translate3d(-25.1868px, 16.1834px, 0px);
+  }
+
+  100% {
+    -moz-transform: translate3d(0, 0, 0px);
+    -ms-transform: translate3d(0, 0, 0px);
+    -webkit-transform: translate3d(0, 0, 0px);
+    transform: translate3d(0, 0, 0px);
+  }
+}
+
+.path-img {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-size: contain;
+  background-size: contain;
+  will-change: transform;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  animation: loop 23s linear infinite;
+}

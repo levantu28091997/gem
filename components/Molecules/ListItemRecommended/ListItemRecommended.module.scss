@@ -1,0 +1,37 @@
+.itemGird,
+.itemGirdTablet,
+.itemGirdMobile {
+    color: white;
+    display: grid;
+    list-style-type: none;
+    grid-auto-flow: dense;
+}
+
+.itemGird {
+    grid-gap: 22px;
+    grid-template-areas:
+        "ip0 ip0 ip1 ip2 ip3 ip3 ip4 ip5 ip6"
+        "ip0 ip0 ip7 ip8 ip3 ip3 ip9 ip10 ip11";
+}
+
+.itemGirdTablet {
+    grid-gap: 18px;
+    grid-template-areas:
+        "ip0 ip0 ip1 ip2 ip3 ip3 ip4 ip5"
+        "ip0 ip0 ip7 ip8 ip3 ip3 ip9 ip10";
+}
+
+.itemGirdMobile {
+    grid-gap: 20px;
+    grid-template-areas:
+        "ip0 ip0 ip1"
+        "ip0 ip0 ip2";
+}
+
+.ip0 {
+    grid-area: ip0;
+}
+
+.ip3 {
+    grid-area: ip3;
+}

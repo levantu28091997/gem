@@ -1,0 +1,29 @@
+.background_img {
+  background-image: url(../../../public/images/Vector110_dev.png);
+  background-size: cover;
+  background-position: right;
+}
+.background_img_mob {
+  background-image: url(../../../public/images/dev_mob.png);
+  background-size: cover;
+  background-position: right;
+}
+.item_mid {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+.box_content {
+  background: linear-gradient(270deg, #fe9801 0%, rgba(254, 152, 1, 0) 100%);
+}
+
+.box_content_left {
+  background: linear-gradient(270deg, rgba(254, 152, 1, 0) 0%, #fe9801 100%);
+}
+.button_upload {
+  font-family: 'Montserrat';
+  font-weight: 700;
+  background: linear-gradient(267.2deg, #cc2554 -13.07%, #f6950c 102.32%);
+  border-radius: 32.5px;
+}

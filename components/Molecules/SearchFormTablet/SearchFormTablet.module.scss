@@ -1,0 +1,11 @@
+@import '@/styles/mixins';
+
+.search {
+    width: 40px;
+    height: 40px;
+
+    @include md {
+        width: 48px;
+        height: 48px;
+    }
+}

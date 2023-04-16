@@ -1,0 +1,28 @@
+@import "@/styles/mixins";
+
+.footer {
+    background-color: #0A0A0A;
+    color: #FFFFFF;
+    padding: 23px 0;
+   
+}
+
+.logo {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        background-color: #FFFFFF;
+        width: 1px;
+        height: 32px;
+        top: 50%;
+        right: -20px;
+        transform: translateY(-50%);
+
+        @media screen and (min-width: 768px) {
+            height: 69px;
+            right: -42px;
+        }
+    }
+}
