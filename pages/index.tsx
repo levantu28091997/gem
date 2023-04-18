@@ -11,9 +11,9 @@ export default function Home() {
     <div className="mx-auto w-full max-w-full relative z-10 main">
       <TopSection />
       {/* <RecommendedGames isShowShape />
-      <NewGames isShowShape />
-      <PopularGames isShowShape /> */}
-      <PopularCategories isShowShape />
+      <NewGames isShowShape /> */}
+      <PopularGames isShowShape />
+      {/* <PopularCategories isShowShape /> */}
       <Description />
       <PopularTags />
     </div>
