@@ -34,6 +34,36 @@ const GameThumbnail: FC<Props> = (x) => {
   const acreage = size.height * size.width;
   const minSize = 176 * 176;
 
+  // start
+  return (
+    <div
+      ref={ref}
+      className={cs(["relative flex h-full w-full", styles.wrapper])}
+    >
+      <Link
+        href={x.slug || '/'}
+        className={cs([styles.itemGame, 'flex items-center h-full w-full relative'])}
+      >
+        <div className='w-full h-full rounded-[10px] overflow-hidden relative'>
+          <Image
+            loader={imageLoader}
+            src={x.gameImage}
+            alt={'recommended-for-you'}
+            fill
+            sizes='(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw'
+            priority
+            placeholder="blur"
+            blurDataURL="/icons/loading.gif"
+          />
+        </div>
+      </Link>
+    </div>
+  );
+
+  // end
+
   const TagShow = () => {
     if (!x.isNew && !x.isHot) return null;
 
