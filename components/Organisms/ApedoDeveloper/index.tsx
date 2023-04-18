@@ -55,23 +55,23 @@ const Apero = () => {
                 {/* Content */}
                 {isMobile
                     ? <div className="w-[280px] mx-auto">
-                        <AboutTitleSection title="Dive Into A World Of Gaming Experiences" lineheight="31px" size="30px" fontStyle="italic" />
-                        <p data-aos="fade-up" data-aos-duration="3000" className="text-center pt-[14px] text-white font-['Montserrat'] font-[400]">Our user-friendly interface makes it easy to browse and select your favorite games, while our site is updated regularly with new content,whether you're a casual gamer or a hybrid fan, we've got something for you.</p>
+                        <AboutTitleSection className="text-black dark:text-white" title="Dive Into A World Of Gaming Experiences" lineheight="31px" size="30px" fontStyle="italic" />
+                        <p data-aos="fade-up" data-aos-duration="3000" className="text-center pt-[14px] text-black dark:text-white font-['Montserrat'] font-[400]">Our user-friendly interface makes it easy to browse and select your favorite games, while our site is updated regularly with new content,whether you're a casual gamer or a hybrid fan, we've got something for you.</p>
                     </div>
                     : <div className="w-[560px] mx-auto">
-                        <AboutTitleSection title="Dive Into A World Of Gaming Experiences" lineheight="63px" size="60px" fontStyle="italic" />
-                        <p data-aos="fade-up" data-aos-duration="3000" className="text-center pt-[19px] text-white font-['Montserrat']">Our user-friendly interface makes it easy to browse and select your favorite games, while our site is updated regularly with new content,whether you're a casual gamer or a hybrid fan, we've got something for you.</p>
+                        <AboutTitleSection className="text-black dark:text-white" title="Dive Into A World Of Gaming Experiences" lineheight="63px" size="60px" fontStyle="italic" />
+                        <p data-aos="fade-up" data-aos-duration="3000" className="text-center pt-[19px] text-black dark:text-white font-['Montserrat']">Our user-friendly interface makes it easy to browse and select your favorite games, while our site is updated regularly with new content,whether you're a casual gamer or a hybrid fan, we've got something for you.</p>
                     </div>
                 }
                 {/* Contetnt */}
 
                 <div className={isMobile ? `${styles.item_mid} top-[115%]` : isTablet ? `${styles.item_mid}  top-[115%]` : `${styles.item_mid} top-[120%]`} >
-                    <button className={isMobile ? `${styles.button_upload} w-[169px] h-[38px] text-[14px] text-white font-[700]` : isTablet ? `${styles.button_upload}  text-white w-[169px] h-[38px] text-[14px] font-[700]` : `${styles.button_upload} w-[239px] text-white h-[54px] text-[14px] font-[700]`}>
+                    <button className={isMobile ? `${styles.button_upload} w-[169px] h-[38px] text-[14px] text-black dark:text-white font-[700]` : isTablet ? `${styles.button_upload}  text-black dark:text-white w-[169px] h-[38px] text-[14px] font-[700]` : `${styles.button_upload} w-[239px] text-black dark:text-white h-[54px] text-[14px] font-[700]`}>
                         Upload your game
                     </button>
                 </div>
             </div>
-            <div className={isMobile ? `${styles.background_img_mob} h-[1221px] mt-16 relative` : `${styles.background_img} relative mt-[120px] h-[1590.5px]`}>
+            <div className={isMobile ? `${styles.background_img_mob} h-[1221px] mt-16 relative` :isTablet? `${styles.background_img} relative mt-[120px] h-[1590.5px]`: `${styles.background_img} relative mt-[120px] h-[1590.5px]`    }>
                 <div className="container mx-auto relative">
                     <div data-aos="fade-up" data-aos-duration="3000" className={isMobile ? "absolute top-[14px]" : isTablet ? "absolute top-[14px]" : "absolute top-[-80px]"}>
                         <Image
@@ -84,9 +84,9 @@ const Apero = () => {
 
                     {/* Why you should choose Apero Gamehub? */}
 
-                    <div className={isMobile ? "pt-[210px] grid grid-cols-1 gap-5" : isTablet ? "pt-[210px] grid grid-cols-2 justify-items-center container" : "pt-[18%] grid grid-cols-2 justify-items-center mx-auto w-[60%]"}>
-                        <div className={isMobile ? "text-center w-[322px] mx-auto col-span-2 mb-[21px]" : isTablet ? "text-center w-[322px] mx-auto col-span-2 mb-[76px]" : "text-center w-[537px] mx-auto col-span-2 mb-[76px]"}>
-                            <AboutTitleSection title="Why you should choose Apero Gamehub?" lineheight={isMobile ? "31px" : isTablet ? "31px" : "50px"} size={isMobile ? "30px" : isTablet ? "30px" : "50px"} fontStyle="italic" />
+                    <div className={isMobile ? "pt-[210px] grid grid-cols-1 gap-5" : isTablet ? "pt-[200px] grid grid-cols-2 justify-items-center container" : "pt-[17%] grid grid-cols-2 justify-items-center mx-auto w-[60%]"}>
+                        <div className={isMobile ? "text-center w-[322px] mx-auto col-span-2 mb-[21px]" : isTablet ? "text-center w-[322px] mx-auto col-span-2 mb-[76px]" : "text-center w-[537px] mx-auto col-span-2 mb-[70px]"}>
+                            <AboutTitleSection className="text-white" title="Why you should choose Apero Gamehub?" lineheight={isMobile ? "31px" : isTablet ? "31px" : "50px"} size={isMobile ? "30px" : isTablet ? "30px" : "50px"} fontStyle="italic" />
                         </div>
                         <div className={isMobile ? "hidden" : isTablet ? "block" : "block"}></div>
                         <div className={isMobile ? `${styles.box_content} w-full col-span-2  grid justify-items-end pr-[15px] text-justify` : isTablet ? `${styles.box_content}` : `${styles.box_content} grid justify-items-end py-[19px] px-[28px] w-[583px]`}>
@@ -99,7 +99,7 @@ const Apero = () => {
                                         height={60}
                                     />
                                 </div>
-                                <AboutTitleSection title="GLOBAL" size={isMobile ? "41px" : isTablet ? "42px" : "64px"} lineheight="normal" />
+                                <AboutTitleSection className="text-white" title="GLOBAL"size={isMobile ? "41px" : isTablet ? "42px" : "62px"} lineheight="normal" />
                             </div>
                             <p className={isMobile ? "text-white  text-[14px] leading-[17px] font-[400] w-[306px] pb-4" : isTablet ? "text-white  text-[18px] font-[400] w-[296px]" : "text-white  text-[18px] font-[400] w-[463px]"}>By tapping into new markets, engaging a larger player base, and building game developer brand, we can create a sustainable business model and continue to create high-quality games that resonate with players around the world.</p>
                         </div>
@@ -113,7 +113,7 @@ const Apero = () => {
                                         height={60}
                                     />
                                 </div>
-                                <AboutTitleSection title="EARN MONEY" size={isMobile ? "41px" : isTablet ? "42px" : "64px"} lineheight="normal" />
+                                <AboutTitleSection className="text-white"  title="EARN MONEY" size={isMobile ? "41px" : isTablet ? "42px" : "62px"} lineheight="normal" />
                             </div>
                             <p className={isMobile ? "text-white  text-[14px] leading-[17px] font-[400] w-[306px] pb-4" : isTablet ? "text-white  text-[18px] font-[400] w-[296px]" : "text-white  text-[18px] font-[400] w-[463px]"}>By leveraging expertise in marketing, monetization, user acquisition, localization, and analytics, we can help a game developer grow their revenue 2 - 3 times and achieve long-term success in the gaming industry.</p>
                         </div>
@@ -129,14 +129,14 @@ const Apero = () => {
                                         height={60}
                                     />
                                 </div>
-                                <AboutTitleSection title="SIMPLE UPLOAD" size={isMobile ? "41px" : isTablet ? "42px" : "64px"} lineheight={isMobile ? "42px" : isTablet ? "normal" : "normal"} />
+                                <AboutTitleSection className="text-white" title="SIMPLE UPLOAD" size={isMobile ? "41px" : isTablet ? "42px" : "62px"} lineheight={isMobile ? "42px" : isTablet ? "normal" : "normal"} />
                             </div>
                             <p className={isMobile ? "text-white  text-[14px] leading-[17px] font-[400] w-[297px] pb-4" : isTablet ? "text-white  text-[18px] font-[400] w-[296px]" : "text-white  text-[18px] font-[400] w-[463px]"}>By leveraging expertise in marketing, monetization, user acquisition, localization, and analytics, we can help a game developer grow their revenue 2 - 3 times and achieve long-term success in the gaming industry.</p>
                         </div>
                     </div>
                     {/* Why you should choose Apero Gamehub? */}
 
-                    <div data-aos="fade-left" data-aos-duration="3000" className={isMobile ? "absolute top-[2px] right-0" : isTablet ? "absolute top-[50%] right-[20%]" : "absolute top-[50%] right-[20%]"}>
+                    <div data-aos="fade-left" data-aos-duration="3000" className={isMobile ? "absolute top-[2px] right-0" : isTablet ? "absolute top-[50%] right-[20%]" : "absolute top-[47%] right-[20%]"}>
                         <Image
                             src="/images/futureee 1.png"
                             alt=""

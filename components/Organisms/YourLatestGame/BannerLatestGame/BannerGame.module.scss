@@ -1,0 +1,48 @@
+@import "@/styles/mixins";
+
+.actionBanner {
+    bottom: 6px;
+    right: 11px;
+
+    @include md {
+        bottom: 19px;
+        right: 19px;
+    }
+
+    @include xl {
+        bottom: 39px;
+        right: 34px;
+    }
+
+    a {
+        padding: 6px 16px 7px;
+        background: linear-gradient(180deg, #FF860A 0%, #FEA900 100%);
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        font-weight: 800;
+        font-size: 14px;
+        line-height: 17px;
+        color: #FFFFFF;
+        text-transform: uppercase;
+
+        @include md {
+            padding: 8px 19px 7px;
+            font-size: 16px;
+            line-height: 19px;
+        }
+
+        @include xl {
+            padding: 15px 35px 14px;
+            font-size: 30px;
+            line-height: 36px;
+        }
+    }
+
+    svg {
+        width: 29px;
+
+        @include xl {
+            width: auto;
+        }
+    }
+}

@@ -26,6 +26,10 @@ export const createInstance = (baseUrl = null, middleware: any = () => {}) => {
             return Promise.reject(requestError)
         }
     )
+    instance.defaults.validateStatus = (status) => {
+        return (status >= 200 && status < 300) || status === 404;
+      };
+      
 
     // Add a response interceptor
     instance.interceptors.response.use(

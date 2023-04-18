@@ -27,7 +27,7 @@ export function ListGameCarouselOnDesktop({ gameList }: any) {
   }
 
   return (
-    <div ref={ref} className='relative'>
+    <div ref={ref} className='relative my-[-25px]'>
       <Swiper
         spaceBetween={50}
         slidesPerView={1}
@@ -72,11 +72,12 @@ export function ListGameCarouselOnTablet({ gameList }: any) {
   }
 
   return (
-    <div ref={ref} className='relative'>
+    <div ref={ref} className='relative my-[-25px]'>
       <Swiper
         spaceBetween={50}
         slidesPerView={1}
         ref={swiperRef}
+        className={styles.swiperCarousel}
       >
         {
           gamesFilter?.map((slides: any, indSlide: number) => {
@@ -116,12 +117,12 @@ export function ListGameCarouselOnMobile({ gameList }: any) {
   }
 
   return (
-    <div ref={ref} className='relative'>
+    <div ref={ref} className='relative my-[-25px]'>
       <Swiper
         spaceBetween={22}
         slidesPerView={1}
         ref={swiperRef}
-        className='tutu'
+        className={styles.swiperCarousel}
       >
         {
           gamesFilter?.map((slides: any, indSlide: number) => {
@@ -161,7 +162,7 @@ const GameList = ({ slides }: any) => {
 }
 
 function chunkArray(arr: Array<any>, size: number) {
-  return arr.reduce((resultArray, item, index) => {
+  return arr?.reduce((resultArray, item, index) => {
     const chunkIndex = Math.floor(index / size);
     if (!resultArray[chunkIndex]) {
       resultArray[chunkIndex] = [];

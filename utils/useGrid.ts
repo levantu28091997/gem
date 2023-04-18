@@ -71,3 +71,22 @@ export const getFirstSectionRowNumberMobile = (gameCount: number) => {
 
     return 5
 }
+
+export const gamesLimit = (gamesTotal: number, gamesViews: number, gamesMax: number) => {
+    // gamesTotal : games total
+    // gamesViews : games number in once screen
+    // gamesMax: games number maximum on section
+    if (gamesTotal < gamesViews) return gamesViews
+    const condition = gamesTotal > gamesMax ? gamesMax : gamesTotal
+
+    let gamesNumber = gamesTotal
+
+    for (let index = condition; index >= gamesViews; index--) {
+        if (index % gamesViews == 0) {
+            gamesNumber = index;
+            break;
+        }
+    }
+
+    return gamesNumber
+}

@@ -10,27 +10,33 @@ import LegalMobile from '@/components/Molecules/LegalMobile'
 
 
 const Footer = () => {
-    return (
-        <footer className={cs([styles.footer, "relative"])}>
-            <div className={styles.footerWrapper}>
-                <div className={'flex items-center justify-center gap-10 md:gap-[86px]'}>
-                    <div className={cs([styles.logo, 'w-32 sm:w-auto'])}>
-                        <Link href={"/"}>
-                            <Image src="/icons/logo-footer.svg" alt="Logo" width={271} height={83} />
-                        </Link>
-                    </div>
-                    <div className='socialLegal'>
-                        <Social />
-                        <LegalDecktop />
-                    </div>
-                </div>
-                <LegalMobile />
-                <div className="pt-4 flex items-center justify-center">
-                    <SelectLanguage />
-                </div>
-            </div>
-        </footer>
-    )
+  return (
+    <footer className={cs([styles.footer, "relative"])}>
+      <div className={styles.footerWrapper}>
+        <div className={'flex items-center justify-center gap-10 md:gap-[86px]'}>
+          <div className={cs([styles.logo])}>
+            <Link href={"/"}>
+              <Image
+                src="/icons/logo.svg"
+                alt="Logo"
+                width={125}
+                height={70}
+                className='h-auto mx-auto max-w-[70px] md:max-w-[125px]'
+              />
+            </Link>
+          </div>
+          <div className='socialLegal'>
+            <Social />
+            <LegalDecktop />
+          </div>
+        </div>
+        <LegalMobile />
+        <div className="pt-4 flex items-center justify-center">
+          <SelectLanguage />
+        </div>
+      </div>
+    </footer>
+  )
 }
 
 export default Footer

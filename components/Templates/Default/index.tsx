@@ -8,7 +8,7 @@ const LayoutDefault = ({ children }: LayoutDefaultProps) => {
   return (
     <Box>
       <CssBaseline />
-      <Box className={`bg-[#FFF4E8] dark:bg-[#0E101D] relative overflow-hidden theme-dark`}>
+      <Box className={`bg-[#FFF4E8] dark:bg-[#0E101D] relative overflow-hidden theme-dark after:content-[none] dark:after:content-['']`}>
         <Navbar />
         <div className='pt-12 pb-24'>{children}</div>
         <Footer />

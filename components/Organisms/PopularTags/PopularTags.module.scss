@@ -8,11 +8,6 @@
 }
 
 .tagList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-
   @include sm {
     gap: 20px;
   }
@@ -29,7 +24,6 @@
       transition: border-color .2s ease-in-out, background-color .2s ease-in-out;
       border: 2px solid;
       border-radius: 33.5px;
-      overflow: hidden;
 
       &:hover {
         background-color: #FEA900;

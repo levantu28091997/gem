@@ -21,10 +21,10 @@ const Global = () => {
                     />
                 </div>
                 <div className={isMobile ? "w-[78%] pl-5 text-center mt-3" : isTablet ? "w-[376px] text-center mt-7" : "w-[376px] text-center mt-7"}>
-                    <AboutTitleSection title="Bring your game to the World" size={isMobile ? "30px" : isTablet ? "50px" : "50px"} lineheight={isMobile ? "31px" : isTablet ? "50px" : "50px"} fontStyle="italic" />
+                    <AboutTitleSection className='text-black dark:text-white' title="Bring your game to the World" size={isMobile ? "30px" : isTablet ? "50px" : "50px"} lineheight={isMobile ? "31px" : isTablet ? "50px" : "50px"} fontStyle="italic" />
                 </div>
                 <div data-aos="fade-left" data-aos-duration="2000" className={isMobile ? `${styles.bg_linear} w-[160px] pl-[10px]` : isTablet ? `${styles.bg_linear} w-[411px] pl-[65px]` : `${styles.bg_linear} w-[811px] pl-[65px]`}>
-                    <div className={isMobile ? "text-right w-[120px]" : isTablet ? "text-right w-[259px]" : "text-right w-[259px]"}>
+                    <div className={isMobile ? "text-right w-[120px] pb-2" : isTablet ? "text-right w-[259px] pb-2" : "text-right w-[259px] pb-2"}>
                         <AboutTitleBlock title1="GLO" title2="BAL." size={isMobile ? "50px" : isTablet ? "80px" : "130px"} lineheight={isMobile ? "50px" : isTablet ? "80px" : "90px"} />
                     </div>
                 </div>
@@ -32,7 +32,7 @@ const Global = () => {
             {isMobile
                 ? <div className="container mx-auto">
                     <div className="p-[47px]">
-                        <p className="text-center text-[14px] leading-[30px] text-white font-['Montserrat']">
+                        <p className="text-center text-[14px] leading-[30px] text-black dark:text-white font-['Montserrat']">
                             We aim to create a marketing strategy to promote the game globally includes utilizing social media platforms, creating promotional videos provide development support to game developers, such as access to specialized technology, technical expertise, and guidance on game design., and working with game reviewers to increase visibility.
                         </p>
                     </div>
@@ -43,7 +43,7 @@ const Global = () => {
                             width={285}
                             height={457}
                         />
-                        <button className={`${styles.button_linear} text-white h-[54px] mx-auto mt-5`}>
+                        <button className={`${styles.button_linear} text-black dark:text-white h-[54px] mx-auto mt-5`}>
                             Let’s Discover
                         </button>
                     </div>
@@ -60,10 +60,10 @@ const Global = () => {
                             />
                         </div>
                         <div className="p-[47px]">
-                            <p className="pb-[37px] leading-[30px] text-white font-['Montserrat']">
+                            <p className="pb-[37px] leading-[30px] text-black dark:text-white font-['Montserrat']">
                                 We aim to create a marketing strategy to promote the game globally includes utilizing social media platforms, creating promotional videos provide development support to game developers, such as access to specialized technology, technical expertise, and guidance on game design., and working with game reviewers to increase visibility.
                             </p>
-                            <button className={`${styles.button_linear} text-white h-[54px]`}>
+                            <button className={`${styles.button_linear} text-black dark:text-white h-[54px]`}>
                                 Let’s Discover
                             </button>
                         </div>
@@ -78,10 +78,10 @@ const Global = () => {
                             />
                         </div>
                         <div className="p-[47px]">
-                            <p className="pb-[47px] leading-[30px] text-white font-['Montserrat']">
+                            <p className="pb-[47px] leading-[30px] text-black dark:text-white font-['Montserrat']">
                                 We aim to create a marketing strategy to promote the game globally includes utilizing social media platforms, creating promotional videos provide development support to game developers, such as access to specialized technology, technical expertise, and guidance on game design., and working with game reviewers to increase visibility.
                             </p>
-                            <button className={`${styles.button_linear} text-white h-[54px]`}>
+                            <button className={`${styles.button_linear} text-black dark:text-white h-[54px]`}>
                                 Let’s Discover
                             </button>
                         </div>

@@ -66,7 +66,7 @@
     width: 100%;
     padding: 12px;
     overflow: hidden;
-
+    
     @include xl {
       font-weight: 600;
       font-size: 22px;
@@ -113,9 +113,11 @@
     }
   }
   .tooltip_menu {
+    font-family: 'Genos', sans-serif;
     position: absolute;
     margin-top: 15px;
-    color: white;
+    // right: 0;
+    // width: 70px;
     opacity: 0;
     transition: opacity 300ms;
   }

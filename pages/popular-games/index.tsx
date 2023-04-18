@@ -35,7 +35,9 @@ export default function PopularGames() {
         <ListPopularGames gameList={gameList} />
       </div>
       <RecommendedGames />
-      <Description />
+      <div className="flex">
+        <Description />
+      </div>
     </div>
   );
 }

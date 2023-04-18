@@ -7,7 +7,7 @@ interface Props{
 }
 
 const ItemContact:FC<Props> = ({title,text}) => {
-  const {isMobile} = useScreenSize()
+  const {isMobile,isTablet} = useScreenSize()
   if (isMobile) {
     return (
       <div className="bg-white text-center  items-center w-[306px] h-[103px py-[24px] rounded-md shadow-inner mx-auto mb-[20px]">
@@ -17,7 +17,7 @@ const ItemContact:FC<Props> = ({title,text}) => {
     )
   }
   return (
-    <div className="bg-white text-center  items-center w-[306px] h-[103px py-[24px] rounded-md shadow-inner mx-auto">
+    <div className={isMobile? "bg-white text-center items-center w-[90%] py-[24px] rounded-md shadow-inner mx-auto":isTablet?"bg-white text-center items-center w-[90%] py-[24px] rounded-md shadow-inner mx-auto":"bg-white text-center items-center w-[90%] py-[24px] rounded-md shadow-inner mx-auto"}>
         <h1 className="text-[#FEA900] font-[700] text-[24px]">{title}</h1>
         <p className="text-black">{text}</p>
     </div>

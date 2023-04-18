@@ -2,6 +2,7 @@ const FAVORITE_GAMES = 'favorite_games';
 const PLAYED_CATEGORIES_GAMES = 'played_categories_games';
 const PLAYED_ID_GAMES = 'played_id_games';
 const THEME_MODE = 'theme_mode';
+const LATEST_GAME_ID = 'latest_game_id';
 class LocalStorageService {
   static setItem(key: any, value: any) {
     localStorage.setItem(key, JSON.stringify(value));
@@ -67,16 +68,18 @@ class GamesService {
   }
 
   static getIdPlayedGames() {
+    if (typeof window !== 'undefined' && window.localStorage) {
     return LocalStorageService.getItem(PLAYED_ID_GAMES) || [];
+    }
   }
 
   static getRecentlyPlayedGame() {
     const idsGame = this.getIdPlayedGames();
-    const value = idsGame.map((id: number) => {
+    const value = idsGame&&idsGame.map((id: number) => {
       return `filters[id][$in]=${id}`;
     });
 
-    const filter = value.join('&');
+    const filter = value?.join('&');
     return filter;
   }
 
@@ -105,6 +108,38 @@ class GamesService {
     }
     return [];
   }
+  static getFavouriteGamesForApi() {
+    const favorite_games = this.getFavoriteGames();
+    if (Array.isArray(favorite_games)) {
+      const ids = favorite_games.map(game => `&filters[id][$in]=${game}`);
+      const result = ids.join('');
+      return result;
+    } else {
+      return [];
+    }
+  }
+  static addIdLatestGame(idGame: number) {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const currentId = localStorage.getItem(LATEST_GAME_ID);
+      if (currentId) {
+        localStorage.setItem(LATEST_GAME_ID, String(idGame));
+      } else {
+        localStorage.setItem(LATEST_GAME_ID, String(idGame));
+      }
+    } else {
+      console.error('localstorage is not supported for this browser.');
+    }
+  }
+  static getLatestGameId() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const latestGameId = LocalStorageService.getItem(LATEST_GAME_ID);
+      if (latestGameId) {
+        return parseInt(latestGameId, 10);
+      }
+    }
+    return null;
+  }
+
 }
 
 export default GamesService;

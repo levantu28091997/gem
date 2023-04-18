@@ -46,7 +46,9 @@ export default function ListGameByTag({ slug }: { slug: string }) {
         <ListGames gameList={listGameByTag} />
       </div>
       <RecommendedGames />
-      <Description />
+      <div className="flex">
+        <Description />
+      </div>
     </div>
   );
 }

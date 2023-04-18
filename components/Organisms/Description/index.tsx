@@ -13,7 +13,7 @@ const Description = (x: Iprops) => {
       className={cs([styles.desSection, 'mb-10 md:mb-[70px] xl:mb-20 text-black dark:text-white bg-[#ffffffcc] dark:bg-[#ffffff40] shadow-light dark:shadow-dark border border-[#ffffff17] dark:border-0'])}
     >
       {x.gameName && x.description ? (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} style={{ whiteSpace: 'pre-line' }}>
           <header>
             <h2>{x.gameName}</h2>
           </header>

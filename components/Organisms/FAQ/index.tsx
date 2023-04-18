@@ -67,7 +67,7 @@ const Faq = () => {
                                 </div>
                             </div>
                             <div className="mb-[33px] mt-5 mr-[28%]">
-                                <AboutTitleSection title="FAQ" size={isMobile ? "32px" : isTablet ? "32px" : "50px"} />
+                                <AboutTitleSection className="text-black dark:text-white" title="FAQ" size={isMobile ? "32px" : isTablet ? "32px" : "50px"} />
                             </div>
                         </div>
                         <div className="w-full mt-[31px]">
@@ -89,7 +89,7 @@ const Faq = () => {
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-[33px] mt-5">
-                                    <AboutTitleSection title="FAQ" size="50px" />
+                                    <AboutTitleSection className="text-black dark:text-white" title="FAQ" size="50px" />
                                 </div>
                                 {dataText.map((item, i) =>
                                     <FaqItem faq={item} index={i} OpenFaq={Open} />
@@ -108,7 +108,7 @@ const Faq = () => {
                             </div>
                             <div className="w-1/2">
                                 <div className="mb-[33px] -mt-5">
-                                    <AboutTitleSection title="FAQ" size={isMobile ? "" : isTablet ? "" : "50px"} />
+                                    <AboutTitleSection className="text-black dark:text-white" title="FAQ" size={isMobile ? "" : isTablet ? "" : "50px"} />
                                 </div>
                                 {dataText.map((item, i) =>
                                     <FaqItem faq={item} index={i} OpenFaq={Open} />

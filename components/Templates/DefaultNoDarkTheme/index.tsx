@@ -23,7 +23,7 @@ const LayoutDefaultNoDarkTheme = ({ children }: LayoutDefaultProps) => {
         ) : (
           <>
             <Navbar />
-            <div className='bg-[#FFF4E8] dark:bg-[#0E101D] pt-12 pb-24'>{children}</div>
+            <div className='bg-[#FFF4E8] dark:bg-[#0E101D] pt-12'>{children}</div>
             <Footer />
           </>
         )}

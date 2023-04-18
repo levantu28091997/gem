@@ -4,6 +4,7 @@ import { useRequest } from 'ahooks'
 import styles from './PopularTags.module.scss'
 import React, { useEffect, useState } from 'react'
 import { homeService } from '@/app/services/homeService'
+import useScreenSize from '@/utils/useScreenSize'
 
 interface PropTag {
   id: number,
@@ -26,7 +27,7 @@ const PopularTags = () => {
       setTags(data);
     },
   })
-
+  const {isMobile,isTablet} = useScreenSize()
   useEffect(() => {
     run()
   }, [])
@@ -36,10 +37,10 @@ const PopularTags = () => {
       <div className='mb-10'>
         <h2 className={cs([styles.titleSection, 'text-black dark:text-white'])}>Popular Tags</h2>
       </div>
-      <ul className={styles.tagList}>
+      <ul className={`${styles.tagList} flex justify-center flex-wrap gap-2`}>
         {!loading && tags?.map((tag: PropTag) => (
           <li key={tag?.id} >
-            <Link href={tag?.attributes?.slug} className='text-black dark:text-white border-[#0A0A0A] dark:border-[#FFFFFF]'>
+            <Link href={`/tag/${tag?.attributes?.slug}`} className='text-black dark:text-white border-[#0A0A0A] dark:border-[#FFFFFF] truncate '>
               {tag?.attributes?.name}
             </Link>
           </li>

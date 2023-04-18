@@ -9,14 +9,13 @@ export default function propsItemGame(gameList: any, index: any) {
     const slug = gameList && gameList[index]?.attributes.slug;
     // get createAt
     const createAt = gameList && gameList[index]?.attributes.createdAt;
-    const outputDateString = moment(createAt).format("YYYY-MM-DD");
-    const sevenDaysAgo = moment().subtract(7, 'days');
+    const isNewGame = gameList && gameList[index]?.attributes.is_new_game;
     return {
         gameName: gameName,
         gameImage: gameImage,
         videoUrl: videos,
         slug: `/playgame/${slug}`,
-        isNew: moment(outputDateString).isAfter(sevenDaysAgo) ? true : false,
+        isNew: isNewGame ? true : false,
         isHot: isHotGame,
         isFavourite: GameService.isGameFavorite(gameList[index]?.id),
     };
@@ -33,7 +32,7 @@ export const GameInfo = (data: any) => {
         gameImage: data?.attributes?.thumbnail.data.attributes.url,
         videoUrl: data?.attributes?.video.data.attributes.url,
         slug: `/playgame/${data?.attributes?.slug}`,
-        isNew: moment(outputDateString).isAfter(sevenDaysAgo) ? true : false,
+        isNew: data?.attributes.is_new_game,
         isHot: data?.attributes?.is_hot_game,
         isFavourite: GameService.isGameFavorite(data?.id),
     };

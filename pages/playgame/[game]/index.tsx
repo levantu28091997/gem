@@ -51,6 +51,7 @@ export default function index() {
       handlePlayGame(data[0]);
       setListCategories((data[0] as any)?.attributes?.categories?.data);
       addIdGameToLocalStorage(data[0].id);
+      addLatestGameIdToLocalStorage(data[0].id)
     },
   });
 
@@ -83,6 +84,9 @@ export default function index() {
       });
     }
   }
+  function addLatestGameIdToLocalStorage(gameIdLatest: any) {
+    GamesService.addIdLatestGame(gameIdLatest)
+  }
 
   function getMetaContent(data: any) {
     const image =
@@ -104,7 +108,7 @@ export default function index() {
   }, [gameUrl]);
 
   const { run: runGameRecommended } = useRequest(
-    homeService.getRecommendedGames,
+    homeService.getRandomGames,
     {
       manual: true,
       onError: (res, params) => {
@@ -117,10 +121,10 @@ export default function index() {
     },
   );
   useEffect(() => {
-    if (listCategories.length) {
-      runGameRecommended();
+    if (gameUrl !== undefined) {
+      runGameRecommended(String(gameUrl));
     }
-  }, [listCategories]);
+  }, [gameUrl]);
 
   const [srcIframe, setSrcIframe] = useState('');
 
@@ -185,7 +189,9 @@ export default function index() {
         gameCurrent={gameCurrent}
       />
       <div className='h-20'></div>
-      <Description {...propsDescription(gameCurrent)} />
+      <div className='flex'>
+        <Description {...propsDescription(gameCurrent)} />
+      </div>
     </div>
   );
 }

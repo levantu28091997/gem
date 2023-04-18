@@ -1,3 +1,4 @@
+import { light } from '@mui/material/styles/createPalette';
 import styles from './AboutTitleBlock.module.scss'
 import { FC } from "react";
 
@@ -11,7 +12,7 @@ interface Props {
 
 const AboutTitleBlock: FC<Props> = ({ title1, title2, size, lineheight }) => {
     return (
-        <div style={{ fontSize: `${size}`, lineHeight: `${lineheight}` }} className={styles.Title_block}>
+        <div style={{ fontSize: `${size}`, lineHeight: `${lineheight}` }} className={`${styles.Title_block} text-text-text-light-blog dark:text-text-dark-blog`}>
             {title1} <br />{title2}
         </div>
     )

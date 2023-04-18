@@ -23,6 +23,7 @@ function propsItemGameTop(gameList: any, index: any, status?: any) {
     slug: `/playgame/${gameList && gameList[index]?.slug}`,
     isNew: moment(outputDateString).isAfter(sevenDaysAgo) ? true : false,
     isHot: isHotGame,
+    isHover: true,
   };
 }
 function propsGameBanner(bannerGame: any) {
@@ -87,7 +88,7 @@ const TopSection = () => {
         <GameThumbnail {...propsItemGameTop(gameList, 0)} />
         <GameThumbnail {...propsItemGameTop(gameList, 1)} />
       </div>
-      <div style={{ maxHeight: itemHeight ? `${itemHeight}px` : 'unset' }}>
+      <div>
         <BannerGame {...propsGameBanner(bannerGame)} />
       </div>
       <div className='flex flex-col gap-[18px] xl:gap-[35px]'>

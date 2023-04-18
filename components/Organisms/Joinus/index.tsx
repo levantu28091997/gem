@@ -22,14 +22,14 @@ const Joinus = () => {
                             </div>
                         </div>
                         <div className="mt-5 text-center w-[40%]">
-                            <AboutTitleSection title="Reason to Join Us" size={isMobile ? "30px" : isTablet ? "50px" : "50px"} lineheight={isMobile ? "31.86px" : isTablet ? "31.86px" : "normal"} fontStyle={isMobile ? "31.86px" : isTablet ? "31.86px" : "normal"} />
+                            <AboutTitleSection className="text-black dark:text-white" title="Reason to Join Us" size={isMobile ? "30px" : isTablet ? "50px" : "50px"} lineheight={isMobile ? "31.86px" : isTablet ? "31.86px" : "normal"} fontStyle={isMobile ? "31.86px" : isTablet ? "31.86px" : "normal"} />
                         </div>
                     </div>
                     {dataText.map((item) =>
                         <div className="w-full text-center">
                             <h2 className={styles.t1}>{item.t1}</h2>
-                            <h5 className={styles.t2}>{item.t2}</h5>
-                            <p className={styles.t3}>{item.t3}</p>
+                            <h5 className={`${styles.t2} text-black dark:text-white`}>{item.t2}</h5>
+                            <p className={`${styles.t3} text-black dark:text-white`}>{item.t3}</p>
                         </div>
                     )}
 
@@ -43,33 +43,34 @@ const Joinus = () => {
                                 </div>
                             </div>
                             <div className="text-center pt-8">
-                                <AboutTitleSection title="Reason to Join Us" size={isMobile ? "30px" : isTablet ? "50px" : "50px"} lineheight="50px" fontStyle="italic" />
+                                <AboutTitleSection className="text-black dark:text-white" title="Reason to Join Us" size={isMobile ? "30px" : isTablet ? "50px" : "50px"} lineheight="50px" fontStyle="italic" />
                             </div>
                         </div>
                         {dataText.map((item) =>
                             <div className="w-full text-center">
                                 <h2 className={styles.t1}>{item.t1}</h2>
-                                <h5 className={styles.t2}>{item.t2}</h5>
-                                <p className={styles.t3}>{item.t3}</p>
+                                <h5 className={`${styles.t2} text-black dark:text-white`}>{item.t2}</h5>
+                                <p className={`${styles.t3} text-black dark:text-white`}>{item.t3}</p>
                             </div>
                         )}
-
                     </div>
                     : <div className="">
                         <div className="text-center">
-                            <AboutTitleSection title="Reason to Join Us" size="50px" fontStyle="italic" />
+                            <AboutTitleSection className='text-black dark:text-white' title="Reason to Join Us" size="50px" fontStyle="italic" />
                         </div>
                         <div className="w-full flex justify-between mt-[51px] mb-[161px]">
+                            <div className="">
                             <div data-aos="fade-right" data-aos-duration="2000" className={`${styles.bg_linear_desktop} w-[811px] grid justify-end`}>
-                                <div className="text-center w-[254px] mr-16 pt-2">
-                                    <AboutTitleBlock title1="JOIN" title2="US." size={isMobile ? "50px" : isTablet ? "80px" : "130px"} lineheight="90px" />
+                                <div className="text-center w-[50%] mr-20 pb-3">
+                                    <AboutTitleBlock  title1="JOIN" title2="US." size={isMobile ? "50px" : isTablet ? "80px" : "130px"} lineheight="90px" />
                                 </div>
+                            </div>
                             </div>
                             {dataText.map((item) =>
                                 <div className="w-[502px] text-center">
                                     <h2 className={styles.t1}>{item.t1}</h2>
-                                    <h5 className={styles.t2}>{item.t2}</h5>
-                                    <p className={styles.t3}>{item.t3}</p>
+                                    <h5 className={`${styles.t2} text-black dark:text-white`}>{item.t2}</h5>
+                                    <p className={`${styles.t3} text-black dark:text-white`}>{item.t3}</p>
                                 </div>
                             )}
 

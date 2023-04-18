@@ -60,7 +60,9 @@ export default function SingleCategory({ slug }: { slug: string }) {
         />
       </div>
       <PopularCategories />
-      <Description {...propsDescription(category[0])} />
+      <div className='flex'>
+        <Description {...propsDescription(category[0])} />
+      </div>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import styles from './ItemGameTop.module.scss';
 import { IconFavourite } from '@/components/Atoms/Icons';
 import VideoThumbnail from '@/components/Molecules/VideoThumbnail';
+import imageLoader from '@/utils/useImageLoader';
 interface Props {
   videoUrl?: string;
   gameName: string;
@@ -15,9 +16,7 @@ interface Props {
   className?: string;
   slug?: string;
 }
-const loaderImage = ({ src }: any) => {
-  return process.env.IMAGE_URL + src;
-};
+
 const ItemGameTop: FC<Props> = (x) => {
   const [isHovering, setIsHovering] = useState(false);
 
@@ -46,9 +45,9 @@ const ItemGameTop: FC<Props> = (x) => {
       <TagShow />
       <Favourite />
       <div className={cs([styles.itemGame, 'flex items-center'])}>
-        {x.gameImage&& (
+        {x.gameImage && (
           <Image
-            loader={loaderImage}
+            loader={imageLoader}
             className='w-full object-contain'
             src={x.gameImage}
             alt={'game'}

@@ -12,6 +12,8 @@ interface Props {
 }
 
 const PopularCategories: FC<Props> = ({ isShowShape = false }) => {
+  const { isMobile, isTablet, isDesktop } = useScreenSize();
+
   const [categories, setCategories] = useState<any>([]);
   const { data, run, loading } = useRequest(homeService.getCategories, {
     manual: true,
@@ -27,13 +29,18 @@ const PopularCategories: FC<Props> = ({ isShowShape = false }) => {
     run();
   }, []);
 
+  let dataResult = [];
+  if (isDesktop) dataResult = categories.slice(0, 14);
+  if (isTablet) dataResult = categories.slice(0, 8);
+  if (isMobile) dataResult = categories.slice(0, 10);
+
   return (
     <div className='popularTag mb-10 md:mb-[70px] xl:mb-20 relative'>
-      {isShowShape && <div className={cs([styles.path, 'path-img opacity-0 xl:opacity-100'])} />}
+      {isDesktop && isShowShape && <div className={cs([styles.path, 'path-img opacity-0 xl:opacity-100'])} />}
       <TitleSection title='Popular Categories' />
       <div className='lg:ml-5 xl:ml-12'>
         <div className={styles.tagList}>
-          <ContentPopularCategories games={categories} />
+          <ContentPopularCategories games={dataResult} />
         </div>
       </div>
     </div>
@@ -48,13 +55,7 @@ interface ItemType {
   };
 }
 const ContentPopularCategories: FC<{ games: any }> = ({ games }) => {
-  const { isMobile, isTablet, isDesktop } = useScreenSize();
-  let dataResult = games;
-  if (isDesktop) dataResult = games.slice(0, 14);
-  if (isTablet) dataResult = games.slice(0, 8);
-  if (isMobile) dataResult = games.slice(0, 10);
-
-  return dataResult?.map((game: ItemType) => (
+  return games?.map((game: ItemType) => (
     <ItemCategories key={game?.id} cate={game?.attributes} />
   ));
 };

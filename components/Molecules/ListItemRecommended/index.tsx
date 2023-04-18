@@ -3,13 +3,14 @@ import useScreenSize from '@/utils/useScreenSize';
 import { useRequest } from 'ahooks';
 import { homeService } from '@/app/services/homeService';
 import { ListGameCarouselOnDesktop, ListGameCarouselOnTablet, ListGameCarouselOnMobile } from '../ListGameCarousel';
+import { gamesLimit } from "@/utils/useGrid"
 
 const ListItemRecommended = () => {
   const { isDesktop, isTablet } = useScreenSize();
   const [gameList, setGameList] = useState<any>([]);
 
   const { data, run, loading } = useRequest(homeService.getRecommendedGames, {
-    manual: true,
+    manual: false,
     onError: (res, params) => {
       return res;
     },
@@ -18,14 +19,10 @@ const ListItemRecommended = () => {
     },
   });
 
-  useEffect(() => {
-    run();
-  }, []);
+  if (isDesktop) return <ListGameCarouselOnDesktop gameList={gameList.slice(0, gamesLimit(gameList?.length, 12, 36))} />;
+  if (isTablet) return <ListGameCarouselOnTablet gameList={gameList.slice(0, gamesLimit(gameList?.length, 10, 30))} />;
 
-  if (isDesktop) return <ListGameCarouselOnDesktop gameList={gameList} />;
-  if (isTablet) return <ListGameCarouselOnTablet gameList={gameList} />;
-
-  return <ListGameCarouselOnMobile gameList={gameList} />;
+  return <ListGameCarouselOnMobile gameList={gameList.slice(0, gamesLimit(gameList?.length, 3, 15))} />;
 };
 
 export default ListItemRecommended;

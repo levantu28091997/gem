@@ -60,9 +60,7 @@ class HomeService extends BaseService {
     return this.request.get(api);
   };
   getNewGame = () => {
-    const currentTime = moment().format('YYYY-MM-DD');
-    const sevenDaysAgo = moment().subtract(7, 'days').format('YYYY-MM-DD');
-    const api = `/games?populate=*&pagination[pageSize]=56&filters[createdAt][$lt]=${currentTime}&filters[createdAt][$gte]=${sevenDaysAgo}`;
+    const api = `/games?sort[1]=updatedAt:desc&populate=*`;
     return this.request.get(api);
   };
 

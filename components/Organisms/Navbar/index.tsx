@@ -74,7 +74,7 @@ const Navbar = () => {
       )}
       <nav
         className={cs([
-          'relative z-50 pt-2.5 pb-[11px] md:py-3 mb-[18px] md:mb-12 xl:mb-[50px] bg-light dark:bg-dark',
+          'fixed top-0 left-0 w-[100vw] z-50 pt-2.5 pb-[11px] md:py-3 mb-[18px] md:mb-12 xl:mb-[50px] bg-light dark:bg-dark',
           styles.wrapper,
         ])}
       >
@@ -106,6 +106,7 @@ const Navbar = () => {
           </Box>
         </div>
       </nav>
+      <div className=" w-[100vw] z-50 pt-2.5 pb-[11px] md:py-3 mb-[18px] md:mb-12 xl:mb-[50px]"></div>
     </>
   );
 };

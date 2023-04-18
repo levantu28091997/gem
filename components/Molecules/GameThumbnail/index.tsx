@@ -10,6 +10,7 @@ import GamesService from '@/app/services/gameService';
 import useElementSize from '@/utils/useElementSize';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import imageLoader from '@/utils/useImageLoader';
 interface Props {
   isHover?: boolean;
   videoUrl?: string;
@@ -73,14 +74,16 @@ const GameThumbnail: FC<Props> = (x) => {
     return (
       <div className='w-full h-full rounded-[10px] overflow-hidden relative'>
         <Image
-          loader={loaderImage}
+          loader={imageLoader}
           src={x.gameImage}
           alt={'recommended-for-you'}
           fill
-          priority={true}
           sizes='(max-width: 768px) 100vw,
           (max-width: 1200px) 50vw,
           33vw'
+          priority
+          placeholder="blur"
+          blurDataURL="/icons/loading.gif"
         />
         {
           x.isLightEffect &&
@@ -110,10 +113,6 @@ const GameThumbnail: FC<Props> = (x) => {
 
 export default GameThumbnail;
 
-const loaderImage = ({ src, width }: any) => {
-  return process.env.IMAGE_URL + src;
-};
-
 const TitleHoverDecktop = (x: any) => {
   const { isDesktop } = useScreenSize()
   if (!isDesktop) return null
@@ -134,7 +133,7 @@ const TitleHoverDecktop = (x: any) => {
     >
       {x.gameName}
 
-      <span
+      {/* <span
         className={cs(['absolute', styles.actionFavourite])} onClick={(e) => {
           e?.preventDefault()
         }}
@@ -146,7 +145,7 @@ const TitleHoverDecktop = (x: any) => {
             <FavoriteBorderIcon className='' />
           }
         </span>
-      </span>
+      </span> */}
     </Link>
   )
 }

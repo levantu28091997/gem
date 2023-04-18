@@ -8,7 +8,7 @@ import styles from './categories.module.scss';
 
 export default function Categories() {
   const [categories, setCategories] = useState<any>([]);
- 
+
   const { data, run, loading } = useRequest(homeService.getCategories, {
     manual: true,
     onError: (res, params) => {
@@ -22,12 +22,13 @@ export default function Categories() {
   useEffect(() => {
     run();
   }, []);
-  console.log("category",categories)
   return (
     <div className='mx-auto w-full max-w-full relative z-10 main'>
       <ContentCategories listCategories={categories} />
       <RecommendedGames />
-      <Description />
+      <div className="flex">
+        <Description />
+      </div>
     </div>
   );
 }

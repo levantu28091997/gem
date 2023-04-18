@@ -84,19 +84,19 @@ const Apero = () => {
                     ?
                     <div className="">
                         <div className="w-[280px] mx-auto">
-                            <AboutTitleSection title="Dive Into A World Of Gaming Experiences" lineheight="31px" size="30px" fontStyle="italic" />
+                            <AboutTitleSection title="Dive Into A World Of Gaming Experiences" lineheight="31px" size="30px" fontStyle="italic" className="text-black dark:text-white"/>
                         </div>
-                        <p data-aos="fade-up" data-aos-duration="3000" className="text-center pt-[14px] w-full font-[400] text-white font-['Montserrat']">Our user-friendly interface makes it easy to browse and select your favorite games, while our site is updated regularly with new content,whether you're a casual gamer or a hybrid fan, we've got something for you.</p>
+                        <p data-aos="fade-up" data-aos-duration="3000" className="text-center pt-[14px] w-full font-[400] text-black dark:text-white font-['Montserrat']">Our user-friendly interface makes it easy to browse and select your favorite games, while our site is updated regularly with new content,whether you're a casual gamer or a hybrid fan, we've got something for you.</p>
                     </div>
                     : <div className="w-[560px] mx-auto">
-                        <AboutTitleSection title="Dive Into A World Of Gaming Experiences" lineheight="63px" size="60px" fontStyle="italic" />
-                        <p data-aos="fade-up" data-aos-duration="3000" className="text-center text-[14px] pt-[19px] text-white font-['Montserrat']">Our user-friendly interface makes it easy to browse and select your favorite games, while our site is updated regularly with new content,whether you're a casual gamer or a hybrid fan, we've got something for you.</p>
+                        <AboutTitleSection title="Dive Into A World Of Gaming Experiences" lineheight="63px" size="60px" fontStyle="italic" className="text-black dark:text-white"/>
+                        <p data-aos="fade-up" data-aos-duration="3000" className="text-center text-[14px] pt-[19px]  text-black dark:text-white font-['Montserrat']">Our user-friendly interface makes it easy to browse and select your favorite games, while our site is updated regularly with new content,whether you're a casual gamer or a hybrid fan, we've got something for you.</p>
                     </div>
                 }
                 {/* Contetnt */}
 
                 <div className={isMobile ? `${styles.item_mid} top-[113%]` : isTablet ? `${styles.item_mid} top-[113%]` : `${styles.item_mid} top-[125%]`} >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={isMobile ? "w-[45px] h-[45px] font-bold  text-white" : isTablet ? "w-[55px] h-[55px] text-white font-bold" : "w-[65px] text-white h-[65px] font-bold"} >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={isMobile ? "w-[45px] h-[45px] font-bold  text-black dark:text-white" : isTablet ? "w-[55px] h-[55px] text-black dark:text-white font-bold" : "w-[65px] text-black dark:text-white h-[65px] font-bold"} >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5" />
                     </svg>
                 </div>
@@ -114,7 +114,7 @@ const Apero = () => {
                     <div className={isMobile ? "pt-[192px]" : isTablet ? "pt-[400px]" : "pt-[20%]"}>
                         {dataMember.map((item) =>
                             <div className={isMobile ? "text-center mb-6" : isTablet ? "text-center mb-1" : "text-center mb-16"}>
-                                <AboutTitleSection title={<NumberAnimation n={item.amount} />} size={isMobile ? "60px" : isTablet ? "100px" : "100px "} lineheight={isMobile ? "30.72px" : isTablet ? "normal" : "normal"} />
+                                <AboutTitleSection className="text-black dark:text-white" title={<NumberAnimation n={item.amount} />} size={isMobile ? "60px" : isTablet ? "100px" : "100px "} lineheight={isMobile ? "30.72px" : isTablet ? "normal" : "normal"} />
                                 <p className="text-black text-[46px] font-[700]">{item.member}</p>
                             </div>
                         )}
