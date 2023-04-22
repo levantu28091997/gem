@@ -15,10 +15,10 @@ export default function Home() {
       </Head>
       <div className='mx-auto w-full max-w-full relative z-10 main'>
         <TopSection />
-        <RecommendedGames isShowShape />
+        {/* <RecommendedGames isShowShape />
         <NewGames isShowShape />
         <PopularGames isShowShape />
-        <PopularCategories isShowShape />
+        <PopularCategories isShowShape /> */}
         <Description />
         <PopularTags />
       </div>
