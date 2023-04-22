@@ -43,15 +43,6 @@ const BannerGame: FC<Props> = (x) => {
         className={cs([styles.actionBanner, 'absolute flex items-center'])}
       >
         <Link href={x.slug || '/'}>Play now</Link>
-        <span className='pl-3.5 xl:pl-10'>
-          <span className='text-5xl cursor-pointer' onClick={toggleFavourite}>
-            {GamesService.isGameFavorite(x.gameId) ? (
-              <FavoriteIcon fontSize='inherit' className='text-red-500' />
-            ) : (
-              <FavoriteBorderIcon fontSize='inherit' className='text-white ' />
-            )}
-          </span>
-        </span>
       </div>
     </div>
   );

@@ -28,48 +28,17 @@ interface Props {
 const GameThumbnail: FC<Props> = (x) => {
   const { ref, size } = useElementSize();
   const [isHovering, setIsHovering] = useState(false);
-  const { isDesktop } = useScreenSize()
+  const { isDesktop,isTablet } = useScreenSize()
 
 
   const acreage = size.height * size.width;
   const minSize = 176 * 176;
 
-  // start
-  return (
-    <div
-      ref={ref}
-      className={cs(["relative flex h-full w-full", styles.wrapper])}
-    >
-      <Link
-        href={x.slug || '/'}
-        className={cs([styles.itemGame, 'flex items-center h-full w-full relative'])}
-      >
-        <div className='w-full h-full rounded-[10px] overflow-hidden relative'>
-          <Image
-            loader={imageLoader}
-            src={x.gameImage}
-            alt={'recommended-for-you'}
-            fill
-            sizes='(max-width: 768px) 100vw,
-            (max-width: 1200px) 50vw,
-            33vw'
-            priority
-            placeholder="blur"
-            blurDataURL="/icons/loading.gif"
-          />
-        </div>
-      </Link>
-    </div>
-  );
-
-  // end
-
   const TagShow = () => {
     if (!x.isNew && !x.isHot) return null;
 
     return (
-      // <div className={x.isLargeItem ? styles.tagLarge : styles.tag}>
-      <div className={acreage < minSize ? styles.tag : styles.tagLarge}>
+      <div className={acreage < minSize && isDesktop? styles.tag :styles.tagLarge }>
         {x.isHot ? 'HOT' : 'NEW'}
       </div>
     );
@@ -92,7 +61,7 @@ const GameThumbnail: FC<Props> = (x) => {
   };
 
   const ThumbnailHoverDecktop = () => {
-    if (isHovering && x.isHover && isDesktop) {
+    if (isHovering && x.isHover) {
       return (
         <VideoThumbnail
           src={`${process.env.IMAGE_URL}${x.videoUrl}`}

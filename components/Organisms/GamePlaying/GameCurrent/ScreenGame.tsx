@@ -22,7 +22,7 @@ export default function ScreenGame({
             frameBorder='no'
             scrolling='no'
             seamless
-            className='w-full absolute h-[calc(100%_-_64px)]'
+            className='w-full absolute h-[calc(100%_-_83px)]'
             src={srcIframe}
         ></iframe>
     );

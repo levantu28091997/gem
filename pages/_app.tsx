@@ -7,10 +7,12 @@ import LayoutDefault from '@/components/Templates/Default'
 import { ThemeProvider as DarkModeProvider } from "next-themes"
 import WebsocketProvider from "@/app/context/WebsocketProvider";
 import LayoutDefaultNoDarkTheme from '@/components/Templates/DefaultNoDarkTheme'
+import LayoutAboutDefault from '@/components/Templates/About/DeafaulThemeAbout'
 
 const layouts: any = {
   default: LayoutDefault,
-  defaultNoDarkTheme: LayoutDefaultNoDarkTheme
+  defaultNoDarkTheme: LayoutDefaultNoDarkTheme,
+  defaultAboutTheme: LayoutAboutDefault
 }
 
 type Props = AppProps & {

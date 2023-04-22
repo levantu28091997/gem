@@ -16,7 +16,41 @@ import { useAppContext } from '@/app/context/AppProvider';
 import GamesService from '@/app/services/gameService';
 import Head from 'next/head';
 import propsDescription from '@/utils/propsDescription';
-export default function index() {
+import { GetServerSideProps } from 'next';
+import axios from 'axios';
+import PopularTags from '@/components/Organisms/PopularTags';
+
+interface Meta {
+  image : string,
+  gameName : any,
+  url: string,
+  description: string,
+}
+
+interface Props {
+  meta: Meta;
+}
+
+export const getServerSideProps: GetServerSideProps<Props> = async (context : any) => {
+  const gameSlug = context.params.game
+  const currentUrl = context.req.url;
+    // Call API to fetch data
+    const { data } = await axios.get(`${process.env.BASE_URL}games?populate=*&filters[slug]=${gameSlug}`);
+    const description = data.data[0] && data.data[0]?.attributes?.description
+    const meta = {
+      image : process.env.IMAGE_URL + data.data[0]?.attributes?.thumbnail?.data.attributes.url,
+      gameName : data.data[0]?.attributes?.name || null,
+      url: process.env.IMAGE_URL + currentUrl,
+      description : description && description.replace(/\r?\n|\r/g, '') || 'Share game',
+    }
+
+    return {
+      props: {
+        meta: meta,
+      },
+    };
+};
+export default function index({ meta }: Props) {
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   const router = useRouter();
   const { isMobile, isTablet } = useScreenSize();
@@ -24,7 +58,6 @@ export default function index() {
   const [gameCurrent, setGameCurrent] = useState<any>();
   const [listCategories, setListCategories] = useState<any>([]);
   const [listGameRecommended, setListGameRecommended] = useState<any>([]);
-  const [metaContent, setMetaContent] = useState<any>([]);
   const { webSocketService, setWebSocketService } = useAppContext();
   const gameUrl = router.query.game;
 
@@ -33,7 +66,7 @@ export default function index() {
     quote: 'play game with me',
     hashtag: '#apero',
   };
-
+  
   function handleCloseModalShare() {
     setIsOpenModal(false);
   }
@@ -51,7 +84,7 @@ export default function index() {
       handlePlayGame(data[0]);
       setListCategories((data[0] as any)?.attributes?.categories?.data);
       addIdGameToLocalStorage(data[0].id);
-      addLatestGameIdToLocalStorage(data[0].id)
+      addLatestGameIdToLocalStorage(data[0].id);
     },
   });
 
@@ -86,15 +119,6 @@ export default function index() {
   }
   function addLatestGameIdToLocalStorage(gameIdLatest: any) {
     GamesService.addIdLatestGame(gameIdLatest)
-  }
-
-  function getMetaContent(data: any) {
-    const image =
-      process.env.IMAGE_URL +
-      data[0]?.attributes?.thumbnail?.data.attributes.url;
-    const name = data[0]?.attributes?.name;
-    const description = 'Share the game with your friends and family';
-    setMetaContent({ image, name, description });
   }
 
   useEffect(() => {
@@ -135,32 +159,46 @@ export default function index() {
       );
     }
   }, [gameCurrent]);
-
-  if (isMobile || isTablet) {
+  if (isMobile) {
     return (
-      <div className='relative'>
-        <div
-          className={cs(['absolute', styles.iconBack])}
-          onClick={() => router.back()}
-        >
-          <ArrowBackIosNewRoundedIcon />
+      <>
+        <Head>
+          <>
+            <title>{meta?.gameName}</title>
+            <meta name='title' content={meta?.gameName} />
+            <meta name='description' content={meta?.description} />
+            <meta property='og:type' content='website' />
+            <meta property='og:url' content={meta?.url} />
+            <meta property='og:title' content={meta?.gameName} />
+            <meta property='og:description' content={meta?.description} />
+            <meta property='og:image' content={meta?.image} />
+          </>
+        </Head>
+
+        <div className='relative'>
+          <div
+            className={cs(['absolute', styles.iconBack])}
+            onClick={() => router.back()}
+          >
+            <ArrowBackIosNewRoundedIcon />
+          </div>
+          <iframe
+            frameBorder='no'
+            scrolling='no'
+            seamless
+            className={
+              isMobile ? `w-full h-[calc(100vh_-_58px)]` : `w-full h-[100vh]`
+            }
+            src={srcIframe}
+          ></iframe>
+          {isMobile && (
+            <ProcessBarGameMobile
+              onShare={handleOpenModalShare}
+              gameCurrent={gameCurrent}
+            />
+          )}
         </div>
-        <iframe
-          frameBorder='no'
-          scrolling='no'
-          seamless
-          className={
-            isMobile ? `w-full h-[calc(100vh_-_58px)]` : `w-full h-[100vh]`
-          }
-          src={srcIframe}
-        ></iframe>
-        {isMobile && (
-          <ProcessBarGameMobile
-            onShare={handleOpenModalShare}
-            gameCurrent={gameCurrent}
-          />
-        )}
-      </div>
+      </>
     );
   }
 
@@ -168,14 +206,14 @@ export default function index() {
     <div className='mx-auto w-full max-w-full relative z-10 main'>
       <Head>
         <>
-          <title>{metaContent?.name}</title>
-          <meta name='title' content={metaContent?.name} />
-          <meta name='description' content={metaContent?.description} />
+          <title>{meta?.gameName}</title>
+          <meta name='title' content={meta?.gameName} />
+          <meta name='description' content={meta?.description} />
           <meta property='og:type' content='website' />
-          <meta property='og:url' content={currentUrl} />
-          <meta property='og:title' content={metaContent?.name} />
-          <meta property='og:description' content={metaContent?.description} />
-          <meta property='og:image' content={metaContent?.image} />
+          <meta property='og:url' content={meta?.url} />
+          <meta property='og:title' content={meta?.gameName} />
+          <meta property='og:description' content={meta?.description} />
+          <meta property='og:image' content={meta?.image} />
         </>
       </Head>
       <PopupShareGame
@@ -192,6 +230,7 @@ export default function index() {
       <div className='flex'>
         <Description {...propsDescription(gameCurrent)} />
       </div>
+      <PopularTags />
     </div>
   );
 }

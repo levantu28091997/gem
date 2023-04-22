@@ -1,23 +1,33 @@
 .topSection {
   grid-gap: 22px;
   grid-template-areas:
-    'ip1 ip2 ip3 ip3 ip3 ip3 ip3 ip3 ip4'
-    'ip5 ip6 ip3 ip3 ip3 ip3 ip3 ip3 ip7'
-    'ip8 ip9 ip3 ip3 ip3 ip3 ip3 ip3 ip10';
+    'ip1 ip3 ip3 ip3 ip3 ip3 ip3 ip3 ip4'
+    'ip5 ip3 ip3 ip3 ip3 ip3 ip3 ip3 ip7'
+    'ip8 ip3 ip3 ip3 ip3 ip3 ip3 ip3 ip10'
+    'ip11 ip3 ip3 ip3 ip3 ip3 ip3 ip3 ip12';
 }
 
 .secondSection {
   grid-gap: 22px;
-  grid-template-areas: 'ip12 ip13 ip14 ip15 ip15 ip15 ip15 ip16 ip17';
+  grid-template-areas: 'ip12 ip15 ip15 ip15 ip15 ip15 ip16 ip17 ip18';
 }
 
 .ip3 {
   grid-area: ip3;
   display: grid;
-  grid-template-columns: 70.9% 1fr;
-  gap: 20px;
+  grid-template-columns: 82.6% 1fr;
+  gap: 22px;
 }
 
 .ip15 {
   grid-area: ip15;
+}
+
+
+.bg_ads{
+  background-image: url(../../../../public/images/ads.png);
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
 }

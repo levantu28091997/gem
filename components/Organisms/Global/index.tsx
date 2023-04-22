@@ -5,6 +5,7 @@ import AboutTitleBlock from "@/components/Atoms/AboutTitleBlock"
 import Image from "next/image"
 import useScreenSize from "@/utils/useScreenSize"
 import Aos from "aos"
+import Link from 'next/link'
 
 const Global = () => {
     const { isMobile, isTablet } = useScreenSize()
@@ -21,7 +22,7 @@ const Global = () => {
                     />
                 </div>
                 <div className={isMobile ? "w-[78%] pl-5 text-center mt-3" : isTablet ? "w-[376px] text-center mt-7" : "w-[376px] text-center mt-7"}>
-                    <AboutTitleSection className='text-black dark:text-white' title="Bring your game to the World" size={isMobile ? "30px" : isTablet ? "50px" : "50px"} lineheight={isMobile ? "31px" : isTablet ? "50px" : "50px"} fontStyle="italic" />
+                    <AboutTitleSection className='text-white' title="Bring your game to the World" size={isMobile ? "30px" : isTablet ? "50px" : "50px"} lineheight={isMobile ? "31px" : isTablet ? "50px" : "50px"} fontStyle="italic" />
                 </div>
                 <div data-aos="fade-left" data-aos-duration="2000" className={isMobile ? `${styles.bg_linear} w-[160px] pl-[10px]` : isTablet ? `${styles.bg_linear} w-[411px] pl-[65px]` : `${styles.bg_linear} w-[811px] pl-[65px]`}>
                     <div className={isMobile ? "text-right w-[120px] pb-2" : isTablet ? "text-right w-[259px] pb-2" : "text-right w-[259px] pb-2"}>
@@ -32,7 +33,7 @@ const Global = () => {
             {isMobile
                 ? <div className="container mx-auto">
                     <div className="p-[47px]">
-                        <p className="text-center text-[14px] leading-[30px] text-black dark:text-white font-['Montserrat']">
+                        <p className="text-center text-[14px] leading-[30px] text-white font-['Montserrat']">
                             We aim to create a marketing strategy to promote the game globally includes utilizing social media platforms, creating promotional videos provide development support to game developers, such as access to specialized technology, technical expertise, and guidance on game design., and working with game reviewers to increase visibility.
                         </p>
                     </div>
@@ -43,9 +44,11 @@ const Global = () => {
                             width={285}
                             height={457}
                         />
-                        <button className={`${styles.button_linear} text-black dark:text-white h-[54px] mx-auto mt-5`}>
-                            Let’s Discover
-                        </button>
+                        <Link href={'/developers'}>
+                            <button className={`${styles.button_linear} text-white h-[54px] mx-auto mt-5`}>
+                                Let’s Discover
+                            </button>
+                        </Link>
                     </div>
 
                 </div>
@@ -60,12 +63,14 @@ const Global = () => {
                             />
                         </div>
                         <div className="p-[47px]">
-                            <p className="pb-[37px] leading-[30px] text-black dark:text-white font-['Montserrat']">
+                            <p className="pb-[37px] leading-[30px] text-white font-['Montserrat']">
                                 We aim to create a marketing strategy to promote the game globally includes utilizing social media platforms, creating promotional videos provide development support to game developers, such as access to specialized technology, technical expertise, and guidance on game design., and working with game reviewers to increase visibility.
                             </p>
-                            <button className={`${styles.button_linear} text-black dark:text-white h-[54px]`}>
-                                Let’s Discover
-                            </button>
+                            <Link href={'/developers'}>
+                                <button className={`${styles.button_linear} text-white h-[54px]`}>
+                                    Let’s Discover
+                                </button>
+                            </Link>
                         </div>
                     </div>
                     : <div className="w-1/2 grid grid-cols-2 mx-auto">
@@ -78,18 +83,20 @@ const Global = () => {
                             />
                         </div>
                         <div className="p-[47px]">
-                            <p className="pb-[47px] leading-[30px] text-black dark:text-white font-['Montserrat']">
+                            <p className="pb-[47px] leading-[30px] text-white font-['Montserrat']">
                                 We aim to create a marketing strategy to promote the game globally includes utilizing social media platforms, creating promotional videos provide development support to game developers, such as access to specialized technology, technical expertise, and guidance on game design., and working with game reviewers to increase visibility.
                             </p>
-                            <button className={`${styles.button_linear} text-black dark:text-white h-[54px]`}>
-                                Let’s Discover
-                            </button>
+                            <Link href={'/developers'}>
+                                <button className={`${styles.button_linear} text-white h-[54px]`}>
+                                    Let’s Discover
+                                </button>
+                            </Link>
                         </div>
                     </div>}
             <div className={isMobile ? "hidden" : isTablet ? "hidden" : "h-[120px] relative"}>
                 <div data-aos="flip-right" data-aos-duration="3000" className="absolute top-[-140px] right-[180px]">
                     <Image
-                        src="/images/gameee-03 2.png"
+                        src="/images/item-09.png"
                         alt=""
                         width={297}
                         height={295}

@@ -18,6 +18,8 @@ import {
 } from '@/utils/useGrid';
 import cs from '@/utils/cs';
 import propsDescription from '@/utils/propsDescription';
+import Head from 'next/head';
+import PopularTags from '@/components/Organisms/PopularTags';
 
 export async function getServerSideProps({ query }: any) {
   return { props: { slug: query.slug[0] } };
@@ -52,18 +54,24 @@ export default function SingleCategory({ slug }: { slug: string }) {
   }, [slug]);
 
   return (
-    <div className='mx-auto w-full max-w-full relative z-10 main'>
-      <div className='lg:mx-5 xl:mx-12 mb-10 md:mb-[70px] xl:mb-20'>
-        <ListGameCategory
-          category={category}
-          gameList={gameByCategory.slice(0, 46)}
-        />
+    <>
+      <Head>
+        <title>Category</title>
+      </Head>
+      <div className='mx-auto w-full max-w-full relative z-10 main'>
+        <div className='lg:mx-5 xl:mx-12 mb-10 md:mb-[70px] xl:mb-20'>
+          <ListGameCategory
+            category={category}
+            gameList={gameByCategory.slice(0, 46)}
+          />
+        </div>
+        <PopularCategories />
+        <div className='flex'>
+          <Description {...propsDescription(category[0])} />
+        </div>
+        <PopularTags />
       </div>
-      <PopularCategories />
-      <div className='flex'>
-        <Description {...propsDescription(category[0])} />
-      </div>
-    </div>
+    </>
   );
 }
 

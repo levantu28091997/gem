@@ -16,7 +16,7 @@ function index({ src, autoPlay, gameName }: any) {
                 autoPlay={play}
                 loop
                 muted
-                className='absolute w-full h-full'
+                className='absolute w-full h-full object-fill'
             />
         </div>
     );

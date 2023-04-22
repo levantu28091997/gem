@@ -86,10 +86,10 @@
   top: 10px;
 
   @include xl {
-    top: 14px;
-    font-size: 16px;
+    top: 5px;
+    font-size: 12px;
     line-height: 22px;
-    padding: 7px 10px 7px 7px;
+    padding: 3px 10px 3px 7px;
     border-radius: 0px 0px 18px 0px;
   }
 
@@ -107,13 +107,13 @@
 }
 
 .tagLarge {
-  padding: 4px 7px 7px 6px;
+  padding: 7px 10px 7px 7px;
   font-size: 12px;
   line-height: 14px;
 
   @include xl {
-    font-size: 26px;
-    line-height: 31px;
+    font-size: 12px;
+    line-height: 14px;
     padding: 14px 12px;
   }
 

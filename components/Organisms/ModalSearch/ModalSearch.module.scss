@@ -12,6 +12,7 @@
     display: none;
   }
 }
+
 .wrapContent {
   padding: 16px 10px 50px;
 
@@ -26,6 +27,13 @@
   }
 }
 
+.box_shadow{
+  box-shadow: 20px 25px 20px 25px white;
+  width: 10px;
+  height: 100%;
+  position: absolute;
+}
+
 .category {
   background: #ebebeb;
   border-radius: 33.5px;
@@ -35,15 +43,49 @@
   @include xl {
     padding: 11px 40px;
   }
+}
 
-  &:hover {
-    background: linear-gradient(180deg, #c81d5a 0%, #ff1544 100%);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
-    & .nameCategory {
-      color: #ffffff;
-    }
+.unChangeTag {
+  background: #ebebeb;
+  border-radius: 33.5px;
+  padding: 4px 16px;
+  cursor: pointer;
+
+  @include xl {
+    padding: 11px 40px;
   }
 }
+
+.disabledTags {
+  background: #f5f5f5;
+  border-radius: 33.5px;
+  padding: 4px 16px;
+  cursor: pointer;
+  color: #ffffff;
+
+  @include xl {
+    padding: 11px 40px;
+  }
+}
+
+.changeCategory {
+  background: #ebebeb;
+  border-radius: 33.5px;
+  padding: 4px 16px;
+  background: linear-gradient(180deg, #c81d5a 0%, #ff1544 100%);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+
+  cursor: pointer;
+
+  @include xl {
+    padding: 11px 40px;
+  }
+
+  .nameCategory {
+    color: #ffffff;
+  }
+}
+
 
 .nameCategory {
   font-family: 'Inter';

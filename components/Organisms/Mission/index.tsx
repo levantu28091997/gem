@@ -15,9 +15,9 @@ const Mission = () => {
             </div>
             <div className="">
                 <div className={isMobile ? "w-[195px] mx-auto text-center" : "w-[325px] mx-auto text-center"}>
-                    <AboutTitleSection className="text-black dark:text-white" title="Story of Apero Game Mission" size={isMobile ? "30px" : isTablet ? "50px" : "50px"} fontStyle="italic" lineheight={isMobile ? "31px" : "53.1px"} />
+                    <AboutTitleSection className="text-white" title="Story of Apero Game Mission" size={isMobile ? "30px" : isTablet ? "50px" : "50px"} fontStyle="italic" lineheight={isMobile ? "31px" : "53.1px"} />
                 </div>
-                <p data-aos="fade-up" data-aos-duration="2000" className={isMobile ? "text-center text-[14px] mx-auto pt-[9px] text-black  dark:text-white font-['Montserrat'] font-[400] w-full" : isTablet ? "text-center text-[14px] mx-auto pt-[9px] container  text-black  dark:text-white  font-['Montserrat'] font-[400] leading-[30px]" : "text-center mx-auto pt-[9px]  text-black  dark:text-white  font-['Montserrat'] font-[400] w-[632px] text-[18px]"}>The mission of Apero Gamehub is to provide a fun, engaging, and satisfying experience for players while promoting the growth and development of the gaming industry.</p>
+                <p data-aos="fade-up" data-aos-duration="2000" className={isMobile ? "text-center text-[14px] mx-auto pt-[9px] text-white font-['Montserrat'] font-[400] w-full" : isTablet ? "text-center text-[14px] mx-auto pt-[9px] container  text-white  font-['Montserrat'] font-[400] leading-[30px]" : "text-center mx-auto pt-[9px]  text-white  font-['Montserrat'] font-[400] w-[632px] text-[18px]"}>Fun, engaging, and satisfying experience for players while promoting the growth of the gaming industry.</p>
                 <Image
                     src="/images/mission_Mesa de trabajo 1 copia_Mesa de trabajo 1 copia_Mesa de trabajo 1 copia_Mesa de trabajo 1 copia 1.png"
                     alt=""

@@ -10,6 +10,7 @@ import styles from './newGames.module.scss';
 import RecommendedGames from '@/components/Organisms/RecommendedGames';
 import TitleSection from '@/components/Atoms/TitleSection';
 import { largeItemOnMobile, largeItemOnDesktop, LineNumberOnMobile, LineNumberOnDesktop } from '@/utils/useGrid';
+import Head from 'next/head';
 
 export default function NewGames() {
   const [gameList, setGameList] = useState<any>([]);
@@ -29,14 +30,19 @@ export default function NewGames() {
   }, []);
 
   return (
-    <div className='mx-auto w-full max-w-full relative z-10 main'>
-      <TitleSection title='New games' />
-      <div className='lg:mx-5 xl:mx-12 mb-10 md:mb-[70px] xl:mb-20'>
-        <ListNewGames gameList={gameList} />
+    <>
+      <Head>
+        <title>New Games</title>
+      </Head>
+      <div className='mx-auto w-full max-w-full relative z-10 main'>
+        <TitleSection title='New games' />
+        <div className='lg:mx-5 xl:mx-12 mb-10 md:mb-[70px] xl:mb-20'>
+          <ListNewGames gameList={gameList} />
+        </div>
+        <RecommendedGames />
+        <Description />
       </div>
-      <RecommendedGames />
-      <Description />
-    </div>
+    </>
   );
 }
 

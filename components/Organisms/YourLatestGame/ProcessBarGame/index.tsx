@@ -18,18 +18,16 @@ interface IProps {
 export default function ProcessBarGame(x: IProps) {
   return (
     <div className='bg-slate-200 rounded-b-md w-full self-end'>
-      <div className='flex justify-between items-center p-2'>
-        <div className='process-description pl-[25px]'>
-          <h3 className='game-name font-bold text-black text-xl font-bold'>
+      <div className='flex justify-between items-center p-2 pt-3.5 pb-5'>
+        <div className='process-description pl-[36px]'>
+          <h3 className='game-name text-2xl font-bold leading-[29px]'>
             {x.gameName}
           </h3>
-          <p className='game-author font-thin text-sm text-black italic font-normal'>
-            {x.author}
-          </p>
+          <p className='game-author text-sm italic font-normal'>{x.author}</p>
         </div>
         <div className='process-icon flex'>
           <div className={cs([styles.actionBanner])}>
-            <Link href={'playgame/'+x.slug || '/'}>Play now</Link>
+            <Link href={'playgame/' + x.slug || '/'}>Play now</Link>
           </div>
           <span className='mx-2 cursor-pointer' onClick={x.toggleFavourite}>
             {GamesService.isGameFavorite(x.gameId) ? (

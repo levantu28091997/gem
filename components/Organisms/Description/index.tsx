@@ -1,6 +1,7 @@
 import React from 'react';
 import cs from '@/utils/cs';
 import styles from './Description.module.scss';
+import Link from 'next/link';
 
 interface Iprops {
   gameName?: string;
@@ -10,7 +11,10 @@ interface Iprops {
 const Description = (x: Iprops) => {
   return (
     <div
-      className={cs([styles.desSection, 'mb-10 md:mb-[70px] xl:mb-20 text-black dark:text-white bg-[#ffffffcc] dark:bg-[#ffffff40] shadow-light dark:shadow-dark border border-[#ffffff17] dark:border-0'])}
+      className={cs([
+        styles.desSection,
+        'mb-10 md:mb-[70px] xl:mb-20 text-black dark:text-white bg-[#ffffffcc] dark:bg-[#ffffff40] w-full shadow-light dark:shadow-dark border border-[#ffffff17] dark:border-0',
+      ])}
     >
       {x.gameName && x.description ? (
         <div className={styles.wrapper} style={{ whiteSpace: 'pre-line' }}>
@@ -26,67 +30,44 @@ const Description = (x: Iprops) => {
           </header>
           <div>
             <p>
-              Play our addictive online multiplayer games for free on Poki! Play
-              3D multiplayer shooting games such as Venge.io and Battle Forces.
-              Show your friends who the boss is in Rabbids Wild Race and House
-              of Hazards. Or work together to solve puzzles in ZOOM-BE and Duo
-              Survival. You can even create virtual chaos together in
-              Schoolbreak.io! Enjoy our collection of free online games with no
-              installing required!
+              Welcome to our game portal! Here, you'll find a vast array of
+              exciting and engaging games to play, all conveniently located in
+              one place. Whether you're a fan of action-packed shooters,
+              immersive RPGs, challenging puzzle games, or anything in between,
+              we've got you covered. With easy-to-use navigation and a
+              user-friendly interface, our game portal makes it simple to
+              discover and play your favorite games. So what are you waiting
+              for? Start exploring today and discover your next gaming
+              adventure!
             </p>
-            <h3>What are the best free Online Games online?</h3>
-            <ol>
-              <li>
-                <a href=''>Subway Surfers</a>
-              </li>
-              <li>
-                <a href=''>Smash Karts</a>
-              </li>
-              <li>
-                <a href=''>Blockpost</a>
-              </li>
-              <li>
-                <a href=''>Snake.is MLG Edition</a>
-              </li>
-              <li>
-                <a href=''>Stickman Hook</a>
-              </li>
-              <li>
-                <a href=''>2048</a>
-              </li>
-              <li>
-                <a href=''>Tribals.io</a>
-              </li>
-              <li>
-                <a href=''>Sushi Party</a>
-              </li>
-              <li>
-                <a href=''>Moto X3M</a>
-              </li>
-              <li>
-                <a href=''>Like a King</a>
-              </li>
-            </ol>
-
             <h3>
-              What are the most popular Online Games for the mobile phone or
-              tablet?
+              There are many wonderful games to play on mobile, but here are
+              some popular ones:
             </h3>
             <ol>
               <li>
-                <a href=''>Subway Surfers</a>
+                <Link href={'/playgame/herocraft'}>Hero Craft</Link>
               </li>
               <li>
-                <a href=''>Stickman Hook</a>
+                <Link href={'/playgame/stickfight'}>Stickman fight</Link>
               </li>
               <li>
-                <a href=''>2048</a>
+                <Link href={'/playgame/puzzledefense'}>Puzzle TD</Link>
               </li>
               <li>
-                <a href=''>Tribals.io</a>
+                <Link href={'/playgame/mathtd'}>Math TD</Link>
               </li>
               <li>
-                <a href=''>Sushi Party</a>
+                <Link href={'/playgame/coloring'}>Color alpha</Link>
+              </li>
+              <li>
+                <Link href={'/playgame/lonedefenders'}>Lone Defenders</Link>
+              </li>
+              <li>
+                <Link href={'/playgame/makeup'}>Make Up</Link>
+              </li>
+              <li>
+                <Link href={'/playgame/banana'}>Banana Flights</Link>
               </li>
             </ol>
           </div>

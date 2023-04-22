@@ -19,16 +19,6 @@ body {
   // overflow-x: hidden;
 }
 
-html {
-  overflow: hidden;
-  height: 100%;
-}
-
-body {
-  overflow: auto;
-  height: 100%;
-}
-
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(to bottom,

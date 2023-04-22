@@ -10,6 +10,7 @@ import styles from './popularGames.module.scss';
 import RecommendedGames from '@/components/Organisms/RecommendedGames';
 import TitleSection from '@/components/Atoms/TitleSection';
 import { largeItemOnMobile, largeItemOnDesktop, LineNumberOnMobile, LineNumberOnDesktop } from '@/utils/useGrid';
+import Head from 'next/head';
 
 export default function PopularGames() {
   const [gameList, setGameList] = useState<any>([]);
@@ -29,16 +30,21 @@ export default function PopularGames() {
   }, []);
 
   return (
-    <div className='mx-auto w-full max-w-full relative z-10 main'>
-      <TitleSection title='Popular games' />
-      <div className='lg:mx-5 xl:mx-12 mb-10 md:mb-[70px] xl:mb-20'>
-        <ListPopularGames gameList={gameList} />
+    <>
+      <Head>
+        <title>Popular Games</title>
+      </Head>
+      <div className='mx-auto w-full max-w-full relative z-10 main'>
+        <TitleSection title='Popular games' />
+        <div className='lg:mx-5 xl:mx-12 mb-10 md:mb-[70px] xl:mb-20'>
+          <ListPopularGames gameList={gameList} />
+        </div>
+        <RecommendedGames />
+        <div className='flex'>
+          <Description />
+        </div>
       </div>
-      <RecommendedGames />
-      <div className="flex">
-        <Description />
-      </div>
-    </div>
+    </>
   );
 }
 

@@ -1,8 +1,10 @@
 import { homeService } from '@/app/services/homeService';
 import ItemCategory from '@/components/Molecules/ItemCategory';
 import Description from '@/components/Organisms/Description';
+import PopularTags from '@/components/Organisms/PopularTags';
 import RecommendedGames from '@/components/Organisms/RecommendedGames';
 import { useRequest } from 'ahooks';
+import Head from 'next/head';
 import { FC, useEffect, useState } from 'react';
 import styles from './categories.module.scss';
 
@@ -23,13 +25,19 @@ export default function Categories() {
     run();
   }, []);
   return (
-    <div className='mx-auto w-full max-w-full relative z-10 main'>
-      <ContentCategories listCategories={categories} />
-      <RecommendedGames />
-      <div className="flex">
-        <Description />
+    <>
+      <Head>
+        <title>Categories</title>
+      </Head>
+      <div className='mx-auto w-full max-w-full relative z-10 main'>
+        <ContentCategories listCategories={categories} />
+        <RecommendedGames />
+        <div className="flex">
+          <Description />
+        </div>
+        <PopularTags />
       </div>
-    </div>
+    </>
   );
 }
 

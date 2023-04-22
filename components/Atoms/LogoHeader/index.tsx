@@ -12,6 +12,7 @@ const LogoHeader = () => {
       src="/icons/logo.svg"
       className='w-full ml-[-4px] md:ml-0 md:aspect-video md:max-h-[48px] max-w-[70px] md:max-w-[156px] hover:cursor-pointer'
       alt="Apero GameHub"
+      quality={100}
       onClick={() => router.push("/")}
     />
   )

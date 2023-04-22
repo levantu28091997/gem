@@ -21,11 +21,11 @@ const Global = () => {
                     />
                 </div>
                 <div className={isMobile ? "w-[78%] pl-8 text-center mt-6" : isTablet ? "w-[376px] text-center mt-7" : "w-[376px] text-center mt-7"}>
-                    <AboutTitleSection className='text-black dark:text-white' title="Our Partner" size={isMobile ? "30px" : isTablet ? "50px" : "50px"} lineheight={isMobile ? "31px" : isTablet ? "50px" : "50px"} fontStyle="italic" />
+                    <AboutTitleSection className='text-white' title="Our Partner" size={isMobile ? "30px" : isTablet ? "50px" : "50px"} lineheight={isMobile ? "31px" : isTablet ? "50px" : "50px"} fontStyle="italic" />
                 </div>
                 <div data-aos="fade-left" data-aos-duration="2000" className={isMobile ? `${styles.bg_linear} w-[160px] pl-[10px]` : isTablet ? `${styles.bg_linear} w-[411px] pl-[65px]` : `${styles.bg_linear} w-[811px] pl-[65px]`}>
                     <div className={isMobile ? "text-right w-[120px] pb-2" : isTablet ? "text-right w-[259px] pb-2" : "text-right w-[259px] pb-2"}>
-                        <AboutTitleBlock  title1="GLO" title2="BAL." size={isMobile ? "50px" : isTablet ? "80px" : "130px"} lineheight={isMobile ? "50px" : isTablet ? "80px" : "90px"} />
+                        <AboutTitleBlock title1="GLO" title2="BAL." size={isMobile ? "50px" : isTablet ? "80px" : "130px"} lineheight={isMobile ? "50px" : isTablet ? "80px" : "90px"} />
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@ const Global = () => {
                     <Image
                         src="/images/Sinerji Software 1.png"
                         alt=''
-                        width={170}
+                        width={isMobile ? 89 : isTablet ? 120 : 170}
                         height={150}
                     />
                 </div>
@@ -42,7 +42,7 @@ const Global = () => {
                     <Image
                         src="/images/Vita game studio 1.png"
                         alt=''
-                        width={170}
+                        width={isMobile ? 89 : isTablet ? 120 : 170}
                         height={150}
                     />
                 </div>
@@ -50,7 +50,7 @@ const Global = () => {
                     <Image
                         src="/images/iCoder Games logo 1.png"
                         alt=''
-                        width={170}
+                        width={isMobile ? 89 : isTablet ? 120 : 170}
                         height={150}
                     />
                 </div>
@@ -58,7 +58,7 @@ const Global = () => {
                     <Image
                         src="/images/Chirag Technozer 1.png"
                         alt=''
-                        width={170}
+                        width={isMobile ? 89 : isTablet ? 120 : 170}
                         height={150}
                     />
                 </div>
@@ -66,7 +66,7 @@ const Global = () => {
                     <Image
                         src="/images/Khatriji Gaming 1.png"
                         alt=''
-                        width={170}
+                        width={isMobile ? 89 : isTablet ? 120 : 170}
                         height={150}
                     />
                 </div>
@@ -75,7 +75,7 @@ const Global = () => {
             <div className={isMobile ? "hidden" : isTablet ? "hidden" : "h-[120px] relative"}>
                 <div data-aos="flip-right" data-aos-duration="3000" className="absolute top-[-30px] right-[180px]">
                     <Image
-                        src="/images/gameee-03 2.png"
+                        src="/images/item-09.png"
                         alt=""
                         width={297}
                         height={295}

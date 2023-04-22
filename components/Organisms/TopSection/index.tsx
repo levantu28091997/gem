@@ -1,5 +1,5 @@
 import cs from '@/utils/cs';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styles from './topSection.module.scss';
 import useScreenSize from '@/utils/useScreenSize';
 import BannerGame from './BannerGame';
@@ -26,16 +26,6 @@ function propsItemGameTop(gameList: any, index: any, status?: any) {
     isHover: true,
   };
 }
-function propsGameBanner(bannerGame: any) {
-  const randomIndex = Math.floor(Math.random() * bannerGame.length);
-  return {
-    gameId: bannerGame && bannerGame[randomIndex]?.id,
-    gameName: bannerGame && bannerGame[randomIndex]?.name,
-    gameImage: bannerGame && bannerGame[randomIndex]?.featured_thumbnail?.url,
-    slug: bannerGame && `/playgame/${bannerGame[randomIndex]?.slug}`
-  }
-}
-
 const TopSection = () => {
   const [gameList, setGameList] = useState<any>([]);
   const [bannerGame, setBannerGame] = useState<any>([])
@@ -57,6 +47,19 @@ const TopSection = () => {
       setBannerGame(data);
     },
   });
+
+  const randomGame = useMemo(() => {
+    const randomIndex = Math.floor(Math.random() * bannerGame.length);
+    return bannerGame[randomIndex];
+  }, [bannerGame]);
+
+  const propsGameBanner = {
+    gameId: randomGame?.id,
+    gameName: randomGame?.name,
+    gameImage: randomGame?.featured_thumbnail?.url,
+    slug: `/playgame/${randomGame?.slug}`
+  };
+
   useEffect(() => {
     run();
     runBannerGame();
@@ -73,9 +76,9 @@ const TopSection = () => {
 
   if (loading) return <div className='text-center text-white'>Loading...</div>;
 
-  if (isSmallMobile) return <TopSectionSmallMobile gameList={gameList} bannerGame={bannerGame} />;
+  if (isSmallMobile) return <TopSectionSmallMobile gameList={gameList} propsGameBanner={propsGameBanner} />;
 
-  if (isMobile) return <TopSectionMobile gameList={gameList} bannerGame={bannerGame} />;
+  if (isMobile) return <TopSectionMobile gameList={gameList} propsGameBanner={propsGameBanner} />;
 
   return (
     <div
@@ -88,21 +91,20 @@ const TopSection = () => {
         <GameThumbnail {...propsItemGameTop(gameList, 0)} />
         <GameThumbnail {...propsItemGameTop(gameList, 1)} />
       </div>
-      <div>
-        <BannerGame {...propsGameBanner(bannerGame)} />
+      <div className={styles.banner_game_placeholder}>
+        <BannerGame {...propsGameBanner} />
       </div>
       <div className='flex flex-col gap-[18px] xl:gap-[35px]'>
         <GameThumbnail {...propsItemGameTop(gameList, 3)} />
         <GameThumbnail {...propsItemGameTop(gameList, 4)} />
       </div>
-
     </div>
   );
 };
 
 export default TopSection;
 
-const TopSectionMobile = ({ gameList, bannerGame }: any) => {
+const TopSectionMobile = ({ gameList, propsGameBanner }: any) => {
   const [ref, element] = useElementWidth()
   const [itemWidth, setItemWidth] = useState<number>(0)
 
@@ -113,7 +115,9 @@ const TopSectionMobile = ({ gameList, bannerGame }: any) => {
 
   return (
     <div className={cs([styles.topSectionMobile, 'flex flex-col gap-4 mb-10'])}>
-      <BannerGame {...propsGameBanner(bannerGame)} />
+     <div className={styles.banner_game_placeholder}>
+        <BannerGame {...propsGameBanner} />
+      </div>
       <div className={cs([styles.itemGird, 'gird'])} ref={ref}
         style={{ gridTemplateColumns: `repeat(3, ${itemWidth}px)`, gridTemplateRows: `repeat(1, ${itemWidth}px)` }}
       >
@@ -125,7 +129,7 @@ const TopSectionMobile = ({ gameList, bannerGame }: any) => {
   );
 };
 
-const TopSectionSmallMobile = ({ gameList, bannerGame }: any) => {
+const TopSectionSmallMobile = ({ gameList, propsGameBanner }: any) => {
   const [ref, element] = useElementWidth()
   const [itemWidth, setItemWidth] = useState<number>(0)
 
@@ -136,7 +140,9 @@ const TopSectionSmallMobile = ({ gameList, bannerGame }: any) => {
 
   return (
     <div className={cs([styles.topSectionMobile, 'flex flex-col gap-4 mb-10'])}>
-      <BannerGame {...propsGameBanner(bannerGame)} />
+      <div className={styles.banner_game_placeholder}>
+        <BannerGame {...propsGameBanner} />
+      </div>
       <div className={cs([styles.itemGird, 'gird'])} ref={ref}
         style={{ gridTemplateColumns: `repeat(2, ${itemWidth}px)`, gridTemplateRows: `repeat(1, ${itemWidth}px)` }}
       >

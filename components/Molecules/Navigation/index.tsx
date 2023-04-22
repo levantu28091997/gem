@@ -37,19 +37,19 @@ const Navigation = () => {
             
                 <li className={cs([styles.menuItem, router.asPath === '/my-game' ? styles.active : ''])}>
                     <Link href={'/my-game'}>
-                        <Image src="/icons/game-controller.svg" alt="My game" width={21} height={21} />
+                        <Image src="/icons/game-controller.svg" alt="My game" width={21} height={21} quality={100}/>
                     </Link>
                     <p className={cs([styles.tooltip_menu,'text-black dark:text-white'])}>My game</p>
                 </li>
                 <li className={cs([styles.menuItem, router.asPath === '/categories' ? styles.active : ''])}>
                     <Link href={'/categories'}>
-                        <Image src="/icons/categories.svg" alt="Categories" width={21} height={21} />
+                        <Image src="/icons/categories.svg" alt="Categories" width={21} height={21} quality={100}/>
                     </Link>
-                    <p className={cs([styles.tooltip_menu,'text-black dark:text-white'])}>Catagories</p>
+                    <p className={cs([styles.tooltip_menu,'text-black dark:text-white'])}>Categories</p>
                 </li>
                 <li className={cs([styles.menuItem, 'relative',router.asPath === '/developers' ||  router.asPath === '/about' ? styles.active : '',showSubmenu && styles.active])}>
                     <Link href="" onClick={handleSubmenu} className='sub'>
-                        <Image src="/icons/menu.svg" alt="Menu" width={21} height={21} />
+                        <Image src="/icons/menu.svg" alt="Menu" width={21} height={21} quality={100} />
                     </Link>
                     <p className={cs([styles.tooltip_menu,'text-black dark:text-white w-[70px] right-0'])}>More info</p>
                     <div ref={dropdown} className={cs([styles.subMenu, showSubmenu && styles.active, 'absolute'])}>

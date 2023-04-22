@@ -1,19 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import CancelIcon from '@mui/icons-material/Cancel';
 import {
-  IconFacebook,
-  IconInstagram,
   IconLinkedIn,
-  IconSkype,
   IconTelegram,
   IconTwitter,
 } from '@/components/Atoms/Icons';
 import {
   FacebookShareButton,
+  FacebookIcon,
   TwitterShareButton,
   TelegramShareButton,
+  WhatsappShareButton,
+  WhatsappIcon,
   LinkedinShareButton,
-  
 } from 'next-share'
 import InputCopy from '../InputCopy/InputCopy';
 
@@ -63,11 +62,14 @@ function PopupShareGame({ onClose, isOpen,contentShare }: any) {
                     quote={contentShare.quote}
                     hashtag={contentShare.hashtag}
                   >
-                    <IconFacebook />
+                    <FacebookIcon borderRadius={100} size={78}/>
                   </FacebookShareButton>
                   <TwitterShareButton url={contentShare.url}>
                     <IconTwitter />
                   </TwitterShareButton>
+                  <WhatsappShareButton url={contentShare.url}>
+                    <WhatsappIcon borderRadius={100} size={78}/>
+                  </WhatsappShareButton>
                   <TelegramShareButton url={contentShare.url}>
                     <IconTelegram />
                   </TelegramShareButton>

@@ -10,7 +10,8 @@ import GameThumbnail from '../GameThumbnail'
 const ListItemRecentPlayedGames = () => {
     const { isDesktop, isTablet } = useScreenSize()
     const [gameList, setGameList] = useState<any>([]);
-
+    const [repeat,setRepeat] = useState(0);
+    const [limitItem,setLimitItem] = useState(12);
     const { data, run, loading } = useRequest(homeService.getRecentlyPlayedGames, {
         manual: true,
         onError: (res, params) => {
@@ -19,16 +20,37 @@ const ListItemRecentPlayedGames = () => {
         onSuccess: (data) => {
             if (data !== null) {
                 setGameList(data);
+                getLimitItem(data)
+                setRepeatGrid();
             } else {
                 setGameList([]);
             }
         },
     });
+    
+    function getLimitItem(gameList:any){
+        const gameListLength = gameList&&gameList.length;
+        if(gameListLength < 24){
+            setLimitItem(12)
+        }
+        if(gameListLength >= 24){
+            setLimitItem(24)
+        }
+    }
 
+    function setRepeatGrid (){
+        if(limitItem == 12){
+            setRepeat(2)
+        }
+        if(limitItem == 24){
+            setRepeat(4)
+        }
+    }
     useEffect(() => {
         run();
-    }, []);
-    if (isDesktop) return <ContentPopularGameDesktop gameList={gameList.length > 0 && gameList.slice(0, 24)} />
+    }, [limitItem]);
+
+    if (isDesktop) return <ContentPopularGameDesktop gameList={gameList.length > 0 && gameList.slice(0, limitItem)} repeat={repeat}/>
     if (isTablet) return <ContentPopularGameTablet gameList={gameList.length > 0 && gameList.slice(0, 20)} />
 
     return <ContentPopularGameMobile gameList={gameList.slice(0, 9)} />
@@ -37,32 +59,16 @@ const ListItemRecentPlayedGames = () => {
 export default ListItemRecentPlayedGames
 
 
-const ContentPopularGameDesktop = ({ gameList }: any) => {
+const ContentPopularGameDesktop = ({ gameList,repeat }: any) => {
     const [ref, element] = useElementWidth()
-    const [repeat,setRepeat] = useState(0);
     const [itemWidth, setItemWidth] = useState<number>(0)
-
-    function setRepeaGrid (gameList:any){
-        if(gameList&&gameList.length < 12){
-            setRepeat(2)
-        }
-        if(gameList&&gameList.length > 12){
-            setRepeat(4)
-        }
-        if(gameList&&gameList.length > 24){
-            setRepeat(6)
-        }
-    }
-    useEffect(()=>{
-        setRepeaGrid(gameList);
-    },[repeat])
+   
     useEffect(() => {
         const itemWidth = (element?.width - (22 * 8)) / 9
         setItemWidth(itemWidth)
-    }, [ref, element?.width])
-
+    }, [ref, element?.width,repeat])
     return (
-        <div className={styles.itemGird} ref={ref}
+        <div className={gameList&&gameList.length >= 24 ? styles.itemGrid : styles.itemGrid_12} ref={ref}
             style={{ gridTemplateColumns: `repeat(9, ${itemWidth}px)`, gridTemplateRows: `repeat(${repeat}, ${itemWidth}px)` }}
         >
             {
@@ -86,7 +92,7 @@ const ContentPopularGameTablet = ({ gameList }: any) => {
     }, [ref, element?.width])
 
     return (
-        <div className={styles.itemGirdTablet} ref={ref}
+        <div className={styles.itemGridTablet} ref={ref}
             style={{ gridTemplateColumns: `repeat(8, ${itemWidth}px)`, gridTemplateRows: `repeat(2, ${itemWidth}px)` }}
         >
             {
@@ -110,8 +116,8 @@ const ContentPopularGameMobile = ({ gameList }: any) => {
     }, [ref, element?.width])
 
     return (
-        <div className={styles.itemGirdMobile} ref={ref}
-            style={{ gridTemplateColumns: `repeat(3, ${itemWidth}px)`, gridTemplateRows: `repeat(4, ${itemWidth}px)` }}
+        <div className={styles.itemGridMobile} ref={ref}
+            style={{ gridTemplateColumns: `repeat(3, ${itemWidth}px)`, gridTemplateRows: `repeat(3, ${itemWidth}px)` }}
         >
             {
                 gameList.map((game: any, index: number) => (

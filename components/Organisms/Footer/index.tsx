@@ -22,6 +22,7 @@ const Footer = () => {
                 width={125}
                 height={70}
                 className='h-auto mx-auto max-w-[70px] md:max-w-[125px]'
+                quality={100}
               />
             </Link>
           </div>

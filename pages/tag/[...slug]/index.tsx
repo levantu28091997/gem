@@ -18,6 +18,9 @@ import {
 } from '@/utils/useGrid';
 import cs from '@/utils/cs';
 import RecommendedGames from '@/components/Organisms/RecommendedGames';
+import Head from 'next/head';
+import PopularTags from '@/components/Organisms/PopularTags';
+import TitleSection from '@/components/Atoms/TitleSection';
 
 export async function getServerSideProps({ query }: any) {
   return { props: { slug: query.slug[0] } };
@@ -35,21 +38,34 @@ export default function ListGameByTag({ slug }: { slug: string }) {
       setListGameByTag(data);
     },
   });
+  function capitalizeAndReplace(str:any) {
+    str = str.toLowerCase().replace(/(^|\s)\S/g, function(firstLetter:any) {
+      return firstLetter.toUpperCase();
+    });
+    str = str.replace(/-/g, " ");
+    return str;
+  }
 
   useEffect(() => {
     run(slug);
   }, [slug]);
-
   return (
-    <div className='mx-auto w-full max-w-full relative z-10 main'>
-      <div className='lg:mx-5 xl:mx-12 mb-10 md:mb-[70px] xl:mb-20'>
-        <ListGames gameList={listGameByTag} />
+    <>
+      <Head>
+        <title>Tag {slug}</title>
+      </Head>
+      <div className='mx-auto w-full max-w-full relative z-10 main'>
+        <TitleSection title={`Tag: ${capitalizeAndReplace(slug)}`}/>
+        <div className='lg:mx-5 xl:mx-12 mb-10 md:mb-[70px] xl:mb-20'>
+          <ListGames gameList={listGameByTag} />
+        </div>
+        <RecommendedGames />
+        <div className='flex'>
+          <Description />
+        </div>
+        <PopularTags />
       </div>
-      <RecommendedGames />
-      <div className="flex">
-        <Description />
-      </div>
-    </div>
+    </>
   );
 }
 

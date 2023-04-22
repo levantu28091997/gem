@@ -1,21 +1,26 @@
-.itemGird,
-.itemGirdTablet,
-.itemGirdMobile {
+.itemGrid,
+.itemGrid_12,
+.itemGridTablet,
+.itemGridMobile {
     color: white;
     display: grid;
     list-style-type: none;
     grid-auto-flow: dense;
 }
 
-.itemGird {
+.itemGrid {
     grid-gap: 22px;
     grid-template-areas:
         "ip0 ip0 ip1 ip2 ip3 ip3 ip4 ip5 ip6"
         "ip0 ip0 ip7 ip8 ip3 ip3 ip9 ip10 ip11"
         "ip12 ip13 ip14 ip15 ip15 ip16 ip17 ip18 ip18"
         "ip19 ip20 ip21 ip15 ip15 ip22 ip23 ip18 ip18"
-        "ip24 ip24 ip25 ip26 ip27 ip27 ip28 ip29 ip30"
-        "ip24 ip24 ip32 ip32 ip27 ip27 ip33 ip34 ip35";
+}
+.itemGrid_12 {
+    grid-gap: 22px;
+    grid-template-areas:
+    "ip0  ip0  ip1  ip2  ip3  ip3  ip4  ip5  ip6 " 
+    "ip0  ip0  ip7  ip8  ip3  ip3  ip9  ip10 ip11"
 }
 
 .ip0 {
@@ -42,7 +47,7 @@
     grid-area: ip27;
 }
 
-.itemGirdTablet {
+.itemGridTablet {
     grid-gap: 18px;
     grid-template-areas:
         "tl0 tl0 tl1 tl2 tl3 tl3 tl4 tl5"
@@ -67,7 +72,7 @@
     grid-area: tl13;
 }
 
-.itemGirdMobile {
+.itemGridMobile {
     grid-gap: 18px;
     grid-template-areas:
         "mb0 mb0 mb1"

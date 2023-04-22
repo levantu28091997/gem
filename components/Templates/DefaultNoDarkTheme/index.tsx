@@ -12,7 +12,7 @@ const LayoutDefaultNoDarkTheme = ({ children }: LayoutDefaultProps) => {
   const { isMobile, isTablet } = useScreenSize();
 
   const isPlayGameMobile =
-    r.asPath.startsWith('/playgame') && (isMobile || isTablet);
+    r.asPath.startsWith('/playgame') && (isMobile);
 
   return (
     <Box>
@@ -23,7 +23,7 @@ const LayoutDefaultNoDarkTheme = ({ children }: LayoutDefaultProps) => {
         ) : (
           <>
             <Navbar />
-            <div className='bg-[#FFF4E8] dark:bg-[#0E101D] pt-12'>{children}</div>
+            <div className='bg-[#FFF4E8] dark:bg-[#0E101D] pt-12 pb-24'>{children}</div>
             <Footer />
           </>
         )}

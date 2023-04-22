@@ -13,28 +13,25 @@ interface IProps {
   isFavourite: boolean;
   toggleFavourite: any;
 }
-export default function ProcessBarGame(x : IProps) {
+export default function ProcessBarGame(x: IProps) {
   const dataAuthor = x?.gameCurrent?.attributes?.createdBy?.data?.attributes;
   const showAuthor = `By ${dataAuthor?.firstname} ${dataAuthor?.lastname}`;
   return (
     <div className='bg-slate-200 rounded-b-md w-full self-end'>
-      <div className='flex justify-between items-center p-2'>
-        <div className='process-description pl-[25px]'>
-          <h3 className='game-name font-bold text-xl font-bold'>
+      <div className='flex justify-between items-center p-2 pt-3.5 pb-5'>
+        <div className='process-description pl-[36px]'>
+          <h3 className='game-name text-2xl font-bold leading-[29px]'>
             {x.gameCurrent?.attributes?.name}
           </h3>
-          <p className='game-author font-thin text-sm italic font-normal'>
-            {showAuthor}
-          </p>
+          <p className='game-author text-sm italic font-normal'>{showAuthor}</p>
         </div>
         <div className='process-icon flex'>
           <span className='mx-2 cursor-pointer' onClick={x.toggleFavourite}>
-            {
-              x.isFavourite ?
-              <FavoriteIcon className='text-red-500'/>
-              :
+            {x.isFavourite ? (
+              <FavoriteIcon className='text-red-500' />
+            ) : (
               <FavoriteBorderIcon />
-            }
+            )}
           </span>
           <span
             className='inline-block transform scale-x-[-1] mx-2 cursor-pointer'
@@ -64,7 +61,7 @@ export const ProcessBarGameMobile = ({ onShare, gameCurrent }: any) => {
   return (
     <div className='bg-[#F4F3FA] w-full self-end'>
       <div className='flex justify-between items-center pt-2.5 pb-4'>
-        <div className='flex process-description pl-[25px]'>
+        <div className='flex process-description pl-[36px]'>
           <Image
             src={srcImg}
             alt={nameGame}

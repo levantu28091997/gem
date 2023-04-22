@@ -21,12 +21,12 @@ function index({ children, listGameRecommended: gameList }: any) {
                 className={cs([styles.topSection, 'grid gap-5'])}
                 ref={ref}
                 style={{
-                    gridTemplateColumns: `repeat(2, ${itemWidth}px) 1fr 1fr 1fr 1fr 1fr 1fr ${itemWidth}px`,
-                    gridTemplateRows: `repeat(3, ${itemWidth}px)`,
+                    gridTemplateColumns: `${itemWidth}px 1fr 1fr 1fr 1fr 1fr 1fr 1fr ${itemWidth}px`,
+                    gridTemplateRows: `repeat(4, ${itemWidth}px)`,
                 }}
             >
                 {
-                    gameList?.slice(0, 2)?.map((game: any, index: number) => (
+                    gameList?.slice(0, 1)?.map((game: any, index: number) => (
                         <div key={index}>
                             <GameThumbnail {...GameInfo(game)} isHover />
                         </div>
@@ -35,20 +35,18 @@ function index({ children, listGameRecommended: gameList }: any) {
                 <div className={styles.ip3}>
                     {children}
                     <div>
-                        <Banner title='capybara-clicker' className="h-[48%]" />
-                        <div className='h-[4%]'></div>
-                        <div className='bg-red-400 h-[48%]'>ads</div>
+                        <div className={styles.bg_ads}></div>
                     </div>
                 </div>
                 {
-                    gameList?.slice(2, 9)?.map((game: any, index: number) => (
+                    gameList?.slice(1, 8)?.map((game: any, index: number) => (
                         <div key={index}>
                             <GameThumbnail {...GameInfo(game)} isHover />
                         </div>
                     ))
                 }
             </div>
-            <SecondSection gameList={gameList?.slice(9, 14)} itemWidth={itemWidth} />
+            <SecondSection gameList={gameList?.slice(8, 12)} itemWidth={itemWidth} />
         </>
     );
 }
@@ -61,7 +59,7 @@ const SecondSection = ({ gameList, itemWidth }: any) => {
         <div
             className={cs([styles.secondSection, 'grid gap-5 mt-[22px]'])}
             style={{
-                gridTemplateColumns: `repeat(3, ${itemWidth}px) 1fr 1fr 1fr 1fr ${itemWidth}px ${itemWidth}px`,
+                gridTemplateColumns: `${itemWidth}px 1fr 1fr 1fr 1fr 1fr repeat(3, ${itemWidth}px)`,
                 gridTemplateRows: `repeat(1, ${itemWidth}px)`,
             }}
         >
