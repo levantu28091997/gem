@@ -17,8 +17,8 @@ export default function Home() {
         {/* <TopSection />
         <RecommendedGames isShowShape />
         <NewGames isShowShape />
-        <PopularGames isShowShape />
-        <PopularCategories isShowShape /> */}
+        <PopularGames isShowShape /> */}
+        <PopularCategories isShowShape />
         <Description />
         <PopularTags />
       </div>
