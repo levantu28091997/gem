@@ -14,6 +14,7 @@
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.8",
     "@mui/styled-engine-sc": "^5.11.0",
+    "@next/bundle-analyzer": "^13.3.1",
     "@next/font": "13.1.6",
     "@types/aos": "^3.0.4",
     "@types/node": "18.11.19",
