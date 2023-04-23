@@ -26,91 +26,123 @@ interface Props {
 }
 
 const GameThumbnail: FC<Props> = (x) => {
-  const { ref, size } = useElementSize();
-  const [isHovering, setIsHovering] = useState(false);
-  const { isDesktop,isTablet } = useScreenSize()
 
 
-  const acreage = size.height * size.width;
-  const minSize = 176 * 176;
-
-  const TagShow = () => {
-    if (!x.isNew && !x.isHot) return null;
-
-    return (
-      <div className={acreage < minSize && isDesktop? styles.tag :styles.tagLarge }>
-        {x.isHot ? 'HOT' : 'NEW'}
-      </div>
-    );
-  };
-
-  const Favourite = () => {
-    if (!GamesService.getFavoriteGames()) return null;
-
-    return (
-      <div
-        className={cs([
-          styles.favourite,
-          acreage < minSize ?
-            styles.favouriteSmall : ''
-        ])}
-      >
-        <IconFavourite />
-      </div>
-    );
-  };
-
-  const ThumbnailHoverDecktop = () => {
-    if (isHovering && x.isHover) {
-      return (
-        <VideoThumbnail
-          src={`${process.env.IMAGE_URL}${x.videoUrl}`}
-          autoPlay={isHovering}
-          gameName={x.gameName}
-        />
-      )
-    }
-    return (
-      <div className='w-full h-full rounded-[10px] overflow-hidden relative'>
-        <Image
-          loader={imageLoader}
-          src={x.gameImage}
-          alt={'recommended-for-you'}
-          fill
-          sizes='(max-width: 768px) 100vw,
-          (max-width: 1200px) 50vw,
-          33vw'
-          priority
-          placeholder="blur"
-          blurDataURL="/icons/loading.gif"
-        />
-        {
-          x.isLightEffect &&
-          <Image className={styles.lightEffect} src="icons/light-effect.svg" alt='light effect' width={768} height={768} />}
-      </div>
-    )
-  }
+  const ImageMemo = React.memo(Image, (prevProps, nextProps) => {
+    return prevProps.src === nextProps.src && prevProps.alt === nextProps.alt;
+  });
 
   return (
     <div
-      ref={ref}
       className={cs(["relative flex h-full w-full", styles.wrapper])}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
     >
       <Link
         href={x.slug || '/'}
         className={cs([styles.itemGame, 'flex items-center h-full w-full relative'])}
       >
-        {GamesService.isGameFavorite(x.gameId) ? <Favourite /> : <TagShow />}
-        <ThumbnailHoverDecktop />
+        <div className='w-full h-full rounded-[10px] overflow-hidden relative'>
+          <ImageMemo
+            loader={imageLoader}
+            src={x.gameImage}
+            alt={'recommended-for-you'}
+            fill
+            sizes='(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw'
+            priority
+            placeholder="blur"
+            blurDataURL="/icons/loading.gif"
+          />
+        </div>
       </Link>
-      <TitleHoverDecktop {...x} />
     </div>
   );
+
+  // const { ref, size } = useElementSize();
+  // const [isHovering, setIsHovering] = useState(false);
+  // const { isDesktop, isTablet, isMobile } = useScreenSize()
+
+
+  // const acreage = size.height * size.width;
+  // const minSize = 176 * 176;
+
+  // const TagShow = () => {
+  //   if (!x.isNew && !x.isHot) return null;
+
+  //   return (
+  //     <div className={acreage < minSize && isDesktop ? styles.tag : styles.tagLarge}>
+  //       {x.isHot ? 'HOT' : 'NEW'}
+  //     </div>
+  //   );
+  // };
+
+  // const Favourite = () => {
+  //   if (!GamesService.getFavoriteGames()) return null;
+
+  //   return (
+  //     <div
+  //       className={cs([
+  //         styles.favourite,
+  //         acreage < minSize ?
+  //           styles.favouriteSmall : ''
+  //       ])}
+  //     >
+  //       <IconFavourite />
+  //     </div>
+  //   );
+  // };
+
+  // const ThumbnailHoverDesktop = () => {
+  //   if (isHovering && x.isHover && isDesktop) {
+  //     return (
+  //       <VideoThumbnail
+  //         src={`${process.env.IMAGE_URL}${x.videoUrl}`}
+  //         autoPlay={isHovering}
+  //         gameName={x.gameName}
+  //       />
+  //     )
+  //   }
+  //   return (
+  //     <div className='w-full h-full rounded-[10px] overflow-hidden relative'>
+  //       <Image
+  //         loader={imageLoader}
+  //         src={x.gameImage}
+  //         alt={'recommended-for-you'}
+  //         fill
+  //         sizes='(max-width: 768px) 100vw,
+  //         (max-width: 1200px) 50vw,
+  //         33vw'
+  //         priority
+  //         placeholder="blur"
+  //         blurDataURL="/icons/loading.gif"
+  //       />
+  //       {
+  //         x.isLightEffect &&
+  //         <Image className={styles.lightEffect} src="icons/light-effect.svg" alt='light effect' width={768} height={768} />}
+  //     </div>
+  //   )
+  // }
+
+  // return (
+  //   <div
+  //     ref={ref}
+  //     className={cs(["relative flex h-full w-full", styles.wrapper])}
+  //     onMouseEnter={() => { return isMobile ? null : setIsHovering(true) }}
+  //     onMouseLeave={() => { return isMobile ? null : setIsHovering(false) }}
+  //   >
+  //     <Link
+  //       href={x.slug || '/'}
+  //       className={cs([styles.itemGame, 'flex items-center h-full w-full relative'])}
+  //     >
+  //       {GamesService.isGameFavorite(x.gameId) ? <Favourite /> : <TagShow />}
+  //       <ThumbnailHoverDesktop />
+  //     </Link>
+  //     <TitleHoverDecktop {...x} />
+  //   </div>
+  // );
 };
 
-export default GameThumbnail;
+export default React.memo(GameThumbnail);
 
 const TitleHoverDecktop = (x: any) => {
   const { isDesktop } = useScreenSize()

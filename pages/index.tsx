@@ -14,10 +14,10 @@ export default function Home() {
         <title>Gamehub</title>
       </Head>
       <div className='mx-auto w-full max-w-full relative z-10 main'>
-        {/* <TopSection />
+        <TopSection />
         <RecommendedGames isShowShape />
         <NewGames isShowShape />
-        <PopularGames isShowShape /> */}
+        <PopularGames isShowShape />
         <PopularCategories isShowShape />
         <Description />
         <PopularTags />
