@@ -38,6 +38,11 @@ const BannerGame: FC<Props> = (x) => {
             width={1150}
             height={302}
             priority
+            sizes='(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw'
+            placeholder='blur'
+            blurDataURL='/icons/loading.gif'
           />
         </Link>
       )}
