@@ -5,7 +5,7 @@ import useScreenSize from '@/utils/useScreenSize';
 import BannerGame from './BannerGame';
 import { useRequest } from 'ahooks';
 import { homeService } from '@/app/services/homeService';
-import moment from 'moment';
+import dayjs from 'dayjs'
 import { useElementWidth } from '@/utils/useElementWidth';
 import GameThumbnail, { GameThumbnailMobile } from '@/components/Molecules/GameThumbnail';
 
@@ -13,15 +13,15 @@ function propsItemGameTop(gameList: any, index: any, status?: any) {
   const isHotGame = gameList && gameList[index]?.is_hot_game;
   // get createAt
   const createAt = gameList && gameList[index]?.createdAt;
-  const outputDateString = moment(createAt).format("YYYY-MM-DD");
-  const sevenDaysAgo = moment().subtract(7, 'days');
+  const outputDateString = dayjs(createAt).format("YYYY-MM-DD");
+  const sevenDaysAgo = dayjs().subtract(7, 'days');
   return {
     gameId: gameList && gameList[index]?.id,
     gameName: gameList && gameList[index]?.name,
     gameImage: gameList[index]?.thumbnail?.url,
     videoUrl: gameList[index]?.video.url,
     slug: `/playgame/${gameList && gameList[index]?.slug}`,
-    isNew: moment(outputDateString).isAfter(sevenDaysAgo) ? true : false,
+    isNew: dayjs(outputDateString).isAfter(sevenDaysAgo) ? true : false,
     isHot: isHotGame,
     isHover: true,
   };

@@ -1,9 +1,9 @@
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 class BaseModel {
     created_at: string
     constructor() {
-        this.created_at = moment().format()
+        this.created_at = dayjs().format()
     }
 }
 export default BaseModel

@@ -1,4 +1,3 @@
-import moment from "moment";
 import GameService from "@/app/services/gameService";
 
 export default function propsItemGame(gameList: any, index: any) {
@@ -23,8 +22,6 @@ export default function propsItemGame(gameList: any, index: any) {
 
 export const GameInfo = (data: any) => {
     const createAt = data?.attributes?.createdAt;
-    const outputDateString = createAt ? moment(createAt).format('YYYY-MM-DD') : '';
-    const sevenDaysAgo = moment().subtract(7, 'days');
 
     return {
         gameId: data?.id,
