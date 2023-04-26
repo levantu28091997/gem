@@ -2,7 +2,7 @@ import 'swiper/css';
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { GameInfo } from '@/utils/propItemGame';
-import GameThumbnail from '../GameThumbnail';
+import GameThumbnail, { GameThumbnailMobile } from '../GameThumbnail';
 import { useElementWidth } from '@/utils/useElementWidth';
 import styles from './ListGameCarousel.module.scss'
 import { IconArrowRight, IconArrowRightOnMobile } from '@/components/Atoms/Icons';
@@ -131,7 +131,15 @@ export function ListGameCarouselOnMobile({ gameList }: any) {
                 <div className={styles.wrapperMobile}
                   style={{ gridTemplateColumns: `repeat(3, ${itemWidth}px)`, gridTemplateRows: `repeat(2, ${itemWidth}px)` }}
                 >
-                  <GameList slides={slides} />
+                  {
+                    slides?.map((game: any, indGame: number) => {
+                      return (
+                        <div key={indGame} className={styles[`ip${indGame}`]}>
+                          <GameThumbnailMobile {...GameInfo(game)} isHover isLightEffect={indGame === 0} />
+                        </div>
+                      )
+                    })
+                  }
                 </div>
               </SwiperSlide>
             )

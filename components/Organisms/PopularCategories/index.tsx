@@ -6,9 +6,10 @@ import useScreenSize from '@/utils/useScreenSize';
 import { useRequest } from 'ahooks';
 import { homeService } from '@/app/services/homeService';
 import cs from '@/utils/cs';
+import useTransLate from '@/translate';
 
 interface Props {
-  isShowShape?: boolean
+  isShowShape?: boolean;
 }
 
 const PopularCategories: FC<Props> = ({ isShowShape = false }) => {
@@ -34,10 +35,16 @@ const PopularCategories: FC<Props> = ({ isShowShape = false }) => {
   if (isTablet) dataResult = categories.slice(0, 8);
   if (isMobile) dataResult = categories.slice(0, 10);
 
+  const trans = useTransLate();
+
   return (
     <div className='popularTag mb-10 md:mb-[70px] xl:mb-20 relative'>
-      {isDesktop && isShowShape && <div className={cs([styles.path, 'path-img opacity-0 xl:opacity-100'])} />}
-      <TitleSection title='Popular Categories' />
+      {isDesktop && isShowShape && (
+        <div
+          className={cs([styles.path, 'path-img opacity-0 xl:opacity-100'])}
+        />
+      )}
+      <TitleSection title={trans.home.popCategories} />
       <div className='lg:ml-5 xl:ml-12'>
         <div className={styles.tagList}>
           <ContentPopularCategories games={dataResult} />

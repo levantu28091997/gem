@@ -14,9 +14,10 @@ type TProps = {
   handleSearch: (event: any) => Promise<void>;
   searchResults: any;
   removeSearch: () => JSX.Element;
-  changeTag: (event: any, classTag: any) => void;
+  changeTag: (event: any) => void;
   dataFill: any;
   refBoxSearch: any;
+  closeModal: (event: any) => void;
 };
 
 const SearchForm: FC<TProps> = ({
@@ -31,6 +32,7 @@ const SearchForm: FC<TProps> = ({
   changeTag,
   dataFill,
   refBoxSearch,
+  closeModal,
 }) => {
   return (
     <>
@@ -60,6 +62,7 @@ const SearchForm: FC<TProps> = ({
             handleSearch={handleSearch}
             changeTag={changeTag}
             dataFill={dataFill}
+            closeModal={closeModal}
           />
         )}
       </Box>

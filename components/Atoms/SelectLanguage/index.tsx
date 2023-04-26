@@ -1,9 +1,11 @@
-import React from 'react';
-import { styled } from '@mui/material/styles';
+import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import InputBase from '@mui/material/InputBase';
+import { styled } from '@mui/material/styles';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const StyleInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
@@ -36,10 +38,16 @@ const menuItemCSS = {
 };
 
 export default function SelectLanguage() {
-  const [lang, setLang] = React.useState('en');
+  const [lang, setLang] = useState('en');
+  const { locale } = useRouter();
+  // const { t, i18n } = useTranslation();
   const handleChange = (event: { target: { value: string } }) => {
     setLang(event.target.value);
+    // const dataLang = event.target.value;
+    // i18n.changeLanguage(dataLang);
+    // localStorage.setItem('lng', dataLang);
   };
+
   return (
     <div>
       <Select
@@ -52,7 +60,7 @@ export default function SelectLanguage() {
           <Image src='/icons/en.png' alt='English' width={28} height={28} />
           English
         </MenuItem>
-        <MenuItem value='ind' style={menuItemCSS}>
+        <MenuItem value='hi' style={menuItemCSS}>
           <Image src='/icons/ind.svg' alt='India' width={28} height={28} />
           India
         </MenuItem>

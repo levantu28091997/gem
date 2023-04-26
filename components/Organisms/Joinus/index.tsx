@@ -1,23 +1,19 @@
-import AboutTitleSection from '@/components/Atoms/AboutTitleSection';
-import styles from './Joinus.module.scss';
 import AboutTitleBlock from '@/components/Atoms/AboutTitleBlock';
+import AboutTitleSection from '@/components/Atoms/AboutTitleSection';
 import useScreenSize from '@/utils/useScreenSize';
-import Aos from 'aos';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import styles from './Joinus.module.scss';
+const Fade = require('react-reveal/Fade');
+
 const Joinus = () => {
   const { isMobile, isTablet } = useScreenSize();
   const [index, setIndex] = useState(0);
   const timeRef = useRef<any>(null);
-
   function resetTimeout() {
     if (timeRef.current) {
       clearTimeout(timeRef.current);
     }
   }
-
-  useEffect(() => {
-    Aos.init({ duration: 3000 });
-  });
   const dataText = [
     {
       t1: '01.',
@@ -54,20 +50,18 @@ const Joinus = () => {
       {isMobile ? (
         <div className='mb-[77px]'>
           <div className='flex mt-[51px] mb-[27px]'>
-            <div
-              data-aos='fade-right'
-              data-aos-duration='2000'
-              className={`${styles.bg_linear} w-[50%] grid justify-end`}
-            >
-              <div className='text-center w-[254px]'>
-                <AboutTitleBlock
-                  title1='JOIN'
-                  title2='US.'
-                  size={isMobile ? '50px' : isTablet ? '80px' : '130px'}
-                  lineheight='normal'
-                />
+            <Fade left duration={3000}>
+              <div className={`${styles.bg_linear} w-[50%] grid justify-end`}>
+                <div className='text-center w-[254px]'>
+                  <AboutTitleBlock
+                    title1='JOIN'
+                    title2='US.'
+                    size={isMobile ? '50px' : isTablet ? '80px' : '130px'}
+                    lineheight='normal'
+                  />
+                </div>
               </div>
-            </div>
+            </Fade>
             <div className='mt-5 text-center w-[40%]'>
               <AboutTitleSection
                 className='text-white'
@@ -102,20 +96,21 @@ const Joinus = () => {
       ) : isTablet ? (
         <div className='mb-[77px]'>
           <div className='flex mt-[51px] mb-[27px]'>
-            <div
-              data-aos='fade-right'
-              data-aos-duration='2000'
-              className={`${styles.bg_linear} w-[50%] grid justify-center`}
-            >
-              <div className='text-center w-[254px] '>
-                <AboutTitleBlock
-                  title1='JOIN'
-                  title2='US.'
-                  size={isMobile ? '50px' : isTablet ? '80px' : '130px'}
-                  lineheight='normal'
-                />
+            <Fade left duration={3000}>
+              <div
+                className={`${styles.bg_linear} w-[50%] grid justify-center`}
+              >
+                <div className='text-center w-[254px] '>
+                  <AboutTitleBlock
+                    title1='JOIN'
+                    title2='US.'
+                    size={isMobile ? '50px' : isTablet ? '80px' : '130px'}
+                    lineheight='normal'
+                  />
+                </div>
               </div>
-            </div>
+            </Fade>
+
             <div className='text-center pt-8'>
               <AboutTitleSection
                 className='text-white'
@@ -153,20 +148,20 @@ const Joinus = () => {
           </div>
           <div className='w-full flex mt-[51px] mb-[161px]'>
             <div className=''>
-              <div
-                data-aos='fade-right'
-                data-aos-duration='2000'
-                className={`${styles.bg_linear_desktop} w-[811px] grid justify-end`}
-              >
-                <div className='text-center w-[50%] mr-20 pb-3'>
-                  <AboutTitleBlock
-                    title1='JOIN'
-                    title2='US.'
-                    size={isMobile ? '50px' : isTablet ? '80px' : '130px'}
-                    lineheight='90px'
-                  />
+              <Fade left duration={3000}>
+                <div
+                  className={`${styles.bg_linear_desktop} w-[811px] grid justify-end`}
+                >
+                  <div className='text-center w-[50%] mr-20 pb-3'>
+                    <AboutTitleBlock
+                      title1='JOIN'
+                      title2='US.'
+                      size={isMobile ? '50px' : isTablet ? '80px' : '130px'}
+                      lineheight='90px'
+                    />
+                  </div>
                 </div>
-              </div>
+              </Fade>
             </div>
             <div className='mx-10 -my-5 overflow-hidden max-w-[470px]'>
               <div

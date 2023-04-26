@@ -7,7 +7,7 @@ import { useRequest } from 'ahooks';
 import { homeService } from '@/app/services/homeService';
 import moment from 'moment';
 import { useElementWidth } from '@/utils/useElementWidth';
-import GameThumbnail from '@/components/Molecules/GameThumbnail';
+import GameThumbnail, { GameThumbnailMobile } from '@/components/Molecules/GameThumbnail';
 
 function propsItemGameTop(gameList: any, index: any, status?: any) {
   const isHotGame = gameList && gameList[index]?.is_hot_game;
@@ -115,15 +115,15 @@ const TopSectionMobile = ({ gameList, propsGameBanner }: any) => {
 
   return (
     <div className={cs([styles.topSectionMobile, 'flex flex-col gap-4 mb-10'])}>
-     <div className={styles.banner_game_placeholder}>
+      <div className={styles.banner_game_placeholder}>
         <BannerGame {...propsGameBanner} />
       </div>
       <div className={cs([styles.itemGird, 'gird'])} ref={ref}
         style={{ gridTemplateColumns: `repeat(3, ${itemWidth}px)`, gridTemplateRows: `repeat(1, ${itemWidth}px)` }}
       >
-        <GameThumbnail {...propsItemGameTop(gameList, 1)} />
-        <GameThumbnail {...propsItemGameTop(gameList, 3)} isFavourite />
-        <GameThumbnail {...propsItemGameTop(gameList, 4)} />
+        <GameThumbnailMobile {...propsItemGameTop(gameList, 1)} />
+        <GameThumbnailMobile {...propsItemGameTop(gameList, 3)} isFavourite />
+        <GameThumbnailMobile {...propsItemGameTop(gameList, 4)} />
       </div>
     </div>
   );
@@ -146,8 +146,8 @@ const TopSectionSmallMobile = ({ gameList, propsGameBanner }: any) => {
       <div className={cs([styles.itemGird, 'gird'])} ref={ref}
         style={{ gridTemplateColumns: `repeat(2, ${itemWidth}px)`, gridTemplateRows: `repeat(1, ${itemWidth}px)` }}
       >
-        <GameThumbnail {...propsItemGameTop(gameList, 1)} />
-        <GameThumbnail {...propsItemGameTop(gameList, 2)} />
+        <GameThumbnailMobile {...propsItemGameTop(gameList, 1)} />
+        <GameThumbnailMobile {...propsItemGameTop(gameList, 2)} />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { useRequest } from 'ahooks';
 import { useRouter } from 'next/router';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import cs from '@/utils/cs';
 import styles from './index.module.scss';
@@ -19,6 +19,8 @@ import propsDescription from '@/utils/propsDescription';
 import { GetServerSideProps } from 'next';
 import axios from 'axios';
 import PopularTags from '@/components/Organisms/PopularTags';
+import useIsLandscape from '@/utils/useIsLandscape';
+import ZoomOutMap from '@mui/icons-material/ZoomOutMap';
 
 interface Meta {
   image : string,
@@ -59,6 +61,7 @@ export default function index({ meta }: Props) {
   const [listCategories, setListCategories] = useState<any>([]);
   const [listGameRecommended, setListGameRecommended] = useState<any>([]);
   const { webSocketService, setWebSocketService } = useAppContext();
+  const [isLandscape,setLandScape] = useState(false);
   const gameUrl = router.query.game;
 
   const contentShare = {
@@ -73,7 +76,6 @@ export default function index({ meta }: Props) {
   function handleOpenModalShare() {
     setIsOpenModal(true);
   }
-
   const { run } = useRequest(homeService.getDetailGameBySlug, {
     manual: true,
     onError: (res, params) => {
@@ -104,6 +106,23 @@ export default function index({ meta }: Props) {
   const addIdGameToLocalStorage = (idGame: number) => {
     GamesService.addIdPlayedGame(idGame);
   };
+  
+  function checkRotate() {
+    const iframe:any = document.querySelector('iframe');
+    iframe?.contentWindow.postMessage('getLandscape', '*');
+    const intervalId = setInterval(() => {
+      window.addEventListener('message', event => {
+        setLandScape(event.data);
+        console.log('landscape: ', event.data);
+        clearInterval(intervalId);
+      });
+    }, 100);
+
+    setTimeout(() => {
+      clearInterval(intervalId);
+      console.log('Close interval after 4 seconds');
+    }, 4000);
+  }
 
   function addCategoryIdToLocalStorage() {
     // lấy mảng category từ gameCurrent
@@ -120,7 +139,6 @@ export default function index({ meta }: Props) {
   function addLatestGameIdToLocalStorage(gameIdLatest: any) {
     GamesService.addIdLatestGame(gameIdLatest)
   }
-
   useEffect(() => {
     if (webSocketService) {
       webSocketService.close();
@@ -159,6 +177,28 @@ export default function index({ meta }: Props) {
       );
     }
   }, [gameCurrent]);
+
+  const refMobile = useRef<any>(null);
+
+  useEffect(() => {
+    const element = refMobile && refMobile.current;
+
+    if (element?.requestFullscreen) {
+      element?.requestFullscreen();
+    } else if (element?.webkitRequestFullscreen) {
+      element?.webkitRequestFullscreen();
+    } else if (element?.mozRequestFullScreen) {
+      element?.mozRequestFullScreen();
+    } else if (element?.msRequestFullscreen) {
+      element?.msRequestFullscreen();
+    }
+  }, [isMobile, refMobile]);
+  
+  useEffect(() => {
+    // get landscape for mobie
+    checkRotate();
+  }, [gameCurrent,isLandscape]);
+  
   if (isMobile) {
     return (
       <>
@@ -174,10 +214,9 @@ export default function index({ meta }: Props) {
             <meta property='og:image' content={meta?.image} />
           </>
         </Head>
-
-        <div className='relative'>
+        <div className='relative' ref={refMobile}>
           <div
-            className={cs(['absolute', styles.iconBack])}
+            className={cs([isLandscape && styles.iconBackRotate, styles.iconBack])}
             onClick={() => router.back()}
           >
             <ArrowBackIosNewRoundedIcon />
@@ -187,15 +226,22 @@ export default function index({ meta }: Props) {
             scrolling='no'
             seamless
             className={
-              isMobile ? `w-full h-[calc(100vh_-_58px)]` : `w-full h-[100vh]`
+              isMobile
+                ? cs([
+                    `w-full h-[calc(100vh_-_58px)]`,
+                    isLandscape ? styles.iframeLandscape : '',
+                  ])
+                : `w-full h-[100vh]`
             }
             src={srcIframe}
           ></iframe>
-          {isMobile && (
-            <ProcessBarGameMobile
-              onShare={handleOpenModalShare}
-              gameCurrent={gameCurrent}
-            />
+          {isMobile && !isLandscape && (
+            <div className='relative bottom-0'>
+              <ProcessBarGameMobile
+                onShare={handleOpenModalShare}
+                gameCurrent={gameCurrent}
+              />
+            </div>
           )}
         </div>
       </>

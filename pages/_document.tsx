@@ -10,13 +10,11 @@ export default function Document() {
                 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet"></link>
                 <link href="https://fonts.googleapis.com/css2?family=Changa+One&display=swap" rel="stylesheet"></link>
                 <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"></link>
-                <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
                 <link href="https://fonts.googleapis.com/css2?family=Genos:wght@500&display=swap" rel="stylesheet"></link>
             </Head>
             <body>
                 <Main />
                 <NextScript />
-                <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
             </body>
         </Html>
     )

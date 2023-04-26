@@ -1,15 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { IconClose } from '@/components/Atoms/Icons';
 import LogoHeader from '@/components/Atoms/LogoHeader';
-import styles from './Navbar.module.scss';
-import cs from '@/utils/cs';
-import { Box } from '@mui/system';
-import Navigation from '@/components/Molecules/Navigation';
 import DarkMode from '@/components/Molecules/DarkMode';
+import Navigation from '@/components/Molecules/Navigation';
 import SearchForm from '@/components/Molecules/SearchForm';
 import SearchFormTablet from '@/components/Molecules/SearchFormTablet';
-import algoliasearch from 'algoliasearch';
-import { IconClose } from '@/components/Atoms/Icons';
+import cs from '@/utils/cs';
 import useScreenSize from '@/utils/useScreenSize';
+import { Box } from '@mui/system';
+import algoliasearch from 'algoliasearch';
+import { useRouter } from 'next/router';
+import { useEffect, useRef, useState } from 'react';
+import styles from './Navbar.module.scss';
 
 const client = algoliasearch(
   process.env.ALGOLIA_PROVIDER_APPLICATION_ID as string,
@@ -20,15 +21,16 @@ const index = client.initIndex(process.env.DEVELOPMENT_API as string);
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showTags, setShowTags] = useState(true);
-  const [dataFill, setDataFill] = useState<any[]>([]);
+  const [dataFill, setDataFill] = useState('');
   const [value, setValue] = useState('');
   const modalRef = useRef<any>(null);
   const { isMobile } = useScreenSize();
+  const router = useRouter();
 
   const closeModal = () => {
     document.body.style.overflow = 'auto';
     setIsOpen(false);
-    setDataFill([]);
+    setDataFill('');
   };
   const openModal = () => {
     if (isMobile) {
@@ -52,13 +54,13 @@ const Navbar = () => {
     }
   }
 
-  const changeTag = (event: any, classTag: any) => {
-    if (dataFill.length < 5 && !dataFill.includes(event)) {
-      setDataFill([...dataFill, event]);
+  const changeTag = (event: any) => {
+    if (event) {
+      setDataFill(event);
     }
 
-    if (classTag == 'enable' && dataFill) {
-      setDataFill(dataFill.filter((item) => item != event));
+    if (event == dataFill) {
+      setDataFill('');
     }
   };
 
@@ -66,7 +68,7 @@ const Navbar = () => {
 
   const handleSearch = async (event: any) => {
     const query = event.target.value;
-    if (query && dataFill.length == 0) {
+    if (query && !dataFill) {
       setShowTags(false);
     } else {
       setShowTags(true);
@@ -77,7 +79,7 @@ const Navbar = () => {
   };
 
   const handleAlgoliaSearch = (query: any) => {
-    if (!query && dataFill.length == 0) {
+    if (!query && !dataFill) {
       return setSearchResults([]);
     }
 
@@ -85,18 +87,9 @@ const Navbar = () => {
       attributesForFaceting: ['status', '_tags'],
     });
 
-    const tagsString = dataFill
-      .reverse()
-      .map((tag) => `_tags:'${tag}'`)
-      .join(' OR ');
-    let filters = 'status:Active';
-    if (tagsString) {
-      filters += ` AND ${tagsString}`;
-    }
-
     index
       .search(query, {
-        filters: filters,
+        filters: `status:Active AND _tags:'${dataFill}'`,
         hitsPerPage: 30,
       })
       .then(({ hits }) => {
@@ -106,12 +99,16 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (dataFill.length) {
+    if (dataFill) {
       handleAlgoliaSearch('');
     } else {
       setSearchResults([]);
     }
   }, [dataFill]);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [router]);
 
   const removeSearch = () => {
     return (
@@ -157,6 +154,7 @@ const Navbar = () => {
               removeSearch={removeSearch}
               changeTag={changeTag}
               dataFill={dataFill}
+              closeModal={handleOverlayClick}
             />
             <Box className='flex items-center'>
               <SearchFormTablet
@@ -170,6 +168,7 @@ const Navbar = () => {
                 removeSearch={removeSearch}
                 changeTag={changeTag}
                 dataFill={dataFill}
+                closeModal={handleOverlayClick}
               />
               <Navigation />
               <DarkMode className='pl-14 hidden xl:block' />

@@ -1,4 +1,6 @@
 .iconBack {
+  position: absolute;
+  z-index: 50;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,4 +16,23 @@
   @media screen and (min-width: 768px) {
     top: 23px;
   }
+}
+.iconBackRotate{
+  position:  relative !important;
+  left: 270px !important;
+  top: 0 !important;
+  transform: rotate(90deg) !important;
+}
+$screen-height: 100vh;
+$screen-width: 100vw;
+
+.iframeLandscape {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  height: $screen-width;
+  width: $screen-height;
+  transform-origin: top left;
+  transform: rotate(90deg) translateY(-100%);
 }

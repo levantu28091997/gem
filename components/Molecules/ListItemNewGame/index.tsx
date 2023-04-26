@@ -5,7 +5,7 @@ import { useElementWidth } from '@/utils/useElementWidth'
 import { useRequest } from 'ahooks'
 import { homeService } from '@/app/services/homeService'
 import { GameInfo } from '@/utils/propItemGame'
-import GameThumbnail from '../GameThumbnail'
+import GameThumbnail, { GameThumbnailMobile } from '../GameThumbnail'
 
 const ListItemNewGame = () => {
   const { isDesktop, isTablet } = useScreenSize()
@@ -74,7 +74,7 @@ const ContentNewGameTablet = ({ gameList }: any) => {
       {
         gameList.map((game: any, index: number) => (
           <div key={index} className={styles[`ip${index}`]}>
-            <GameThumbnail {...GameInfo(game)} isHover isLightEffect={index === 3} />
+            <GameThumbnailMobile {...GameInfo(game)} isHover isLightEffect={index === 3} />
           </div>
         ))
       }

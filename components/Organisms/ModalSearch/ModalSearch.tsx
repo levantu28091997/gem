@@ -1,15 +1,15 @@
-import { FC, useEffect, useRef, useState } from 'react';
-import React from 'react';
-import styles from './ModalSearch.module.scss';
-import GameThumbnail from '@/components/Molecules/GameThumbnail';
-import { GameInfo } from '@/utils/propItemGame';
 import { homeService } from '@/app/services/homeService';
-import { useRequest } from 'ahooks';
+import { IconSearchDark } from '@/components/Atoms/Icons';
+import GameThumbnail from '@/components/Molecules/GameThumbnail';
+import cs from '@/utils/cs';
+import { GameInfo } from '@/utils/propItemGame';
 import { useElementWidth } from '@/utils/useElementWidth';
 import useScreenSize from '@/utils/useScreenSize';
-import cs from '@/utils/cs';
 import { Box } from '@mui/material';
-import { IconSearchDark } from '@/components/Atoms/Icons';
+import { useRequest } from 'ahooks';
+import React, { FC, useEffect, useState } from 'react';
+import ScrollContainer from 'react-indiana-drag-scroll';
+import styles from './ModalSearch.module.scss';
 
 type TProps = {
   modalRef: React.MutableRefObject<any>;
@@ -18,9 +18,10 @@ type TProps = {
   handleSearch: (event: any) => Promise<void>;
   value: string;
   removeSearch?: () => JSX.Element;
-  changeTag: (event: any, classTag: any) => void;
+  changeTag: (event: any) => void;
   dataFill: any;
   isOpen: boolean;
+  closeModal: (event: any) => void;
 };
 
 const ModalSearch: FC<TProps> = ({
@@ -33,6 +34,7 @@ const ModalSearch: FC<TProps> = ({
   changeTag,
   dataFill,
   isOpen,
+  closeModal,
 }) => {
   const [gameListRecommended, setGameListRecommended] = useState<any>([]);
   const [gameListPopular, setGameListPopular] = useState<any>([]);
@@ -82,44 +84,12 @@ const ModalSearch: FC<TProps> = ({
       },
     },
   );
-
   useEffect(() => {
     runRecommended();
     runPopularWeek();
     runTags();
     runRecentlyPlayed();
   }, []);
-
-  useEffect(() => {
-    const slidemoue = document.querySelector('.scroll_slide');
-    let scrolldow = false;
-    let startX: number;
-    let scrollLeft: number;
-
-    slidemoue?.addEventListener('mousedown', function (e: any) {
-      let offsetSlide = (slidemoue as HTMLElement).offsetLeft;
-      console.log(offsetSlide);
-      scrolldow = true;
-      startX = e.pageX - offsetSlide;
-      scrollLeft = offsetSlide;
-      console.log(scrollLeft);
-    });
-    slidemoue?.addEventListener('mouseleave', function () {
-      scrolldow = false;
-    });
-    slidemoue?.addEventListener('mouseup', function () {
-      scrolldow = false;
-    });
-    slidemoue?.addEventListener('mousemove', function (e: any) {
-      if (!scrolldow) return;
-      let offsetSlide = (slidemoue as HTMLElement).offsetLeft;
-      e.preventDefault();
-      const x = e.pageX - offsetSlide;
-      const walk = x - startX;
-      slidemoue.scrollLeft = scrollLeft - walk;
-    });
-  }, []);
-
   const convertSearchResults2ListGame = (searchResults: any) => {
     const results = searchResults.map((item: any) => {
       return {
@@ -148,27 +118,6 @@ const ModalSearch: FC<TProps> = ({
     return results;
   };
 
-  const getTagClass = (tagName: any) => {
-    if (dataFill.some((tag: any) => tag == tagName)) {
-      return {
-        className: `${styles.changeCategory}`,
-        changeTagClass: `enable`,
-      };
-    }
-
-    if (dataFill.length >= 5 && dataFill.some((tag: any) => tag != tagName)) {
-      return {
-        className: `${styles.disabledTags}`,
-        changeTagClass: `disabled`,
-      };
-    }
-
-    return {
-      className: `${isMobile ? `${styles.unChangeTag}` : styles.category}`,
-      changeTagClass: `unchange`,
-    };
-  };
-
   const checkSearchReults =
     searchResults && searchResults.length > 0 ? true : false;
   return (
@@ -177,7 +126,7 @@ const ModalSearch: FC<TProps> = ({
       <div
         className={cs([
           'absolute top-full left-0 bg-white shadow-[0px_3px_20px_rgba(0,0,0,0.25)] rounded-[10px]',
-          'mx-6 xl:mx-0 mt-3.5 max-h-screen overflow-auto w-[87.7%] xl:w-[136%]',
+          'mx-6 xl:mx-0 mt-3.5 max-h-screen overflow-auto w-[87.7%] xl:w-[180%] max-w-[1000px]',
           'scrollbar-hide',
         ])}
         ref={modalRef}
@@ -200,22 +149,21 @@ const ModalSearch: FC<TProps> = ({
           {showTags && (
             <div className='relative'>
               <div className={`${styles.box_shadow} -top-3 -left-8 z-50`}></div>
-              <div
+              <ScrollContainer
                 className={cs([
                   styles.wrapCategory,
-                  'flex gap-[15px] md:gap-5 overflow-x-scroll relative whitespace-nowrap list-tags scroll_slide',
+                  'flex gap-[15px] md:gap-5 overflow-x-scroll relative whitespace-nowrap list-tags scroll-container',
                 ])}
               >
                 {listTags?.map((item: any) => (
                   <button
                     type='button'
-                    onClick={() =>
-                      changeTag(
-                        item?.attributes?.name,
-                        getTagClass(item.attributes.name).changeTagClass,
-                      )
+                    onClick={() => changeTag(item?.attributes?.name)}
+                    className={
+                      item.attributes.name == dataFill
+                        ? styles.changeCategory
+                        : styles.category
                     }
-                    className={getTagClass(item.attributes.name).className}
                     key={item.id}
                   >
                     <span className={styles.nameCategory}>
@@ -223,7 +171,7 @@ const ModalSearch: FC<TProps> = ({
                     </span>
                   </button>
                 ))}
-              </div>
+              </ScrollContainer>
               <div
                 className={`${styles.box_shadow} top-4 -right-[30px] rotate-180`}
               ></div>
@@ -235,25 +183,26 @@ const ModalSearch: FC<TProps> = ({
               showItem={30}
             />
           )}
+          {
+          listRecentlyPlayed.length > 0 &&
           <SectionItem
-            gameList={gameListRecommended}
-            title={'Recommended for you'}
+            gameList={listRecentlyPlayed}
+            title={'Recently played'}
             showItem={6}
           />
+          }
           {!checkSearchReults && (
             <>
               <SectionItem
-                gameList={gameListPopular}
-                title={'Popular this week'}
+                gameList={gameListRecommended}
+                title={'Recommended for you'}
                 showItem={6}
               />
-              {listRecentlyPlayed.length > 0 && (
                 <SectionItem
-                  gameList={listRecentlyPlayed}
-                  title={'Recently played'}
+                  gameList={gameListPopular}
+                  title={'Popular this week'}
                   showItem={6}
                 />
-              )}
             </>
           )}
         </div>
@@ -276,7 +225,6 @@ const SectionItem = ({ gameList, title, showItem }: any) => {
 
 const GameItem = ({ gameList, showItem }: any) => {
   const { isTablet, isMobile } = useScreenSize();
-
   if (showItem === 30) {
     if (isMobile)
       return <GameList gameList={gameList.slice(0, 9)} numberItem={3} />;

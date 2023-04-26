@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import ContactUs from '@/components/Organisms/ContactUs';
 import Apero from '@/components/Organisms/Apedo';
-import Mission from '@/components/Organisms/Mission';
+import ContactUs from '@/components/Organisms/ContactUs';
 import Global from '@/components/Organisms/Global';
 import Joinus from '@/components/Organisms/Joinus';
+import Mission from '@/components/Organisms/Mission';
 import Aos from 'aos';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import 'aos/dist/aos.css';
+
 const AboutGamehub = () => {
   const router = useRouter();
-
   useEffect(() => {
-    Aos.init({
-      duration: 300,
-    });
+    Aos.init({duration:2000});
+    Aos.refresh()
   }, []);
   return (
     <>

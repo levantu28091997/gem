@@ -1,11 +1,13 @@
 import Description from '@/components/Organisms/Description';
-import PopularTags from '@/components/Organisms/PopularTags';
-import TopSection from '@/components/Organisms/TopSection';
 import NewGames from '@/components/Organisms/NewGames';
-import PopularGames from '@/components/Organisms/PopularGames';
-import RecommendedGames from '@/components/Organisms/RecommendedGames';
 import PopularCategories from '@/components/Organisms/PopularCategories';
+import PopularGames from '@/components/Organisms/PopularGames';
+import PopularTags from '@/components/Organisms/PopularTags';
+import RecommendedGames from '@/components/Organisms/RecommendedGames';
+import TopSection from '@/components/Organisms/TopSection';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 export default function Home() {
   return (

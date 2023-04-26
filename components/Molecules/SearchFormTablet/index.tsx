@@ -14,9 +14,9 @@ type TProps = {
   value: string;
   handleSearch: (event: any) => Promise<void>;
   removeSearch: () => JSX.Element;
-  changeTag: (event: any, classTag: any) => void;
+  changeTag: (event: any) => void;
   dataFill: any;
-
+  closeModal: (event: any) => void;
 };
 
 const SearchFormTablet: FC<TProps> = ({
@@ -30,11 +30,12 @@ const SearchFormTablet: FC<TProps> = ({
   removeSearch,
   changeTag,
   dataFill,
+  closeModal,
 }) => {
   return (
     <>
       <Box
-      ref={modalRef}
+        ref={modalRef}
         className={cs([
           styles.search,
           'flex items-center justify-center xl:hidden mx-1.5',
@@ -53,6 +54,7 @@ const SearchFormTablet: FC<TProps> = ({
             removeSearch={removeSearch}
             changeTag={changeTag}
             dataFill={dataFill}
+            closeModal={closeModal}
           />
         )}
       </Box>

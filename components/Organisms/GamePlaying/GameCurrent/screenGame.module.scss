@@ -1,0 +1,13 @@
+.rotate_is_mobile {
+  transform: rotate(90deg);
+  //   transform-origin: top left;
+  width: 100vh;
+  overflow-x: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.bg_iframe {
+  background-image: url('../../../../public/images/bg_iframe.png');
+  background-size: cover;
+}

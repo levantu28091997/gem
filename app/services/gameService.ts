@@ -85,14 +85,16 @@ class GamesService {
 
   static getRandomPlayedCategoryGame() {
     const categories = this.getPlayedCategoriesGames();
-    const randomValues = categories.map((category: number) => {
-      const randomIndex = Math.floor(Math.random() * categories.length);
-      return `filters[categories][id][$in]=${categories[randomIndex]}`;
+    const shuffledCategories = categories.sort(() => Math.random() - 0.5);
+    const randomValues = shuffledCategories.map((category: number) => {
+      return `filters[categories][id][$in]=${category}`;
     });
-
+  
     const filter = randomValues.join('&');
     return filter;
   }
+  
+  
   // theme mode
   static toggleThemeMode(isDarkMode: boolean) {
     if (isDarkMode) {
