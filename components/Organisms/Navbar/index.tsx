@@ -24,7 +24,7 @@ const Navbar = () => {
   const [dataFill, setDataFill] = useState('');
   const [value, setValue] = useState('');
   const modalRef = useRef<any>(null);
-  const { isMobile } = useScreenSize();
+  const { isMobile, isDesktop } = useScreenSize();
   const router = useRouter();
 
   const closeModal = () => {
@@ -171,7 +171,7 @@ const Navbar = () => {
                 closeModal={handleOverlayClick}
               />
               <Navigation />
-              <DarkMode className='pl-14 hidden xl:block' />
+              {isDesktop && <DarkMode className='pl-14' />}
             </Box>
           </Box>
         </div>
