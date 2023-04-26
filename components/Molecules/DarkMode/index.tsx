@@ -23,11 +23,11 @@ const DarkMode: FC<Props> = ({ className }: any) => {
       <input
         type='checkbox'
         className='hidden'
-        id='darkMode'
+        id='dark-mode-inp'
         checked={currentTheme === 'dark' ? true : false}
         onChange={toggleDarkMode}
       />
-      <label htmlFor='darkMode' className={styles.label}>
+      <label htmlFor='dark-mode-inp' className={styles.label}>
         <Image src='/icons/dark.svg' alt='Dark Mode' width={23} height={27} />
         <Image src='/icons/light.svg' alt='Light Mode' width={23} height={27} />
         <div className={styles.ball} />
