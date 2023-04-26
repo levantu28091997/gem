@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import CancelIcon from '@mui/icons-material/Cancel';
 import {
   IconLinkedIn,
@@ -16,7 +16,7 @@ import {
 } from 'next-share'
 import InputCopy from '../InputCopy/InputCopy';
 
-function PopupShareGame({ onClose, isOpen,contentShare }: any) {
+function PopupShareGame({ onClose, isOpen, contentShare }: any) {
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   const modalRef = useRef<any>(null);
 
@@ -62,13 +62,13 @@ function PopupShareGame({ onClose, isOpen,contentShare }: any) {
                     quote={contentShare.quote}
                     hashtag={contentShare.hashtag}
                   >
-                    <FacebookIcon borderRadius={100} size={78}/>
+                    <FacebookIcon borderRadius={100} size={78} />
                   </FacebookShareButton>
                   <TwitterShareButton url={contentShare.url}>
                     <IconTwitter />
                   </TwitterShareButton>
                   <WhatsappShareButton url={contentShare.url}>
-                    <WhatsappIcon borderRadius={100} size={78}/>
+                    <WhatsappIcon borderRadius={100} size={78} />
                   </WhatsappShareButton>
                   <TelegramShareButton url={contentShare.url}>
                     <IconTelegram />

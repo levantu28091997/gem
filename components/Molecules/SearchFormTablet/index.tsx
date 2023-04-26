@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import cs from '@/utils/cs';
-import { Box } from '@mui/system';
 import styles from './SearchFormTablet.module.scss';
 import { IconSearchActive, IconSearchLight } from '@/components/Atoms/Icons';
 import ModalSearch from '@/components/Organisms/ModalSearch/ModalSearch';
@@ -34,7 +33,7 @@ const SearchFormTablet: FC<TProps> = ({
 }) => {
   return (
     <>
-      <Box
+      <div
         ref={modalRef}
         className={cs([
           styles.search,
@@ -57,7 +56,7 @@ const SearchFormTablet: FC<TProps> = ({
             closeModal={closeModal}
           />
         )}
-      </Box>
+      </div>
     </>
   );
 };

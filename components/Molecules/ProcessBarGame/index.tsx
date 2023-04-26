@@ -1,6 +1,5 @@
 import React from 'react';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
 import ReplyIcon from '@mui/icons-material/Reply';
 import Image from 'next/image';
 import { IconZoomOutMap } from '@/components/Atoms/Icons';

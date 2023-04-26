@@ -5,7 +5,6 @@ import cs from '@/utils/cs';
 import { GameInfo } from '@/utils/propItemGame';
 import { useElementWidth } from '@/utils/useElementWidth';
 import useScreenSize from '@/utils/useScreenSize';
-import { Box } from '@mui/material';
 import { useRequest } from 'ahooks';
 import React, { FC, useEffect, useState } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
@@ -132,7 +131,7 @@ const ModalSearch: FC<TProps> = ({
         ref={modalRef}
       >
         <div className={styles.wrapContent}>
-          <Box className={cs([styles.search, 'block relative xl:hidden mb-4'])}>
+          <div className={cs([styles.search, 'block relative xl:hidden mb-4'])}>
             <input
               type='text'
               onFocus={handleSearch}
@@ -145,7 +144,7 @@ const ModalSearch: FC<TProps> = ({
             <button type='submit' className={styles.searchButton}>
               {value && removeSearch ? removeSearch() : <IconSearchDark />}
             </button>
-          </Box>
+          </div>
           {showTags && (
             <div className='relative'>
               <div className={`${styles.box_shadow} -top-3 -left-8 z-50`}></div>
@@ -184,12 +183,12 @@ const ModalSearch: FC<TProps> = ({
             />
           )}
           {
-          listRecentlyPlayed.length > 0 &&
-          <SectionItem
-            gameList={listRecentlyPlayed}
-            title={'Recently played'}
-            showItem={6}
-          />
+            listRecentlyPlayed.length > 0 &&
+            <SectionItem
+              gameList={listRecentlyPlayed}
+              title={'Recently played'}
+              showItem={6}
+            />
           }
           {!checkSearchReults && (
             <>
@@ -198,11 +197,11 @@ const ModalSearch: FC<TProps> = ({
                 title={'Recommended for you'}
                 showItem={6}
               />
-                <SectionItem
-                  gameList={gameListPopular}
-                  title={'Popular this week'}
-                  showItem={6}
-                />
+              <SectionItem
+                gameList={gameListPopular}
+                title={'Popular this week'}
+                showItem={6}
+              />
             </>
           )}
         </div>

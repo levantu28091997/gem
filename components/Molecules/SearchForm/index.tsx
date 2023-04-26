@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { Box } from '@mui/system';
 import ModalSearch from '@/components/Organisms/ModalSearch/ModalSearch';
 import styles from './SearchForm.module.scss';
 import { IconClose, IconSearch } from '@/components/Atoms/Icons';
@@ -36,7 +35,7 @@ const SearchForm: FC<TProps> = ({
 }) => {
   return (
     <>
-      <Box
+      <div
         className={cs([styles.search, 'hidden xl:flex relative'])}
         ref={refBoxSearch}
         onClick={openModal}
@@ -65,7 +64,7 @@ const SearchForm: FC<TProps> = ({
             closeModal={closeModal}
           />
         )}
-      </Box>
+      </div>
     </>
   );
 };

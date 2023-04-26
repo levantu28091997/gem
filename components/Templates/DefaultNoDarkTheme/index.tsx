@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, CssBaseline } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 import Navbar from '@/components/Organisms/Navbar';
 import Footer from '@/components/Organisms/Footer';
 import { useRouter } from 'next/router';
@@ -15,9 +15,9 @@ const LayoutDefaultNoDarkTheme = ({ children }: LayoutDefaultProps) => {
     r.asPath.startsWith('/playgame') && (isMobile);
 
   return (
-    <Box>
+    <div>
       <CssBaseline />
-      <Box className='bg-[#0E101D] relative overflow-hidden'>
+      <div className='bg-[#0E101D] relative overflow-hidden'>
         {isPlayGameMobile ? (
           <>{children}</>
         ) : (
@@ -27,8 +27,8 @@ const LayoutDefaultNoDarkTheme = ({ children }: LayoutDefaultProps) => {
             <Footer />
           </>
         )}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 

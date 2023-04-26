@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import cs from '@/utils/cs';
 import Image from 'next/image';
-import { Box } from '@mui/system';
 import { useTheme } from 'next-themes';
 import styles from './DarkMode.module.scss';
 
@@ -19,7 +18,7 @@ const DarkMode: FC<Props> = ({ className }: any) => {
   };
 
   return (
-    <Box className={cs([styles.darkMode, className])}>
+    <div className={cs([styles.darkMode, className])}>
       <input
         type='checkbox'
         className='hidden'
@@ -32,7 +31,7 @@ const DarkMode: FC<Props> = ({ className }: any) => {
         <Image src='/icons/light.svg' alt='Light Mode' width={23} height={27} />
         <div className={styles.ball} />
       </label>
-    </Box>
+    </div>
   );
 };
 

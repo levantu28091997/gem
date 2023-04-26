@@ -5,7 +5,6 @@ import { styled } from '@mui/material/styles';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const StyleInput = styled(InputBase)(({ theme }) => ({
   'label + &': {

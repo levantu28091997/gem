@@ -6,8 +6,6 @@ import PopularTags from '@/components/Organisms/PopularTags';
 import RecommendedGames from '@/components/Organisms/RecommendedGames';
 import TopSection from '@/components/Organisms/TopSection';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 export default function Home() {
   return (

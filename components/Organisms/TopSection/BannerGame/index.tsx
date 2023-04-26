@@ -3,8 +3,6 @@ import cs from '@/utils/cs';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './BannerGame.module.scss';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import GamesService from '@/app/services/gameService';
 import imageLoader from '@/utils/useImageLoader';
 interface Props {
