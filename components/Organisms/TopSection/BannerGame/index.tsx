@@ -30,7 +30,7 @@ const BannerGame: FC<Props> = (x) => {
     <div className='bannerGame h-full relative'>
       {x.gameImage && (
         <Link href={x.slug || '/'}>
-          <Image
+          {/* <Image
             loader={imageLoader}
             className='h-full rounded-[10px]'
             src={x.gameImage}
@@ -43,7 +43,8 @@ const BannerGame: FC<Props> = (x) => {
             33vw'
             placeholder='blur'
             blurDataURL='/icons/loading.gif'
-          />
+          /> */}
+          <img src="https://placehold.co/1134x638" alt="plahoder" />
         </Link>
       )}
       <div className={cs([styles.actionBanner, 'absolute flex items-center'])}>

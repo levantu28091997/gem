@@ -147,7 +147,7 @@ const ThumbnailImage = ({ src, isLightEffect }: any) => {
 
   return (
     <div className='w-full h-full rounded-[10px] overflow-hidden relative'>
-      <ImageMemo
+      {/* <ImageMemo
         loader={imageLoader}
         src={src}
         alt={'recommended-for-you'}
@@ -157,7 +157,8 @@ const ThumbnailImage = ({ src, isLightEffect }: any) => {
             33vw'
         placeholder='blur'
         blurDataURL='/icons/loading.gif'
-      />
+      /> */}
+      <img src="https://placehold.co/375x375" alt="plahoder" />
       {isLightEffect && (
         <Image
           className={styles.lightEffect}
