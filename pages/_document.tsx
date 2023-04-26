@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
 
-        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;800&display=swap" rel="stylesheet" />
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;800&display=swap" />
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"></link>
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap"></link>
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Changa+One&display=swap"></link>
