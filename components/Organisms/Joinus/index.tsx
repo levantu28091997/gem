@@ -81,8 +81,8 @@ const Joinus = () => {
               className='whitespace-nowrap transition ease-in-out duration-200'
               style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
             >
-              {dataText.map((item) => (
-                <div className='whitespace-normal inline-block overflow-visible w-[100%] text-center'>
+              {dataText.map((item, index) => (
+                <div className='whitespace-normal inline-block overflow-visible w-[100%] text-center' key={index}>
                   <h2 className={styles.t1}>{item.t1}</h2>
                   <h5 className={`${styles.t2} text-white`}>{item.t2}</h5>
                   <p className={`${styles.t3} text-center text-white`}>
@@ -126,8 +126,8 @@ const Joinus = () => {
               className='whitespace-nowrap transition ease-in-out duration-200'
               style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
             >
-              {dataText.map((item) => (
-                <div className='whitespace-normal inline-block w-[502px] text-center'>
+              {dataText.map((item, i) => (
+                <div className='whitespace-normal inline-block w-[502px] text-center' key={i}>
                   <h2 className={styles.t1}>{item.t1}</h2>
                   <h5 className={`${styles.t2} text-white`}>{item.t2}</h5>
                   <p className={`${styles.t3} text-white`}>{item.t3}</p>
@@ -168,8 +168,8 @@ const Joinus = () => {
                 className='whitespace-nowrap transition ease-in-out duration-1000'
                 style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
               >
-                {dataText.map((item) => (
-                  <div className='whitespace-normal inline-block w-[470px] text-center'>
+                {dataText.map((item, i) => (
+                  <div className='whitespace-normal inline-block w-[470px] text-center' key={i}>
                     <h2 className={styles.t1}>{item.t1}</h2>
                     <h5 className={`${styles.t2} text-white`}>{item.t2}</h5>
                     <p className={`${styles.t3} block text-white`}>{item.t3}</p>

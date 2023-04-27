@@ -25,12 +25,12 @@ const ContactUs = () => {
           isMobile
             ? 'grid grid-cols-1 gap-5 mx-auto'
             : isTablet
-            ? 'grid grid-cols-3 gap-1 mx-auto'
-            : 'grid grid-cols-3 gap-3 w-[70%] mx-auto'
+              ? 'grid grid-cols-3 gap-1 mx-auto'
+              : 'grid grid-cols-3 gap-3 w-[70%] mx-auto'
         }
       >
-        {dataContact.map((item) => (
-          <Link href={'mailto:supportdev@apero.vn'}>
+        {dataContact.map((item, index) => (
+          <Link href={'mailto:supportdev@apero.vn'} key={index}>
             <ItemContact title={item.title} text={item.text} />
           </Link>
         ))}
