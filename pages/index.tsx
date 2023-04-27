@@ -7,7 +7,6 @@ import RecommendedGames from '@/components/Organisms/RecommendedGames';
 import TopSection from '@/components/Organisms/TopSection';
 import Head from 'next/head';
 
-export const config = { amp: true }
 export default function Home() {
   return (
     <>
