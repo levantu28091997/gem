@@ -23,6 +23,9 @@ const nextConfig = {
     locales: ['en', 'hi'],
     defaultLocale: 'en',
   },
+  optimization: {
+    mergeDuplicateChunks: true,
+  },
 };
 
 module.exports = nextConfig;
