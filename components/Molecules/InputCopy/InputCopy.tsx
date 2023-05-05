@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, {useRef, useState } from 'react';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { IconCopy } from '@/components/Atoms/Icons';
 
 // input for copy to clipboard
@@ -23,8 +24,8 @@ export default function InputCopy({ contentClipboard }: any) {
       manuallyCopyToClipboard(text);
     }
   };
-
-  const manuallyCopyToClipboard = (text: any) => {
+  
+  const manuallyCopyToClipboard = (text:any) => {
     try {
       refInput.current.select();
       document.execCommand('copy');
@@ -49,14 +50,14 @@ export default function InputCopy({ contentClipboard }: any) {
           ref={refInput}
         />
       </div>
-
+      
       <span className='cursor-pointer' onClick={handleCopy}>
         <IconCopy />
       </span>
-      {isTooltip &&
-        <span className='absolute bg-black bg-opacity-80 text-white px-2 py-1 text-sm right-0 rounded-md'>
-          Copied
-        </span>
+      {isTooltip&&
+      <span className='absolute bg-black bg-opacity-80 text-white px-2 py-1 text-sm right-0 rounded-md'>
+         Copied
+      </span>
       }
     </div>
   );

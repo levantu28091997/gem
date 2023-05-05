@@ -1,10 +1,13 @@
-import React, { FC, useState } from 'react';
+import GamesService from '@/app/services/gameService';
 import cs from '@/utils/cs';
+import getSlug from '@/utils/getSlug';
+import imageLoader from '@/utils/useImageLoader';
+import useScreenSize from '@/utils/useScreenSize';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FC, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './BannerGame.module.scss';
-import GamesService from '@/app/services/gameService';
-import imageLoader from '@/utils/useImageLoader';
 interface Props {
   gameName: string;
   gameId: number;
@@ -14,6 +17,7 @@ interface Props {
 
 const BannerGame: FC<Props> = (x) => {
   const [isFavourite, setIsFavourite] = useState(false);
+  const { isMobile, isTablet } = useScreenSize();
 
   function toggleFavourite() {
     setIsFavourite(!isFavourite);
@@ -23,11 +27,12 @@ const BannerGame: FC<Props> = (x) => {
       GamesService.addFavoriteGame(x.gameId);
     }
   }
+  const { t } = useTranslation();
 
   return (
     <div className='bannerGame h-full relative'>
       {x.gameImage && (
-        <Link href={x.slug || '/'}>
+        <Link href={isMobile ? `/playgame/detail/${getSlug(x.slug)}`:`${x.slug}` }>
           <Image
             loader={imageLoader}
             className='h-full rounded-[10px]'
@@ -36,16 +41,11 @@ const BannerGame: FC<Props> = (x) => {
             width={1150}
             height={302}
             priority
-            sizes='(max-width: 768px) 100vw,
-            (max-width: 1200px) 50vw,
-            33vw'
-            placeholder='blur'
-            blurDataURL='/icons/loading.gif'
           />
         </Link>
       )}
       <div className={cs([styles.actionBanner, 'absolute flex items-center'])}>
-        <Link href={x.slug || '/'}>Play now</Link>
+        <Link href={isMobile ? `/playgame/detail/${getSlug(x.slug)}`:`${x.slug}` } >{t('playNow')}</Link>
       </div>
     </div>
   );

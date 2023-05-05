@@ -1,63 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Gamehub Frontend
 
-## Getting Started
+Hi bros! The frontend is building with Nextjs. Let enjoy it! Don't eat it :))
 
-First, run the development server:
+##  Break it with Docker base
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Usage
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- One more time, don't eat that! for sure, lmaooo
+- This one aims to make a product ready Nextjs image, which can be deployed anywhere, from on-premise server to K8S, Cloud...
 
-## Code linting
+### Prerequisite
 
-We are mainly using eslint with rule configured in `.eslintrs.json` file. More options can be found at https://eslint.org/docs/latest/rules/
+- Docker is already installed on your device.
+- Docker-compose is for sure guy.
 
-To make VSCode automatically format on save, follows belowed steps:
+### How to use?
 
-- Hit Control + Shift + P (On Mac you would want to hit the Command key instead of Control) and search for >Format Document With.... Check if that work.
+- Checkout the docker-compose.yml. I'm convinced bro get it in second!.
+- Create a new file .env. Look at it bro!
 
-- If it works, then maybe your setting is overridden. Open your settings.json file (Use Control + ,, then on the top right corner you would see the open settings.json). Check the javascriptreact section.
-
-- Here is the example: this setting turns on formatOnSave for all the document type, but with .jsx extension, the formatOnSave is disabled, instead the files are formatted using eslint
 
 ```
-{
-  // Other settings, don't mind it
-  // ...
-
-  "editor.formatOnSave": true,
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-    },
-    "editor.formatOnSave": false
-  },
-
-  // Other settings, don't mind it
-  // ...
-}
+BASE_URL = https://beta.gamehub.io/api/
+IMAGE_URL = https://beta.gamehub.io
+IFRAME_URL = https://beta.gamehub.io/
+SOCKET=https://beta.gamehub.io
+ALGOLIA_PROVIDER_APPLICATION_ID=xxxxx
+ALGOLIA_PROVIDER_ADMIN_API_KEY=xxxx
+DEVELOPMENT_API=xxxx
 ```
 
-You may want to update the settings based on your need.
+Heads-up:
+- Kindly to change Algolia info.
+- Host configuration.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+### How to run?
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+docker-compose up
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Checkout via `http://localhost:3000`. 

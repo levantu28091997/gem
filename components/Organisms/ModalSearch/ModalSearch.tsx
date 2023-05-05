@@ -5,10 +5,13 @@ import cs from '@/utils/cs';
 import { GameInfo } from '@/utils/propItemGame';
 import { useElementWidth } from '@/utils/useElementWidth';
 import useScreenSize from '@/utils/useScreenSize';
+import { Box } from '@mui/material';
 import { useRequest } from 'ahooks';
 import React, { FC, useEffect, useState } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import styles from './ModalSearch.module.scss';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 
 type TProps = {
   modalRef: React.MutableRefObject<any>;
@@ -40,6 +43,7 @@ const ModalSearch: FC<TProps> = ({
   const [listTags, setListTags] = useState<any>([]);
   const [listRecentlyPlayed, setListRecentlyPlayed] = useState<any>([]);
   const { isMobile } = useScreenSize();
+  const { t }: { t: TFunction } = useTranslation();
 
   const { run: runRecommended } = useRequest(homeService.getRecommendedGames, {
     manual: true,
@@ -119,6 +123,7 @@ const ModalSearch: FC<TProps> = ({
 
   const checkSearchReults =
     searchResults && searchResults.length > 0 ? true : false;
+
   return (
     <>
       <div className={styles.polygon}></div>
@@ -131,7 +136,7 @@ const ModalSearch: FC<TProps> = ({
         ref={modalRef}
       >
         <div className={styles.wrapContent}>
-          <div className={cs([styles.search, 'block relative xl:hidden mb-4'])}>
+          <Box className={cs([styles.search, 'block relative xl:hidden mb-4'])}>
             <input
               type='text'
               onFocus={handleSearch}
@@ -139,12 +144,14 @@ const ModalSearch: FC<TProps> = ({
               className={styles.searchTerm}
               value={value}
               maxLength={50}
-              placeholder='What are you playing today?'
+              id=''
+              // placeholder="{{t('whatPlay')}}"
+              data-i18n-placeholder='whatPlay'
             />
             <button type='submit' className={styles.searchButton}>
               {value && removeSearch ? removeSearch() : <IconSearchDark />}
             </button>
-          </div>
+          </Box>
           {showTags && (
             <div className='relative'>
               <div className={`${styles.box_shadow} -top-3 -left-8 z-50`}></div>
@@ -155,8 +162,7 @@ const ModalSearch: FC<TProps> = ({
                 ])}
               >
                 {listTags?.map((item: any) => (
-                  <button
-                    type='button'
+                  <div
                     onClick={() => changeTag(item?.attributes?.name)}
                     className={
                       item.attributes.name == dataFill
@@ -168,7 +174,7 @@ const ModalSearch: FC<TProps> = ({
                     <span className={styles.nameCategory}>
                       {item?.attributes?.name}
                     </span>
-                  </button>
+                  </div>
                 ))}
               </ScrollContainer>
               <div
@@ -182,26 +188,25 @@ const ModalSearch: FC<TProps> = ({
               showItem={30}
             />
           )}
-          {
-            listRecentlyPlayed.length > 0 &&
-            <SectionItem
-              gameList={listRecentlyPlayed}
-              title={'Recently played'}
-              showItem={6}
-            />
+          {listRecentlyPlayed.length > 0 &&
+          <SectionItem
+            gameList={listRecentlyPlayed}
+            title={t('played')}
+            showItem={6}
+          />
           }
           {!checkSearchReults && (
             <>
               <SectionItem
                 gameList={gameListRecommended}
-                title={'Recommended for you'}
+                title={t('recommended')}
                 showItem={6}
               />
-              <SectionItem
-                gameList={gameListPopular}
-                title={'Popular this week'}
-                showItem={6}
-              />
+                <SectionItem
+                  gameList={gameListPopular}
+                  title={t('popThisWeek')}
+                  showItem={6}
+                />
             </>
           )}
         </div>

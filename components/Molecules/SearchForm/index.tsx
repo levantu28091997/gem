@@ -1,8 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+import { Box } from '@mui/system';
 import ModalSearch from '@/components/Organisms/ModalSearch/ModalSearch';
 import styles from './SearchForm.module.scss';
 import { IconClose, IconSearch } from '@/components/Atoms/Icons';
 import cs from '@/utils/cs';
+import { useTranslation } from 'react-i18next';
+import { log } from 'console';
+import { TFunction } from 'i18next';
 
 type TProps = {
   isOpen: boolean;
@@ -33,9 +37,11 @@ const SearchForm: FC<TProps> = ({
   refBoxSearch,
   closeModal,
 }) => {
+  const { t }: { t: TFunction } = useTranslation();
+
   return (
     <>
-      <div
+      <Box
         className={cs([styles.search, 'hidden xl:flex relative'])}
         ref={refBoxSearch}
         onClick={openModal}
@@ -46,7 +52,8 @@ const SearchForm: FC<TProps> = ({
           className={styles.searchTerm}
           value={value}
           maxLength={50}
-          placeholder='What are you playing today?'
+          placeholder={`${t('whatPlay')}`}
+          id='inp_search'
         />
         <button type='submit' className={styles.searchButton}>
           {value ? removeSearch() : <IconSearch />}
@@ -64,7 +71,7 @@ const SearchForm: FC<TProps> = ({
             closeModal={closeModal}
           />
         )}
-      </div>
+      </Box>
     </>
   );
 };

@@ -9,6 +9,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { FC, useState } from 'react';
 import styles from './Game.module.scss';
+import { useTranslation } from 'react-i18next';
+import getSlug from '@/utils/getSlug';
 interface Props {
   isHover?: boolean;
   videoUrl?: string;
@@ -23,6 +25,7 @@ interface Props {
   isLightEffect?: boolean;
 }
 
+
 const GameThumbnail: FC<Props> = (x) => {
   const { ref, size } = useElementSize();
   const [isHovering, setIsHovering] = useState(false);
@@ -31,7 +34,6 @@ const GameThumbnail: FC<Props> = (x) => {
     () => GamesService.isGameFavorite(x.gameId),
     [x.gameId],
   );
-
   const acreage = size.height * size.width;
   const minSize = 176 * 176;
   const isTagSmall = React.useMemo(() => acreage < minSize && isDesktop, []);
@@ -63,7 +65,7 @@ const GameThumbnail: FC<Props> = (x) => {
       }}
     >
       <Link
-        href={x.slug || '/'}
+        href={isDesktop ? `${x.slug}` : `/playgame/detail/${getSlug(x.slug)}`}
         className={cs([
           styles.itemGame,
           'flex items-center h-full w-full relative',
@@ -96,9 +98,8 @@ const TitleHoverDecktop = (x: any) => {
       GamesService.addFavoriteGame(x.gameId);
     }
   }
-
   return (
-    <Link href={x.slug || '/'} className={cs(['absolute', styles.title])}>
+    <Link href={isDesktop ? x.slug : `/playgame/detail/${getSlug(x.slug)}`} className={cs(['absolute', styles.title])}>
       {x.gameName}
 
       {/* <span
@@ -123,10 +124,10 @@ export const GameThumbnailMobile: FC<Props> = (x) => {
     () => GamesService.isGameFavorite(x.gameId),
     [x.gameId],
   );
-
+  
   return (
     <Link
-      href={x.slug || '/'}
+      href={`/playgame/detail/${getSlug(x.slug)}`}
       className={cs(['flex items-center h-full w-full relative'])}
     >
       <ThumbnailImage src={x?.gameImage} isLightEffect={x.isLightEffect} />
@@ -155,6 +156,7 @@ const ThumbnailImage = ({ src, isLightEffect }: any) => {
         sizes='(max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,
             33vw'
+        priority
         placeholder='blur'
         blurDataURL='/icons/loading.gif'
       />
@@ -191,10 +193,10 @@ const Favourite = ({ isSmall }: any) => {
 
 const Tag = ({ isNew, isHot, isTagSmall }: any) => {
   if (!isNew && !isHot) return null;
-
+  const { t } = useTranslation();
   return (
     <div className={isTagSmall ? styles.tag : styles.tagLarge}>
-      {isHot ? 'HOT' : 'NEW'}
+      {isHot ? `${t('hot')}` : `${t('new')}`}
     </div>
   );
 };

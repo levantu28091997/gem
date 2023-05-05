@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useScreenSize from '@/utils/useScreenSize';
 import { useRequest } from 'ahooks';
 import { homeService } from '@/app/services/homeService';

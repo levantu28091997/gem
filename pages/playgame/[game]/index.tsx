@@ -21,7 +21,8 @@ import axios from 'axios';
 import PopularTags from '@/components/Organisms/PopularTags';
 import useIsLandscape from '@/utils/useIsLandscape';
 import ZoomOutMap from '@mui/icons-material/ZoomOutMap';
-
+import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
+import LoadingGameThumbnail from '@/components/Molecules/LoadingGameThumbnail';
 interface Meta {
   image : string,
   gameName : any,
@@ -31,6 +32,10 @@ interface Meta {
 
 interface Props {
   meta: Meta;
+}
+enum ORIENTATION {
+  PORTRAIT = 'Portrait',
+  LANDSCAPE = 'Landscape' 
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context : any) => {
@@ -64,6 +69,38 @@ export default function index({ meta }: Props) {
   const [isLandscape,setLandScape] = useState(false);
   const gameUrl = router.query.game;
 
+  const [position, setPosition] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  });
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleDrag = (
+    e: DraggableEvent,
+    { x, y }: DraggableData
+  ): void => {
+    setPosition({
+      x: isLandscape ? x : position.x,
+      y: isLandscape ? position.y : y,
+    });
+    setIsDragging(true);
+  };
+  const handleStopDrag = (
+    e: DraggableEvent,
+    { x, y }: DraggableData
+  ): void => {
+    setPosition({
+      x: isLandscape ? x : position.x,
+      y: isLandscape ? position.y : y,
+    });
+    setIsDragging(false);
+    routerback()
+  };
+  const routerback = () => {
+    if (isDragging==false) {
+      router.back();
+    }
+  };
   const contentShare = {
     url: currentUrl,
     quote: 'play game with me',
@@ -76,12 +113,13 @@ export default function index({ meta }: Props) {
   function handleOpenModalShare() {
     setIsOpenModal(true);
   }
-  const { run } = useRequest(homeService.getDetailGameBySlug, {
+  const { loading,run } = useRequest(homeService.getDetailGameBySlug, {
     manual: true,
     onError: (res, params) => {
       return res;
     },
     onSuccess: (data: any) => {
+      checkRotate(data[0]);
       setGameCurrent(data[0]);
       handlePlayGame(data[0]);
       setListCategories((data[0] as any)?.attributes?.categories?.data);
@@ -107,21 +145,12 @@ export default function index({ meta }: Props) {
     GamesService.addIdPlayedGame(idGame);
   };
   
-  function checkRotate() {
-    const iframe:any = document.querySelector('iframe');
-    iframe?.contentWindow.postMessage('getLandscape', '*');
-    const intervalId = setInterval(() => {
-      window.addEventListener('message', event => {
-        setLandScape(event.data);
-        console.log('landscape: ', event.data);
-        clearInterval(intervalId);
-      });
-    }, 100);
-
-    setTimeout(() => {
-      clearInterval(intervalId);
-      console.log('Close interval after 4 seconds');
-    }, 4000);
+  function checkRotate(gameCurrent:any) {
+    if(gameCurrent?.attributes?.orientation == ORIENTATION.LANDSCAPE){
+      setLandScape(true)
+    }else{
+      setLandScape(false)
+    }
   }
 
   function addCategoryIdToLocalStorage() {
@@ -193,12 +222,7 @@ export default function index({ meta }: Props) {
       element?.msRequestFullscreen();
     }
   }, [isMobile, refMobile]);
-  
-  useEffect(() => {
-    // get landscape for mobie
-    checkRotate();
-  }, [gameCurrent,isLandscape]);
-  
+
   if (isMobile) {
     return (
       <>
@@ -215,12 +239,24 @@ export default function index({ meta }: Props) {
           </>
         </Head>
         <div className='relative' ref={refMobile}>
-          <div
-            className={cs([isLandscape && styles.iconBackRotate, styles.iconBack])}
-            onClick={() => router.back()}
+          <Draggable
+            axis={isLandscape ? 'x' : 'y'}
+            position={position}
+            onDrag={handleDrag}
+            onStop={handleStopDrag}
+            bounds={{ left: 0, top: 0, right: window.innerWidth, bottom: window.innerHeight }}
           >
-            <ArrowBackIosNewRoundedIcon />
-          </div>
+            <div
+              className={cs([
+                isLandscape && styles.iconBackRotate,
+                styles.iconBack,
+              ])}
+              style={{ left: isLandscape ? `${position.x}px` : `${position.x}px` }}
+              onClick={() => router.back()}
+            >
+              <ArrowBackIosNewRoundedIcon />
+            </div>
+          </Draggable>
           <iframe
             frameBorder='no'
             scrolling='no'
@@ -267,7 +303,8 @@ export default function index({ meta }: Props) {
         onClose={handleCloseModalShare}
         contentShare={contentShare}
       />
-      <GamePlaying
+      {loading && <LoadingGameThumbnail/>}
+     <GamePlaying
         onShare={handleOpenModalShare}
         listGameRecommended={listGameRecommended}
         gameCurrent={gameCurrent}

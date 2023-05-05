@@ -48,9 +48,11 @@ export function ListGameCarouselOnDesktop({ gameList }: any) {
           })
         }
       </Swiper>
+      {gameList.length > 12 && 
       <div className={cs(['bg-[#ffb2ce33] dark:bg-[#5D5A7A]', styles.carouselAction])} onClick={handleNextSlide}>
         <IconArrowRight className="stroke-[#000000] dark:stroke-white" />
       </div>
+      }
     </div >
   );
 }

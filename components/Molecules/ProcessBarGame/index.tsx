@@ -1,9 +1,9 @@
-import React from 'react';
+import { IconZoomOutMap } from '@/components/Atoms/Icons';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ReplyIcon from '@mui/icons-material/Reply';
 import Image from 'next/image';
-import { IconZoomOutMap } from '@/components/Atoms/Icons';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import React from 'react';
 
 interface IProps {
   onShare: any;
@@ -15,16 +15,34 @@ interface IProps {
 export default function ProcessBarGame(x: IProps) {
   const dataAuthor = x?.gameCurrent?.attributes?.createdBy?.data?.attributes;
   const showAuthor = `By ${dataAuthor?.firstname} ${dataAuthor?.lastname}`;
+  const urlImg = x.gameCurrent?.attributes.thumbnail.data.attributes.url;
+  const url = `${urlImg}`;
+
   return (
     <div className='bg-slate-200 rounded-b-md w-full self-end'>
-      <div className='flex justify-between items-center p-2 pt-3.5 pb-5'>
-        <div className='process-description pl-[36px]'>
-          <h3 className='game-name text-2xl font-bold leading-[29px]'>
-            {x.gameCurrent?.attributes?.name}
-          </h3>
-          <p className='game-author text-sm italic font-normal'>{showAuthor}</p>
+      <div className='flex justify-between items-center px-2 py-4'>
+        <div className='flex pl-[17px] mt-5'>
+          <div className='rounded-md'>
+            <Image
+              src={url}
+              alt=''
+              width={50}
+              height={50}
+              loader={loaderImage}
+              style={{ borderRadius: '5px' }}
+            />
+          </div>
+          <div className='process-description pl-[19px]'>
+            <h3 className='game-name text-2xl font-bold leading-[29px]'>
+              {x.gameCurrent?.attributes?.name}
+            </h3>
+            <p className='game-author text-sm italic font-normal'>
+              {showAuthor}
+            </p>
+          </div>
         </div>
-        <div className='process-icon flex'>
+
+        <div className='process-icon flex mt-5'>
           <span className='mx-2 cursor-pointer' onClick={x.toggleFavourite}>
             {x.isFavourite ? (
               <FavoriteIcon className='text-red-500' />

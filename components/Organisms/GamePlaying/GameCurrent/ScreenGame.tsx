@@ -45,7 +45,7 @@ export default function ScreenGame({
       scrolling='no'
       seamless
       id='iframe_bg'
-      className={`${style.bg_iframe} w-full absolute h-[calc(100%_-_83px)]`}
+      className={`${style.bg_iframe} w-full absolute h-[calc(100%_-_83px)] rounded-t-md`}
       src={srcIframe}
     ></iframe>
   );

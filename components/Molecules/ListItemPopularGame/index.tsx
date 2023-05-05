@@ -10,7 +10,7 @@ import GameThumbnail, { GameThumbnailMobile } from '../GameThumbnail'
 const ListItemPopularGame = () => {
   const { isDesktop, isTablet } = useScreenSize()
   const [gameList, setGameList] = useState<any>([]);
-
+  const [repeat,setRepeat] = useState(2);
   const { data, run, loading } = useRequest(homeService.getPopularGame, {
     manual: true,
     onError: (res, params) => {
@@ -18,23 +18,33 @@ const ListItemPopularGame = () => {
     },
     onSuccess: (data) => {
       setGameList(data);
+      getRepeat(data)
     },
   });
+
+  function getRepeat(gameList:any){
+    if(gameList.length <= 12){
+      setRepeat(2)
+    }
+    else if(gameList.length >= 24) {
+      setRepeat(4)
+    }
+  }
 
   useEffect(() => {
     run();
   }, []);
 
-  if (isDesktop) return <ContentPopularGameDesktop gameList={gameList.slice(0, 36)} />
-  if (isTablet) return <ContentPopularGameTablet gameList={gameList.slice(0, 20)} />
+  if (isDesktop) return <ContentPopularGameDesktop gameList={gameList.slice(0, 36)} repeat={repeat}/>
+  if (isTablet) return <ContentPopularGameTablet gameList={gameList.slice(0, 20)} repeat={repeat} />
 
-  return <ContentPopularGameMobile gameList={gameList.slice(0, 15)} />
+  return <ContentPopularGameMobile gameList={gameList.slice(0, 15)} repeat={repeat} />
 }
 
 export default ListItemPopularGame
 
 
-const ContentPopularGameDesktop = ({ gameList }: any) => {
+const ContentPopularGameDesktop = ({ gameList,repeat }: any) => {
   const [ref, element] = useElementWidth()
   const [itemWidth, setItemWidth] = useState<number>(0)
 
@@ -45,7 +55,7 @@ const ContentPopularGameDesktop = ({ gameList }: any) => {
 
   return (
     <div className={styles.itemGird} ref={ref}
-      style={{ gridTemplateColumns: `repeat(9, ${itemWidth}px)`, gridTemplateRows: `repeat(6, ${itemWidth}px)` }}
+      style={{ gridTemplateColumns: `repeat(9, ${itemWidth}px)`, gridTemplateRows: `repeat(${repeat}, ${itemWidth}px)` }}
     >
       {
         gameList.map((game: any, index: number) => (
@@ -58,7 +68,7 @@ const ContentPopularGameDesktop = ({ gameList }: any) => {
   )
 }
 
-const ContentPopularGameTablet = ({ gameList }: any) => {
+const ContentPopularGameTablet = ({ gameList,repeat }: any) => {
   const [ref, element] = useElementWidth()
   const [itemWidth, setItemWidth] = useState<number>(0)
 
@@ -69,7 +79,7 @@ const ContentPopularGameTablet = ({ gameList }: any) => {
 
   return (
     <div className={styles.itemGirdTablet} ref={ref}
-      style={{ gridTemplateColumns: `repeat(8, ${itemWidth}px)`, gridTemplateRows: `repeat(4, ${itemWidth}px)` }}
+      style={{ gridTemplateColumns: `repeat(8, ${itemWidth}px)`, gridTemplateRows: `repeat(${repeat}, ${itemWidth}px)` }}
     >
       {
         gameList.map((game: any, index: number) => (
@@ -82,7 +92,7 @@ const ContentPopularGameTablet = ({ gameList }: any) => {
   )
 }
 
-const ContentPopularGameMobile = ({ gameList }: any) => {
+const ContentPopularGameMobile = ({ gameList,repeat }: any) => {
   const [ref, element] = useElementWidth()
   const [itemWidth, setItemWidth] = useState<number>(0)
 
@@ -93,7 +103,7 @@ const ContentPopularGameMobile = ({ gameList }: any) => {
 
   return (
     <div className={styles.itemGirdMobile} ref={ref}
-      style={{ gridTemplateColumns: `repeat(3, ${itemWidth}px)`, gridTemplateRows: `repeat(7, ${itemWidth}px)` }}
+      style={{ gridTemplateColumns: `repeat(3, ${itemWidth}px)`, gridTemplateRows: `repeat(${repeat + 2}, ${itemWidth}px)` }}
     >
       {
         gameList.map((game: any, index: number) => (

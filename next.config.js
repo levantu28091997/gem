@@ -19,10 +19,6 @@ const nextConfig = {
     ALGOLIA_PROVIDER_ADMIN_API_KEY: process.env.ALGOLIA_PROVIDER_ADMIN_API_KEY,
     DEVELOPMENT_API: process.env.DEVELOPMENT_API,
   },
-  i18n: {
-    locales: ['en', 'hi'],
-    defaultLocale: 'en',
-  },
 };
 
 module.exports = nextConfig;

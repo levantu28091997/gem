@@ -1,23 +1,23 @@
-import React, { FC } from 'react'
-import TitleSection from '@/components/Atoms/TitleSection'
-import styles from "./RecentPlayedGames.module.scss"
-import cs from '@/utils/cs'
-import ListItemRecentPlayedGames from '@/components/Molecules/ListItemRecentPlayedGames'
+import TitleSection from '@/components/Atoms/TitleSection';
+import ListItemRecentPlayedGames from '@/components/Molecules/ListItemRecentPlayedGames';
+import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
-  isShowShape?: boolean
+  isShowShape?: boolean;
 }
 const RecentPlayedGames: FC<Props> = ({ isShowShape = false }) => {
+  const { t } = useTranslation();
   return (
-    <div className="mb-10 md:mb-[70px] xl:mb-20 relative">
+    <div className='mb-10 md:mb-[70px] xl:mb-20 relative'>
       <div className='relative z-10'>
-        <TitleSection title='Recent Played games'/>
+        <TitleSection title={t('recommended')} />
       </div>
       <div className='lg:mx-5 xl:mx-12'>
         <ListItemRecentPlayedGames />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RecentPlayedGames
+export default RecentPlayedGames;

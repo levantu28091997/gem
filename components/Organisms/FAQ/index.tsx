@@ -1,12 +1,9 @@
-import AboutTitleSection from '@/components/Atoms/AboutTitleSection';
-import styles from './Joinus.module.scss';
 import AboutTitleBlock from '@/components/Atoms/AboutTitleBlock';
-import useScreenSize from '@/utils/useScreenSize';
-import Aos from 'aos';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import AboutTitleSection from '@/components/Atoms/AboutTitleSection';
 import FaqItem from '@/components/Molecules/FAQItem';
-import Link from 'next/link';
+import useScreenSize from '@/utils/useScreenSize';
+import { useState } from 'react';
+import styles from './Joinus.module.scss';
 const Fade = require('react-reveal/Fade');
 
 const Faq = () => {

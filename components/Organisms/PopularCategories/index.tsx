@@ -1,12 +1,12 @@
-import React, { FC, useEffect, useState } from 'react';
-import styles from './PopularCategories.module.scss';
-import ItemCategories from '@/components/Molecules/ItemCategories';
+import { homeService } from '@/app/services/homeService';
 import TitleSection from '@/components/Atoms/TitleSection';
+import ItemCategories from '@/components/Molecules/ItemCategories';
+import cs from '@/utils/cs';
 import useScreenSize from '@/utils/useScreenSize';
 import { useRequest } from 'ahooks';
-import { homeService } from '@/app/services/homeService';
-import cs from '@/utils/cs';
-import useTransLate from '@/translate';
+import { FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import styles from './PopularCategories.module.scss';
 
 interface Props {
   isShowShape?: boolean;
@@ -29,13 +29,12 @@ const PopularCategories: FC<Props> = ({ isShowShape = false }) => {
   useEffect(() => {
     run();
   }, []);
+  const { t } = useTranslation();
 
   let dataResult = [];
   if (isDesktop) dataResult = categories.slice(0, 14);
   if (isTablet) dataResult = categories.slice(0, 8);
   if (isMobile) dataResult = categories.slice(0, 10);
-
-  const trans = useTransLate();
 
   return (
     <div className='popularTag mb-10 md:mb-[70px] xl:mb-20 relative'>
@@ -44,7 +43,7 @@ const PopularCategories: FC<Props> = ({ isShowShape = false }) => {
           className={cs([styles.path, 'path-img opacity-0 xl:opacity-100'])}
         />
       )}
-      <TitleSection title={trans.home.popCategories} />
+      <TitleSection title={t('popCategories')} />
       <div className='lg:ml-5 xl:ml-12'>
         <div className={styles.tagList}>
           <ContentPopularCategories games={dataResult} />

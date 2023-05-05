@@ -611,8 +611,16 @@ const IconZoomOutMap = () => {
       />
     </svg>
   );
+  
 };
-
+const IconPlayGame = () => {
+  return(
+    <svg width={70} height={70} viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <rect x="1.5" y="1.5" width={67} height={67} rx="33.5" fill="white" stroke="#FEA900" strokeWidth={3} />
+      <path d="M35.95 45.2295L51 34.6885L29 20V49" stroke="#FEA900" strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
 export {
   IconFavourite,
   IconFavouriteLight,
@@ -637,4 +645,5 @@ export {
   IconClose,
   IconSearchActive,
   IconArrowRightOnMobile,
+  IconPlayGame
 };

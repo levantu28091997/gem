@@ -19,7 +19,7 @@
 }
 .iconBackRotate{
   position:  relative !important;
-  left: 270px !important;
+  left: calc(2.5/3 * 100vw);
   top: 0 !important;
   transform: rotate(90deg) !important;
 }

@@ -2,13 +2,15 @@ import React from 'react';
 import cs from '@/utils/cs';
 import styles from './Description.module.scss';
 import Link from 'next/link';
-
+import { useTranslation } from 'react-i18next';
 interface Iprops {
   gameName?: string;
   description?: string;
 }
 
 const Description = (x: Iprops) => {
+  const { t } = useTranslation();
+
   return (
     <div
       className={cs([
@@ -26,24 +28,11 @@ const Description = (x: Iprops) => {
       ) : (
         <div className={styles.wrapper}>
           <header>
-            <h2>Online Games</h2>
+            <h2>{t('playOn')}</h2>
           </header>
           <div>
-            <p>
-              Welcome to our game portal! Here, you'll find a vast array of
-              exciting and engaging games to play, all conveniently located in
-              one place. Whether you're a fan of action-packed shooters,
-              immersive RPGs, challenging puzzle games, or anything in between,
-              we've got you covered. With easy-to-use navigation and a
-              user-friendly interface, our game portal makes it simple to
-              discover and play your favorite games. So what are you waiting
-              for? Start exploring today and discover your next gaming
-              adventure!
-            </p>
-            <h3>
-              There are many wonderful games to play on mobile, but here are
-              some popular ones:
-            </h3>
+            <p>{t('contentDesc')}</p>
+            <h3>{t('wonderful')}</h3>
             <ol>
               <li>
                 <Link href={'/playgame/herocraft'}>Hero Craft</Link>

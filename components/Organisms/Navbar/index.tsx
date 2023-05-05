@@ -6,6 +6,7 @@ import SearchForm from '@/components/Molecules/SearchForm';
 import SearchFormTablet from '@/components/Molecules/SearchFormTablet';
 import cs from '@/utils/cs';
 import useScreenSize from '@/utils/useScreenSize';
+import { Box } from '@mui/system';
 import algoliasearch from 'algoliasearch';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
@@ -23,7 +24,7 @@ const Navbar = () => {
   const [dataFill, setDataFill] = useState('');
   const [value, setValue] = useState('');
   const modalRef = useRef<any>(null);
-  const { isMobile, isDesktop } = useScreenSize();
+  const { isMobile } = useScreenSize();
   const router = useRouter();
 
   const closeModal = () => {
@@ -139,7 +140,7 @@ const Navbar = () => {
         onClick={handleOverlayClick}
       >
         <div className='mx-4 md:mx-[30px] xl:mx-[70px]'>
-          <div className='flex items-center justify-between mx-auto max-w-full xl:w-[1864px] md:gap-[120px]'>
+          <Box className='flex items-center justify-between mx-auto max-w-full xl:w-[1864px] md:gap-[120px]'>
             <LogoHeader />
             <SearchForm
               refBoxSearch={refBoxSearch}
@@ -155,7 +156,7 @@ const Navbar = () => {
               dataFill={dataFill}
               closeModal={handleOverlayClick}
             />
-            <div className='flex items-center'>
+            <Box className='flex items-center'>
               <SearchFormTablet
                 isOpen={isOpen}
                 showTags={showTags}
@@ -170,9 +171,9 @@ const Navbar = () => {
                 closeModal={handleOverlayClick}
               />
               <Navigation />
-              {isDesktop && <DarkMode className='pl-14' />}
-            </div>
-          </div>
+              <DarkMode className='pl-14 hidden xl:block' />
+            </Box>
+          </Box>
         </div>
       </nav>
       <div className=' w-[100vw] z-50 pt-2.5 pb-[11px] md:py-3 mb-[18px] md:mb-12 xl:mb-[50px]'></div>

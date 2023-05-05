@@ -3,8 +3,6 @@ import ProcessBarGame from '@/components/Molecules/ProcessBarGame';
 import useScreenSize from '@/utils/useScreenSize';
 import React, { useEffect, useState } from 'react';
 import ScreenGame from './ScreenGame';
-import { functions } from 'lodash';
-import style from './screenGame.module.scss';
 
 export default function index({ onShare, gameCurrent }: any) {
   const [zoom, setZoom] = useState(false);
@@ -39,7 +37,11 @@ export default function index({ onShare, gameCurrent }: any) {
     }
   }
   useEffect(() => {
-    GamesService.isGameFavorite(gameCurrent?.id) && setIsFavour(true);
+    if(GamesService.isGameFavorite(gameCurrent?.id)){
+      setIsFavour(true)
+    }else{
+      setIsFavour(false)
+    }
   }, [gameCurrent, isFavour]);
   useEffect(() => {
     const handleEsc = (event: { keyCode: number }) => {

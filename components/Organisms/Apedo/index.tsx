@@ -51,8 +51,8 @@ const Apero = () => {
           isMobile
             ? 'relative w-full mx-auto pt-[78px]'
             : isTablet
-              ? 'relative w-full mx-auto pt-[5%]'
-              : 'relative w-full mx-auto h-auto pt-[5%]'
+            ? 'relative w-full mx-auto pt-[5%]'
+            : 'relative w-full mx-auto h-auto pt-[5%]'
         }
       >
         {isMobile ? (
@@ -95,8 +95,8 @@ const Apero = () => {
             isMobile
               ? 'absolute mx-auto top-[40px] w-[380px] bottom-0 left-0 right-0 container'
               : isTablet
-                ? 'absolute mx-auto top-[-25px] w-[700px] bottom-0 left-0 right-0 container'
-                : 'absolute mx-auto top-[0px] w-[910px] bottom-0 left-0 right-0 container'
+              ? 'absolute mx-auto top-[-25px] w-[700px] bottom-0 left-0 right-0 container'
+              : 'absolute mx-auto top-[0px] w-[910px] bottom-0 left-0 right-0 container'
           }
         >
           <Image
@@ -154,8 +154,8 @@ const Apero = () => {
             isMobile
               ? `${styles.item_mid} top-[113%]`
               : isTablet
-                ? `${styles.item_mid} top-[113%]`
-                : `${styles.item_mid} top-[125%]`
+              ? `${styles.item_mid} top-[113%]`
+              : `${styles.item_mid} top-[125%]`
           }
         >
           <svg
@@ -168,8 +168,8 @@ const Apero = () => {
               isMobile
                 ? 'w-[45px] h-[45px] font-bold  text-white'
                 : isTablet
-                  ? 'w-[55px] h-[55px] text-white font-bold'
-                  : 'w-[65px] text-white h-[65px] font-bold'
+                ? 'w-[55px] h-[55px] text-white font-bold'
+                : 'w-[65px] text-white h-[65px] font-bold'
             }
           >
             <path
@@ -193,8 +193,8 @@ const Apero = () => {
               isMobile
                 ? 'absolute top-[14px] left-2'
                 : isTablet
-                  ? 'absolute top-[10%]'
-                  : 'absolute'
+                ? 'absolute top-[10%]'
+                : 'absolute'
             }
           >
             <Fade left duration={3000}>
@@ -211,15 +211,14 @@ const Apero = () => {
               isMobile ? 'pt-[192px]' : isTablet ? 'pt-[400px]' : 'pt-[20%]'
             }
           >
-            {dataMember.map((item, index) => (
+            {dataMember.map((item) => (
               <div
-                key={index}
                 className={
                   isMobile
                     ? 'text-center mb-6'
                     : isTablet
-                      ? 'text-center mb-1'
-                      : 'text-center mb-16'
+                    ? 'text-center mb-1'
+                    : 'text-center mb-16'
                 }
               >
                 <AboutTitleSection
@@ -241,8 +240,8 @@ const Apero = () => {
               isMobile
                 ? 'absolute bottom-[-1%] left-0'
                 : isTablet
-                  ? 'absolute top-[25%] right-0'
-                  : 'absolute top-[20%] right-0'
+                ? 'absolute top-[25%] right-0'
+                : 'absolute top-[20%] right-0'
             }
           >
             <Fade right duration={3000}>
@@ -259,8 +258,8 @@ const Apero = () => {
               isMobile
                 ? 'absolute bottom-[23%] right-[-12%]'
                 : isTablet
-                  ? 'absolute bottom-[5%]'
-                  : 'absolute bottom-[5%] opacity-100'
+                ? 'absolute bottom-[5%]'
+                : 'absolute bottom-[5%] opacity-100'
             }
           >
             <Fade left duration={3000}>

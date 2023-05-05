@@ -28,7 +28,17 @@ export async function getServerSideProps({ query }: any) {
 
 export default function ListGameByTag({ slug }: { slug: string }) {
   const [listGameByTag, setListGameByTag] = useState<any>([]);
+  const [tags, setTags] = useState<any>([]);
 
+  const { data, run: runPopularTag, loading } = useRequest(homeService.getTagsPopular, {
+    manual: true,
+    onError: (res, params) => {
+      return res;
+    },
+    onSuccess: (data) => {
+      setTags(data);
+    },
+  });
   const { run } = useRequest(homeService.getGamesByTag, {
     manual: true,
     onError: (res) => {
@@ -38,24 +48,23 @@ export default function ListGameByTag({ slug }: { slug: string }) {
       setListGameByTag(data);
     },
   });
-  function capitalizeAndReplace(str:any) {
-    str = str.toLowerCase().replace(/(^|\s)\S/g, function(firstLetter:any) {
-      return firstLetter.toUpperCase();
-    });
-    str = str.replace(/-/g, " ");
-    return str;
+  function getNamePopularTag(slug:any) {
+    const slugCurrent = slug;
+    const result = tags.find((tag:any) => tag?.attributes.slug === slugCurrent);
+    return result?.attributes?.name || "Tag"
   }
-
   useEffect(() => {
+    runPopularTag()
     run(slug);
   }, [slug]);
+
   return (
     <>
       <Head>
-        <title>Tag {slug}</title>
+        <title>Tag</title>
       </Head>
       <div className='mx-auto w-full max-w-full relative z-10 main'>
-        <TitleSection title={`Tag: ${capitalizeAndReplace(slug)}`}/>
+        <TitleSection title={`${getNamePopularTag(slug)}`}/>
         <div className='lg:mx-5 xl:mx-12 mb-10 md:mb-[70px] xl:mb-20'>
           <ListGames gameList={listGameByTag} />
         </div>

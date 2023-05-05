@@ -1,17 +1,17 @@
-import cs from '@/utils/cs';
-import React, { FC } from 'react';
-import styles from './PopularGames.module.scss';
-import useScreenSize from '@/utils/useScreenSize';
 import TitleSection from '@/components/Atoms/TitleSection';
 import ListItemPopularGame from '@/components/Molecules/ListItemPopularGame';
-import useTransLate from '@/translate';
+import cs from '@/utils/cs';
+import useScreenSize from '@/utils/useScreenSize';
+import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+import styles from './PopularGames.module.scss';
 
 interface Props {
   isShowShape?: boolean;
 }
 const PopularGames: FC<Props> = ({ isShowShape = false }) => {
   const { isDesktop } = useScreenSize();
-  const trans = useTransLate();
+  const { t } = useTranslation();
 
   return (
     <div className='mb-10 md:mb-[70px] xl:mb-20 relative'>
@@ -24,7 +24,7 @@ const PopularGames: FC<Props> = ({ isShowShape = false }) => {
         />
       )}
       <div className='relative z-10'>
-        <TitleSection title={trans.home.popGame} viewMore='popular-games' />
+        <TitleSection title={t('popGame')} viewMore='popular-games' />
       </div>
       <div className='lg:mx-5 xl:mx-12'>
         <ListItemPopularGame />
