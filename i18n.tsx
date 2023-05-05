@@ -1,17 +1,25 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import HttpBackend from 'i18next-http-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
-import en from './public/locales/en/en.json';
-import hi from './public/locales/hi/hi.json';
+i18next
+  .use(HttpBackend)
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    fallbackLng: 'en',
+    supportedLngs: ['en', 'hi'],
+    detection: {
+      order: ['cookie', 'localStorage', 'navigator'],
+      caches: ['cookie', 'localStorage'],
+    },
+    backend: {
+      loadPath: '/locales/{{lng}}/{{ns}}.json',
+    },
+    react: {
+      useSuspense: false,
+    },
+  });
 
-i18next.use(initReactI18next).init({
-  resources: {
-    en: {
-      translation: en,
-    },
-    jp: {
-      translation: hi,
-    },
-  },
-  lng: localStorage.getItem('lng') || 'en',
-});
+export default i18next;
