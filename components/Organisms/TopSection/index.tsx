@@ -19,7 +19,7 @@ function propsItemGameTop(gameList: any, index: any, status?: any) {
     gameId: gameList && gameList[index]?.id,
     gameName: gameList && gameList[index]?.name,
     gameImage: gameList[index]?.thumbnail?.url,
-    videoUrl: gameList[index]?.video.url,
+    videoUrl: gameList[index]?.video?.url,
     slug: `/playgame/${gameList && gameList[index]?.slug}`,
     isNew: moment(outputDateString).isAfter(sevenDaysAgo) ? true : false,
     isHot: isHotGame,

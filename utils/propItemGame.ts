@@ -30,7 +30,7 @@ export const GameInfo = (data: any) => {
         gameId: data?.id,
         gameName: data?.attributes?.name,
         gameImage: data?.attributes?.thumbnail?.data?.attributes?.url,
-        videoUrl: data?.attributes?.video.data.attributes.url,
+        videoUrl: data?.attributes?.video?.data?.attributes?.url,
         slug: `/playgame/${data?.attributes?.slug}`,
         isNew: data?.attributes.is_new_game,
         isHot: data?.attributes?.is_hot_game,
