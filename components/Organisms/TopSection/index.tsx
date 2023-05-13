@@ -1,5 +1,5 @@
 import cs from '@/utils/cs';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useLayoutEffect, useMemo, useState } from 'react';
 import styles from './topSection.module.scss';
 import useScreenSize from '@/utils/useScreenSize';
 import BannerGame from './BannerGame';
@@ -60,7 +60,7 @@ const TopSection = () => {
     slug: `/playgame/${randomGame?.slug}`
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     run();
     runBannerGame();
   }, []);
@@ -69,7 +69,7 @@ const TopSection = () => {
   const [ref, element] = useElementWidth()
   const [itemHeight, setItemHeight] = useState<number>(0)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const gap = isDesktop ? 35 : 18
     setItemHeight(((element?.width) * 2) + gap)
   }, [ref, element?.width, isDesktop])
@@ -108,7 +108,7 @@ const TopSectionMobile = ({ gameList, propsGameBanner }: any) => {
   const [ref, element] = useElementWidth()
   const [itemWidth, setItemWidth] = useState<number>(0)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const itemWidth = (element?.width - (18 * 2)) / 3
     setItemWidth(itemWidth)
   }, [ref, element?.width])
@@ -133,7 +133,7 @@ const TopSectionSmallMobile = ({ gameList, propsGameBanner }: any) => {
   const [ref, element] = useElementWidth()
   const [itemWidth, setItemWidth] = useState<number>(0)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const itemWidth = (element?.width - 18) / 2
     setItemWidth(itemWidth)
   }, [ref, element?.width])
