@@ -48,9 +48,9 @@ export default function ListGameByTag({ slug }: { slug: string }) {
       setListGameByTag(data);
     },
   });
-  function getNamePopularTag(slug:any) {
+  function getNamePopularTag(slug: any) {
     const slugCurrent = slug;
-    const result = tags.find((tag:any) => tag?.attributes.slug === slugCurrent);
+    const result = tags.find((tag: any) => tag?.attributes.slug === slugCurrent);
     return result?.attributes?.name || "Tag"
   }
   useEffect(() => {
@@ -64,11 +64,11 @@ export default function ListGameByTag({ slug }: { slug: string }) {
         <title>Tag</title>
       </Head>
       <div className='mx-auto w-full max-w-full relative z-10 main'>
-        <TitleSection title={`${getNamePopularTag(slug)}`}/>
+        <TitleSection title={`${getNamePopularTag(slug)}`} />
         <div className='lg:mx-5 xl:mx-12 mb-10 md:mb-[70px] xl:mb-20'>
           <ListGames gameList={listGameByTag} />
         </div>
-        <RecommendedGames />
+        <RecommendedGames games={[]} />
         <div className='flex'>
           <Description />
         </div>

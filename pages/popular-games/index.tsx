@@ -46,7 +46,7 @@ export default function PopularGames() {
         <div className='lg:mx-5 xl:mx-12 mb-10 md:mb-[70px] xl:mb-20'>
           <ListPopularGames gameList={gameList} />
         </div>
-        <RecommendedGames />
+        <RecommendedGames games={[]} />
         <div className='flex'>
           <Description />
         </div>

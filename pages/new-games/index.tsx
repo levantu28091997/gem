@@ -45,7 +45,7 @@ export default function NewGames() {
         <div className='lg:mx-5 xl:mx-12 mb-10 md:mb-[70px] xl:mb-20'>
           <ListNewGames gameList={gameList} />
         </div>
-        <RecommendedGames />
+        <RecommendedGames games={[]} />
         <Description />
       </div>
     </>

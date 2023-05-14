@@ -6,14 +6,14 @@ import RecommendedGames from '@/components/Organisms/RecommendedGames'
 import YourFavouriteGames from '@/components/Organisms/YourFavouriteGames'
 import YourLatestGame from '@/components/Organisms/YourLatestGame'
 import Head from 'next/head'
-import React,{useEffect,useState} from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function MyGame() {
-  const [playedGames,setPlayedGames] = useState<any>(0)
-  useEffect(()=>{
+  const [playedGames, setPlayedGames] = useState<any>(0)
+  useEffect(() => {
     setPlayedGames(GamesService.getIdPlayedGames())
-  },[])
-  
+  }, [])
+
   return (
     <>
       <Head>
@@ -23,7 +23,7 @@ export default function MyGame() {
         {/* <YourLatestGame /> */}
         {playedGames.length !== 0 ? <RecentPlayedGames /> : ''}
         <YourFavouriteGames />
-        <RecommendedGames />
+        <RecommendedGames games={[]} />
         <Description />
         <PopularTags />
       </div>
