@@ -31,7 +31,7 @@ export default function Categories() {
       </Head>
       <div className='mx-auto w-full max-w-full relative z-10 main'>
         <ContentCategories listCategories={categories} />
-        <RecommendedGames />
+        <RecommendedGames games={[]} />
         <div className="flex">
           <Description />
         </div>
