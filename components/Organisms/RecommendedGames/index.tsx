@@ -8,9 +8,10 @@ import { useTranslation } from 'react-i18next';
 
 interface Props {
   isShowShape?: boolean;
+  games: Array<any>
 }
 
-const RecommendedGames: FC<Props> = ({ isShowShape = false }) => {
+const RecommendedGames: FC<Props> = ({ isShowShape = false, games }) => {
   const { isDesktop } = useScreenSize();
   const { t } = useTranslation();
 
@@ -23,7 +24,7 @@ const RecommendedGames: FC<Props> = ({ isShowShape = false }) => {
       )}
       <TitleSection title={t('recommended')} />
       <div className='lg:mx-5 xl:mx-12'>
-        <ListItemRecommended />
+        <ListItemRecommended games={games} />
       </div>
     </div>
   );
