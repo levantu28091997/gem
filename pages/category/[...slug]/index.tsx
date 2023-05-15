@@ -65,7 +65,7 @@ export default function SingleCategory({ slug }: { slug: string }) {
             gameList={gameByCategory.slice(0, 46)}
           />
         </div>
-        <PopularCategories />
+        {/* <PopularCategories /> */}
         <div className='flex'>
           <Description {...propsDescription(category[0])} />
         </div>

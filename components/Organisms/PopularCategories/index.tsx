@@ -10,25 +10,11 @@ import styles from './PopularCategories.module.scss';
 
 interface Props {
   isShowShape?: boolean;
+  categories: any
 }
 
-const PopularCategories: FC<Props> = ({ isShowShape = false }) => {
+const PopularCategories: FC<Props> = ({ isShowShape = false, categories }) => {
   const { isMobile, isTablet, isDesktop } = useScreenSize();
-
-  const [categories, setCategories] = useState<any>([]);
-  const { data, run, loading } = useRequest(homeService.getCategories, {
-    manual: true,
-    onError: (res, params) => {
-      return res;
-    },
-    onSuccess: (data) => {
-      setCategories(data);
-    },
-  });
-
-  useEffect(() => {
-    run();
-  }, []);
   const { t } = useTranslation();
 
   let dataResult = [];

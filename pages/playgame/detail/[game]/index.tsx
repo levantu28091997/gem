@@ -58,7 +58,7 @@ export default function Detail() {
         <GameDetailThumbnail {...propsItem(gameCurrent)}/>
         <ListItemRecommended />
         <Description {...propsDescription(gameCurrent)}/>
-        <PopularCategories />
+        {/* <PopularCategories /> */}
       </div>
     </>
   )

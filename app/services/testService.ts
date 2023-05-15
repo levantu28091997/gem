@@ -18,6 +18,12 @@ export const getTagsPopular = () => {
     return http.get(api);
 };
 
+export const getCategories = () => {
+    const api = '/categories?populate=*';
+
+    return http.get(api);
+};
+
 export const getRecommendedGames = () => {
     let api: string;
     const playedCategoriesGames = GamesService.getPlayedCategoriesGames();
