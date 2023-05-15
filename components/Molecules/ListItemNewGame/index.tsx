@@ -66,17 +66,9 @@ const ContentNewGameTablet = ({ gameList }: any) => {
 }
 
 const ContentNewGameMobile = ({ gameList }: any) => {
-  const [ref, element] = useElementWidth()
-  const [itemWidth, setItemWidth] = useState<number>(0)
-
-  useEffect(() => {
-    const itemWidth = (element?.width - (20 * 2)) / 3
-    setItemWidth(itemWidth)
-  }, [ref, element?.width])
-
   return (
-    <div className={styles.itemGirdMobile} ref={ref}
-      style={{ gridTemplateColumns: `repeat(3, ${itemWidth}px)`, gridTemplateRows: `repeat(4, ${itemWidth}px)` }}>
+    <div className={styles.itemGirdMobile}
+      style={{ gridTemplateColumns: `repeat(3, calc((100vw - 32px - 36px) / 3))`, gridTemplateRows: `repeat(4, calc((100vw - 32px - 36px) / 3))` }}>
       {
         gameList.map((game: any, index: number) => (
           <div key={index} className={styles[`ip${index}`]}>
