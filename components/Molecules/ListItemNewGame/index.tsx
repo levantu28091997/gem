@@ -7,29 +7,12 @@ import { homeService } from '@/app/services/homeService'
 import { GameInfo } from '@/utils/propItemGame'
 import GameThumbnail, { GameThumbnailMobile } from '../GameThumbnail'
 
-const ListItemNewGame = () => {
+const ListItemNewGame = ({newGame}:any) => {
   const { isDesktop, isTablet } = useScreenSize()
-  const [gameList, setGameList] = useState<any>([]);
+  if (isDesktop) return <ContentNewGameDesktop gameList={newGame.slice(0, 12)} />
+  if (isTablet) return <ContentNewGameTablet gameList={newGame.slice(0, 10)} />
 
-  const { data, run, loading } = useRequest(homeService.getNewGame, {
-
-    manual: true,
-    onError: (res, params) => {
-      return res;
-    },
-    onSuccess: (data) => {
-      setGameList(data);
-    },
-  });
-
-  useEffect(() => {
-    run();
-  }, []);
-
-  if (isDesktop) return <ContentNewGameDesktop gameList={gameList.slice(0, 12)} />
-  if (isTablet) return <ContentNewGameTablet gameList={gameList.slice(0, 10)} />
-
-  return <ContentNewGameMobile gameList={gameList.slice(0, 9)} />
+  return <ContentNewGameMobile gameList={newGame.slice(0, 9)} />
 }
 
 export default ListItemNewGame

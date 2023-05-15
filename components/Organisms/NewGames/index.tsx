@@ -8,9 +8,10 @@ import { useTranslation } from 'react-i18next';
 
 interface Props {
   isShowShape?: boolean;
+  newGame: any
 }
 
-const NewGames: FC<Props> = ({ isShowShape = false }) => {
+const NewGames: FC<Props> = ({ isShowShape = false, newGame }) => {
   const { isDesktop } = useScreenSize();
 
   const { t } = useTranslation();
@@ -23,7 +24,7 @@ const NewGames: FC<Props> = ({ isShowShape = false }) => {
       )}
       <TitleSection title={t('newGames')} viewMore='/new-games' />
       <div className='lg:mx-5 xl:mx-12'>
-        <ListItemNewGame />
+        <ListItemNewGame newGame={newGame} />
       </div>
     </div>
   );

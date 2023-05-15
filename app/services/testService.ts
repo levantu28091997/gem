@@ -24,6 +24,12 @@ export const getCategories = () => {
     return http.get(api);
 };
 
+export const getNewGame = () => {
+    const api = `/games?sort[1]=updatedAt:desc&populate=*`;
+
+    return http.get(api);
+};
+
 export const getRecommendedGames = () => {
     let api: string;
     const playedCategoriesGames = GamesService.getPlayedCategoriesGames();
