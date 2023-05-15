@@ -18,22 +18,8 @@ interface PropTag {
     updatedAt: Date;
   };
 }
-const PopularTags = () => {
-  const [tags, setTags] = useState<any>([]);
+const PopularTags = ({tags}:any) => {
   const router = useRouter();
-  const { data, run, loading } = useRequest(homeService.getTagsPopular, {
-    manual: true,
-    onError: (res, params) => {
-      return res;
-    },
-    onSuccess: (data) => {
-      setTags(data);
-    },
-  });
-  const { isMobile, isTablet } = useScreenSize();
-  useEffect(() => {
-    run();
-  }, []);
   const { t } = useTranslation();
 
   return (
@@ -44,7 +30,7 @@ const PopularTags = () => {
         </h2>
       </div>
       <ul className={`${styles.tagList} flex justify-center flex-wrap gap-2`}>
-        {!loading &&
+        {
           tags?.map((tag: PropTag) => (
             <li key={tag?.id}>
               <Link

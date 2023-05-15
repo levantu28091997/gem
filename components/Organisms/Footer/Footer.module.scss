@@ -1,6 +1,8 @@
 @import "@/styles/mixins";
 
 .footer {
+    position: relative;
+    z-index: 50;
     background-color: #0A0A0A;
     color: #FFFFFF;
     padding: 23px 0;

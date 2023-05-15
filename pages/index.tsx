@@ -9,24 +9,26 @@ import Head from 'next/head';
 
 import { I18nextProvider } from 'react-i18next';
 import i18n from './../i18n';
-import { getBannerHotGame, getHotGame, getRecommendedGames } from '@/app/services/testService';
+import { getBannerHotGame, getHotGame, getRecommendedGames, getTagsPopular } from '@/app/services/testService';
 
 export async function getServerSideProps() {
   const gamesRes = await getHotGame()
   const bannerRes = await getBannerHotGame()
   const recommendGameRes = await getRecommendedGames()
+  const tagPopularRes = await getTagsPopular()
 
   // Pass data to the page via props
   return {
     props: {
       games: gamesRes?.data,
       banner: bannerRes?.data,
-      recommendGame: recommendGameRes?.data?.data
+      recommendGame: recommendGameRes?.data?.data,
+      tagPopular: tagPopularRes?.data?.data
     }
   };
 }
 
-export default function Home({ games, banner, recommendGame }: any) {
+export default function Home({ games, banner, recommendGame, tagPopular }: any) {
 
   return (
     <>
@@ -34,7 +36,7 @@ export default function Home({ games, banner, recommendGame }: any) {
         <title>Gamehub</title>
       </Head>
       <div className='mx-auto w-full max-w-full relative z-10 main'>
-        <TopSection games={games} banner={banner} />
+        {/* <TopSection games={games} banner={banner} /> */}
         {/* <RecommendedGames isShowShape games={recommendGame} /> */}
         {/* <NewGames isShowShape />
         <PopularGames isShowShape />
@@ -42,7 +44,7 @@ export default function Home({ games, banner, recommendGame }: any) {
         <I18nextProvider i18n={i18n}>
           <Description />
         </I18nextProvider>
-        <PopularTags />
+        <PopularTags tags={tagPopular} />
       </div>
     </>
   );

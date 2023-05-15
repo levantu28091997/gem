@@ -12,6 +12,12 @@ export const getBannerHotGame = () => {
     return http.get(api);
 };
 
+export const getTagsPopular = () => {
+    const api = '/tags';
+
+    return http.get(api);
+};
+
 export const getRecommendedGames = () => {
     let api: string;
     const playedCategoriesGames = GamesService.getPlayedCategoriesGames();

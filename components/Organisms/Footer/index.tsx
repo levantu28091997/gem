@@ -10,7 +10,7 @@ import LegalMobile from '@/components/Molecules/LegalMobile';
 
 const Footer = () => {
   return (
-    <footer className={cs([styles.footer, 'relative z-50'])}>
+    <footer className={styles.footer}>
       <div className={styles.footerWrapper}>
         <div
           className={'flex items-center justify-center gap-10 md:gap-[86px]'}

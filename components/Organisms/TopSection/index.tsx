@@ -1,10 +1,8 @@
 import cs from '@/utils/cs';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useLayoutEffect, useMemo, useState } from 'react';
 import styles from './topSection.module.scss';
 import useScreenSize from '@/utils/useScreenSize';
 import BannerGame from './BannerGame';
-import { useRequest } from 'ahooks';
-import { homeService } from '@/app/services/homeService';
 import moment from 'moment';
 import { useElementWidth } from '@/utils/useElementWidth';
 import GameThumbnail, { GameThumbnailMobile } from '@/components/Molecules/GameThumbnail';
@@ -28,29 +26,7 @@ function propsItemGameTop(gameList: any, index: any, status?: any) {
 }
 
 const TopSection = ({ games, banner }: any) => {
-  console.log(banner);
-
-  // const [gameList, setGameList] = useState<any>([]);
-  // const [bannerGame, setBannerGame] = useState<any>([])
-  // const { data, run, loading } = useRequest(homeService.getHotGame, {
-  //   manual: true,
-  //   onError: (res, params) => {
-  //     return res;
-  //   },
-  //   onSuccess: (data) => {
-  //     setGameList(data);
-  //   },
-  // });
-  // const { data: bannerGameData, run: runBannerGame, loading: loadingBannerGame } = useRequest(homeService.getBannerHotGame, {
-  //   manual: true,
-  //   onError: (res, params) => {
-  //     return res;
-  //   },
-  //   onSuccess: (data) => {
-  //     setBannerGame(data);
-  //   },
-  // });
-
+  const { isSmallMobile, isDesktop, isTablet } = useScreenSize();
   const randomGame = useMemo(() => {
     const randomIndex = Math.floor(Math.random() * banner.length);
     return banner[randomIndex];
@@ -63,25 +39,16 @@ const TopSection = ({ games, banner }: any) => {
     slug: `/playgame/${randomGame?.slug}`
   };
 
-  // useEffect(() => {
-  //   run();
-  //   runBannerGame();
-  // }, []);
-  const { isMobile, isSmallMobile, isDesktop } = useScreenSize();
-
-  const [ref, element] = useElementWidth()
-  const [itemHeight, setItemHeight] = useState<number>(0)
-
-  useEffect(() => {
-    const gap = isDesktop ? 35 : 18
-    setItemHeight(((element?.width) * 2) + gap)
-  }, [ref, element?.width, isDesktop])
-
-  // if (loading) return <div className='text-center text-white'>Loading...</div>;
-
   if (isSmallMobile) return <TopSectionSmallMobile gameList={games} propsGameBanner={propsGameBanner} />;
 
-  if (isMobile) return <TopSectionMobile gameList={games} propsGameBanner={propsGameBanner} />;
+  if (isDesktop || isTablet) return <TopSectionDesktop games={games} propsGameBanner={propsGameBanner}/>
+
+  return <TopSectionMobile gameList={games} propsGameBanner={propsGameBanner} />;
+};
+
+export default TopSection;
+
+const TopSectionDesktop = ({ games, propsGameBanner }: any) => {
 
   return (
     <div
@@ -90,7 +57,7 @@ const TopSection = ({ games, banner }: any) => {
         'grid mb-10 md:mb-[70px] xl:mb-20 xl:px-5',
       ])}
     >
-      <div ref={ref} className='flex flex-col gap-[18px] xl:gap-[35px]'>
+      <div className='flex flex-col gap-[18px] xl:gap-[35px]'>
         <GameThumbnail {...propsItemGameTop(games, 0)} />
         <GameThumbnail {...propsItemGameTop(games, 1)} />
       </div>
@@ -105,13 +72,11 @@ const TopSection = ({ games, banner }: any) => {
   );
 };
 
-export default TopSection;
-
 const TopSectionMobile = ({ gameList, propsGameBanner }: any) => {
   const [ref, element] = useElementWidth()
   const [itemWidth, setItemWidth] = useState<number>(0)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const itemWidth = (element?.width - (18 * 2)) / 3
     setItemWidth(itemWidth)
   }, [ref, element?.width])
@@ -133,24 +98,27 @@ const TopSectionMobile = ({ gameList, propsGameBanner }: any) => {
 };
 
 const TopSectionSmallMobile = ({ gameList, propsGameBanner }: any) => {
-  const [ref, element] = useElementWidth()
-  const [itemWidth, setItemWidth] = useState<number>(0)
-
-  useEffect(() => {
-    const itemWidth = (element?.width - 18) / 2
-    setItemWidth(itemWidth)
-  }, [ref, element?.width])
 
   return (
     <div className={cs([styles.topSectionMobile, 'flex flex-col gap-4 mb-10'])}>
       <div className={styles.banner_game_placeholder}>
         <BannerGame {...propsGameBanner} />
       </div>
-      <div className={cs([styles.itemGird, 'gird'])} ref={ref}
-        style={{ gridTemplateColumns: `repeat(2, ${itemWidth}px)`, gridTemplateRows: `repeat(1, ${itemWidth}px)` }}
+      <div className={cs([styles.itemGird, 'gird'])}
+        style={{ gridTemplateColumns: `repeat(2, calc(50vw - 25px))`, gridTemplateRows: `repeat(1, calc(50vw - 25px))` }}
       >
-        <GameThumbnailMobile {...propsItemGameTop(gameList, 1)} />
-        <GameThumbnailMobile {...propsItemGameTop(gameList, 2)} />
+        {
+          !gameList ? <>
+            <div className={styles.cardImg} />
+            <div className={styles.cardImg} />
+          </> : <>
+            <GameThumbnailMobile {...propsItemGameTop(gameList, 1)} />
+            <GameThumbnailMobile {...propsItemGameTop(gameList, 2)} />
+          </>
+        }
+        
+        {/* <GameThumbnailMobile {...propsItemGameTop(gameList, 1)} />
+        <GameThumbnailMobile {...propsItemGameTop(gameList, 2)} /> */}
       </div>
     </div>
   );

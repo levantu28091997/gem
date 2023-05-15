@@ -9,6 +9,8 @@ interface Iprops {
 }
 
 const Description = (x: Iprops) => {
+  console.log(x);
+  
   const { t } = useTranslation();
 
   return (
