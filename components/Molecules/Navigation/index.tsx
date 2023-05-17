@@ -48,7 +48,7 @@ const Navigation = () => {
             router.asPath === '/my-game' ? styles.active : '',
           ])}
         >
-          <Link href={'/my-game'}>
+          <Link href={'/my-game'} prefetch={false}>
             <Image
               src='/icons/game-controller.svg'
               alt='My game'
@@ -69,7 +69,7 @@ const Navigation = () => {
             router.asPath === '/categories' ? styles.active : '',
           ])}
         >
-          <Link href={'/categories'}>
+          <Link href={'/categories'} prefetch={false}>
             <Image
               src='/icons/categories.svg'
               alt='Categories'
@@ -94,7 +94,7 @@ const Navigation = () => {
             showSubmenu && styles.active,
           ])}
         >
-          <Link href='' onClick={handleSubmenu} className='sub'>
+          <Link href='' onClick={handleSubmenu} className='sub' prefetch={false}>
             <Image
               src='/icons/menu.svg'
               alt='Menu'
@@ -121,10 +121,10 @@ const Navigation = () => {
           >
             <ul className={cs([styles.menu])}>
               <li>
-                <Link href={'/developers'}>Game Developers</Link>
+                <Link href={'/developers'} prefetch={false}>Game Developers</Link>
               </li>
               <li>
-                <Link href={'/about'}>About Apero Gamehub</Link>
+                <Link href={'/about'} prefetch={false}>About Apero Gamehub</Link>
               </li>
               <li className='xl:hidden'>
                 <div

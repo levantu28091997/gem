@@ -70,6 +70,7 @@ const GameThumbnail: FC<Props> = (x) => {
           styles.itemGame,
           'flex items-center h-full w-full relative',
         ])}
+        prefetch={false}
       >
         <TagShow
           isFavourite={isFavourite}
@@ -129,6 +130,7 @@ export const GameThumbnailMobile: FC<Props> = (x) => {
     <Link
       href={`/playgame/detail/${getSlug(x.slug)}`}
       className={cs(['flex items-center h-full w-full relative'])}
+      prefetch={false}
     >
       <ThumbnailImage src={x?.gameImage} isLightEffect={x.isLightEffect} />
       <TagShow
