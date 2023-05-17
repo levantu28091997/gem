@@ -43,7 +43,7 @@ export default function Home({ games, banner, recommendGame, tagPopular, categor
       </Head>
       <div className='mx-auto w-full max-w-full relative z-10 main'>
         <TopSection games={games} banner={banner} />
-        <RecommendedGames isShowShape games={recommendGame} />
+        {/* <RecommendedGames isShowShape games={recommendGame} /> */}
         <NewGames isShowShape newGame={newGame}/>
         <PopularGames isShowShape popularGame={popularGame}/>
         <PopularCategories isShowShape categories={categories}/>
