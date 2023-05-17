@@ -19,6 +19,10 @@ const nextConfig = {
     ALGOLIA_PROVIDER_ADMIN_API_KEY: process.env.ALGOLIA_PROVIDER_ADMIN_API_KEY,
     DEVELOPMENT_API: process.env.DEVELOPMENT_API,
   },
+  experimental: {
+    // Defaults to 50MB
+    isrMemoryCacheSize: 0,
+  },
 };
 
 module.exports = nextConfig;
