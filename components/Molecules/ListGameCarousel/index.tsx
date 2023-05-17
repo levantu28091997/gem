@@ -103,23 +103,17 @@ export function ListGameCarouselOnTablet({ gameList }: any) {
 }
 
 export function ListGameCarouselOnMobile({ gameList }: any) {
-  const [ref, element] = useElementWidth()
-  const [itemWidth, setItemWidth] = useState<number>(0)
+
   const ITEM_NUMBER_OF_SCREEN = 3
   const gamesFilter = chunkArray(gameList, ITEM_NUMBER_OF_SCREEN);
   const swiperRef = React.useRef<any>(null);
-
-  useEffect(() => {
-    const itemWidth = (element?.width - 20 * 2) / 3;
-    setItemWidth(itemWidth);
-  }, [ref, element?.width]);
 
   const handleNextSlide = () => {
     return swiperRef?.current?.swiper.slideNext()
   }
 
   return (
-    <div ref={ref} className='relative my-[-25px]'>
+    <div className='relative my-[-25px]'>
       <Swiper
         spaceBetween={22}
         slidesPerView={1}
@@ -131,7 +125,8 @@ export function ListGameCarouselOnMobile({ gameList }: any) {
             return (
               <SwiperSlide key={`slide_${indSlide}`}>
                 <div className={styles.wrapperMobile}
-                  style={{ gridTemplateColumns: `repeat(3, ${itemWidth}px)`, gridTemplateRows: `repeat(2, ${itemWidth}px)` }}
+                    // calc((100vw - 32px - 40px) / 3) = screenWidth - padding*2 - space *2 = width of 1 item
+                    style={{ gridTemplateColumns: `repeat(3, calc((100vw - 32px - 40px) / 3))`, gridTemplateRows: `repeat(2, calc((100vw - 32px - 40px) / 3))` }}
                 >
                   {
                     slides?.map((game: any, indGame: number) => {

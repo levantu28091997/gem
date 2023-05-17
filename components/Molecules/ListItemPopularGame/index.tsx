@@ -7,7 +7,7 @@ import { useRequest } from 'ahooks'
 import { homeService } from '@/app/services/homeService'
 import GameThumbnail, { GameThumbnailMobile } from '../GameThumbnail'
 
-const ListItemPopularGame = () => {
+const ListItemPopularGame = ({popularGame}:any) => {
   const { isDesktop, isTablet } = useScreenSize()
   const [gameList, setGameList] = useState<any>([]);
   const [repeat,setRepeat] = useState(2);
@@ -93,17 +93,13 @@ const ContentPopularGameTablet = ({ gameList,repeat }: any) => {
 }
 
 const ContentPopularGameMobile = ({ gameList,repeat }: any) => {
-  const [ref, element] = useElementWidth()
-  const [itemWidth, setItemWidth] = useState<number>(0)
-
-  useEffect(() => {
-    const itemWidth = (element?.width - (20 * 2)) / 3
-    setItemWidth(itemWidth)
-  }, [ref, element?.width])
-
   return (
-    <div className={styles.itemGirdMobile} ref={ref}
-      style={{ gridTemplateColumns: `repeat(3, ${itemWidth}px)`, gridTemplateRows: `repeat(${repeat + 2}, ${itemWidth}px)` }}
+    <div className={styles.itemGirdMobile}
+    style={{
+      gridTemplateColumns: `repeat(3, calc((100vw - 32px - 40px) / 3))`,
+      gridTemplateRows: `repeat(${repeat + 3}, calc((100vw - 40px - 36px) / 3))`,
+    }}
+    // calc((100vw - 32px - 40px) / 3) = screenWidth - padding*2 - space *2 = width of 1 item
     >
       {
         gameList.map((game: any, index: number) => (

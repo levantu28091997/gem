@@ -30,6 +30,13 @@ export const getNewGame = () => {
     return http.get(api);
 };
 
+export const getPopularGame = () => {
+    const api =
+        '/games?sort[1]=play_count%3Adesc&pagination[pageSize]=56&populate=*';
+
+    return http.get(api);
+};
+
 export const getRecommendedGames = () => {
     let api: string;
     const playedCategoriesGames = GamesService.getPlayedCategoriesGames();

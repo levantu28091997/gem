@@ -8,8 +8,9 @@ import styles from './PopularGames.module.scss';
 
 interface Props {
   isShowShape?: boolean;
+  popularGame: any
 }
-const PopularGames: FC<Props> = ({ isShowShape = false }) => {
+const PopularGames: FC<Props> = ({ isShowShape = false, popularGame }) => {
   const { isDesktop } = useScreenSize();
   const { t } = useTranslation();
 
@@ -27,7 +28,7 @@ const PopularGames: FC<Props> = ({ isShowShape = false }) => {
         <TitleSection title={t('popGame')} viewMore='popular-games' />
       </div>
       <div className='lg:mx-5 xl:mx-12'>
-        <ListItemPopularGame />
+        <ListItemPopularGame popularGame={popularGame} />
       </div>
     </div>
   );

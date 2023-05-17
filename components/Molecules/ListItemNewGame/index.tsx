@@ -68,7 +68,7 @@ const ContentNewGameTablet = ({ gameList }: any) => {
 const ContentNewGameMobile = ({ gameList }: any) => {
   return (
     <div className={styles.itemGirdMobile}
-      style={{ gridTemplateColumns: `repeat(3, calc((100vw - 32px - 36px) / 3))`, gridTemplateRows: `repeat(4, calc((100vw - 32px - 36px) / 3))` }}>
+      style={{ gridTemplateColumns: `repeat(3, calc((100vw - 32px - 40px) / 3))`, gridTemplateRows: `repeat(4, calc((100vw - 32px - 40px) / 3))` }}>
       {
         gameList.map((game: any, index: number) => (
           <div key={index} className={styles[`ip${index}`]}>
