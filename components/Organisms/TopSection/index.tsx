@@ -101,9 +101,9 @@ const TopSectionSmallMobile = ({ gameList, propsGameBanner }: any) => {
 
   return (
     <div className={cs([styles.topSectionMobile, 'flex flex-col gap-4 mb-10'])}>
-      <div className={styles.banner_game_placeholder}>
+      {/* <div className={styles.banner_game_placeholder}>
         <BannerGame {...propsGameBanner} />
-      </div>
+      </div> */}
       <div className={cs([styles.itemGird, 'gird'])}
         style={{ gridTemplateColumns: `repeat(2, calc(50vw - 25px))`, gridTemplateRows: `repeat(1, calc(50vw - 25px))` }}
       >

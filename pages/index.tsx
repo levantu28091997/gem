@@ -14,8 +14,8 @@ import { getBannerHotGame, getCategories, getHotGame, getNewGame, getPopularGame
 
 const cache = new LRUCache({ max: 100, ttl: 1000 * 60 * 5 });
 
-export async function getServerSideProps(context:any) {
-  context.res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
+export async function getStaticProps(context:any) {
+  context?.res?.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
   const cacheKey = 'homepage';
 
   const cachedPage = cache.get(cacheKey);
